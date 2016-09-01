@@ -1,0 +1,40 @@
+Step by Step Unbound caching server setup
+1. wget http://unbound.net/downloads/unbound-1.5.9.tar.gz
+2. sha256sum unbound-1.5.9.tar.gz should be "01328cfac99ab5b8c47115151896a244979e442e284eb962c0ea84b7782b6990". By this we assure of integrity of file.
+3. tar -xzvf unbound-1.5.9.tar.gz
+4. cd unbound-1.5.9
+5. ./configure
+6. make
+7. make install
+8. Go to /usr/local/etc/unbound/unbound.conf and edit it. There we should specify port, interfaces and eneble remote control and ower username. 
+9. Then we should chown unbound files to ower user, log file for example, cause it'll downgrade it's priveleges and can't edit them.
+10. After that we can start unbound with unbound-control start and look for status with unbound-status
+10.5 By the way unbound has root server addreses in it's code, but we can put them to root.hints file near configration.
+11. We can check our cache server with dig. dig ya.ru @127.0.0.1 first time will return answer with some delay, next time it will do it in 0 ms, because answer is already cached.
+
+Answers: 
+1. Signature verification helps us to be assure in programms integrity.
+2. In my mind SHA256 is best, cause it's easy to check and still gains needed level of security. But most sites also gives another variations
+3. It saves big amount of time, that will be spent to find host going from root, to another servers etc.
+In our example, first query goes in 200-500ms, next in 0ms of course. 
+4. unbound.conf
+5. Cause it helps to use one programs when writing another
+6. Added control-enable: yes
+7. stop/status/start etc.
+8. nameserver 127.0.0.1
+
+First 8 steps of installing is like for unbound.
+Our configration file is located at /etc/nsd/nsd.conf
+9. We should change the port in our config, to avoid conflicts with unbound
+10. Next we should create zone file in zone folder with our st9.os3.su. zone
+11. When we added all neede records, we can change config of nsd, and add 
+	zone:
+ 		name: "st9.os3.su."
+ 		zonefile: "st09.os3.su"
+12. 
+ 
+
+
+
+
+

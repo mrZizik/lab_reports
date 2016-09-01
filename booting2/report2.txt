@@ -1,0 +1,54 @@
+1. UEFI OS loader is a special type of UEFI application that takes control from firmware. It can use only memory allocated from firmware and use UEFI services and protocols to access hardware. If it fails to load OS, it can release all allocated resources and return controll to firmware.
+
+Ubuntu OS Loader is at UEFI system partition in /EFI/ubuntu folder. It automaticly mounts to /boot/efi when ubuntu is loading. 
+
+2. Computer loading progress:
+		Platform init goes first. 
+		SEC stage: In this security stage UEFI prepare temp memory, verify
+			other partsof platform initialization.
+		DXE stage: After that goes CPU, chipset and board init. Then drivers
+			and applications loads in Driver Execution Environment. 
+		BDS stage: Then goes Boot Device Selection stage. At this stage UEFI finds EFI system partition and mounts it. On that disk UEFI gets OS loader. In our case /EFI/ubuntu/grub.efi It gives initiated and loaded
+			drivers to it, that reduces time needed for OS to load.
+
+3. GRUB bootloader gets control from UEFI OS loader and gives user choice to boot one of multiple OS installed on PC.
+
+4. After BDS load stage, when platfrom is initialized and disk is found, UEFI mounts that EFI system partition. Then EFI boot manager select /EFI/ubuntu/grub.efi and loads it in memory. If there are more EFI applications, boot manager will prompt you to select an app to run.
+
+5
+	a. Linux kernel is on ext4 linux filesystem.
+	b. UEFI supports all modern filesystems, but EFI system partition runs on special version of FAT32
+	c.
+		root (hddX,X) #to set root partition for GRUB
+		kernel /path/to/kernel root=/dev/sdX option1=value option2=value # loads kernel file from root in 	paramater
+		initrd /path/to/initrd.img # loads initial ramdisk - temp root filesystem, that is needed for linux startup process 
+		boot # loads OS or last chainloader
+
+		Some OSs cannot be loaded such way, cause they have their own loaders. In that case chainloader command is used.
+
+		chainloader /path/to/file # if needed file is at first sector of partition we can use chainloader +1
+
+6. Yes you can load kernel withoud OS or bootloader, but you need kernel with EFI boot stub turned on. It is on in some linux kernels, and can be turned on while setting it up by adding CONFIG_EFI_STUB=y. Also your kernel should be at EFI system partition. EFI boot srub helps UEFI load linux kernel as typical EFI application.
+
+7.8. 3 stages. 
+	Stage 1: boot.img is stored in the master boot record (MBR). It points to the next stage by an LBA48 address.
+	Stage 1.5: here core.img loads. By default it resides between MBR and the first partition. When started loads it's config files and modles, file system drivers for example.
+	Stage 2: all files of this stage stores at /boot/grub directory. Once it is loaded, user get menu to choose which OS he wants to load.
+
+
+9. 
+	(a) Kernel loads systemd which mounts root partition and loads specific set of daemons.
+	(b) Config of systemd script is at /etc/systemd/system.conf and /etc/systemd/* 
+	(c) Firstly it loads /lib/systemd/system/default.target (in out Ubuntu it is graphical interface) and then all it's dependecies and so on.
+
+	Step-by-step ubuntu loading:
+	Firstly GRUB loads linux kernel. Kernel loads initrd disk, preloads some drivers, and starts systemrd. 
+	Systemd loads default.target, and it's dependecies start executing in parallel. By this time initrd fs replaces by real root filesystem. Next goes all other services, like network, ufw, etc.
+
+10.
+	(a) systemd starts network service, it's configs stored at /etc/network/ and /etc/init.d/network. Then NetworkManager starts, who manages all network configuration in ubuntu. NetworkManagers configs stored at /etc/NetworkManager
+	(b) NetworkManager
+	
+
+
+

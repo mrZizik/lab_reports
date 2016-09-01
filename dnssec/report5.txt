@@ -1,0 +1,56 @@
+Step by Step Unbound validatong resolver configuration:
+1. Firstly go to https://data.iana.org/root-anchors/draft-icann-dnssec-trust-anchor.html and get initial DS recodrd for root zone. It should be added to root-trust-anchor file.
+2. Then we turn on validator and iterator modules in unbound.conf.
+
+1. Validating resolver is a DNS resolver that knows how to perform DNSSEC validation of the data that it receives, to be assure that the data that receives through is integrate.
+2. I downloaded asc signature and called
+	$ gpg --verify root-anchors.asc root-anchors.xml
+	he says me that he can't find public key with id. Then i called 
+	$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 0F6C91D2
+	It downloaded needed public key, and i verified that signature.
+	$ gpg --verify root-anchors.asc root-anchors.xml
+3. dig showes DNSkeys and adds flag AD(Authenticated data) to answer. This flags show that answer was validated.
+4. /usr/local/etc/unbound/
+5. The managed-keys statement, like trusted-keys, defines DNSSEC security roots. The difference is that managed-keys can be kept up to date automatically, without intervention from the resolver operator.
+6. Changed unbound.conf field trusted-keys. 
+7. Linux got SERVFAIL answer
+9. I prefer RSA, cause it gains needed level of security, using with big enough keys. It also gives good speed of verification in compare with ECDSA.
+10. 
+	I used only different key size. KSK has longer key, cause it changes rarely then ZSK. You also can can use ECDSA for KSK, cause it gives stronger then RSA with same key size.
+
+12.
+	st9.st8.os3.su.	60	IN	SOA	st9.os3.su. admin.st9.os3.su. 201608211 60 60 60 60
+	st9.st8.os3.su.	60	IN	RRSIG	SOA 7 4 60 20160926103115 20160829103115 62540 st9.st8.os3.su. ATnoE2FJ2av+EvsdQZM21KAhbbFYu23rFj2NpS/yM35V02iQ1ABk0NKZCTbPpET2xE4qyO7JelubWChb1iX64y4+pDV33lkli0eSbxXYw9Izir2ty3N3TekR2orPZXS9LYHFrt2ewfj6FcujXywdLMB8bcROa3tCJC9E/eU/A50=
+	st9.st8.os3.su.	60	IN	A	188.130.155.42
+	st9.st8.os3.su.	60	IN	RRSIG	A 7 4 60 20160926103115 20160829103115 62540 st9.st8.os3.su. NEwutPch8+ToTL9zz36ixezi4IWRhxxttsWpmGYmMeSJlLv/GoAePFSf9Nb0BBXCzJKQB55oEKsI8GoIlusWhjetA5jczLWnj0DJpb1UjYIqcwmAA71niSykr0QTyhB231L642Xz6TUDo8gLC+qGzPXRx4wLyznIj1uumLKB+Ok=
+	st9.st8.os3.su.	60	IN	NS	st9.os3.su.
+	st9.st8.os3.su.	60	IN	RRSIG	NS 7 4 60 20160926103115 20160829103115 62540 st9.st8.os3.su. kyDWSFNIDMqEHFQDoEZwWNXP+RxjHzFrO+8U8qIKjHEyA6SzvIjT3j+Lyj74bR+pdOuRflYMs894eEYIWpt/dJBz8frkUt1c624Ym0JMl+Z6Dz2fAtDQcjwjJFnfZYE+d6UZWylfjSrAypckN5mf4/rMnG1f90NEwxeM1vwshGo=
+	st9.st8.os3.su.	60	IN	DNSKEY	256 3 7 AwEAAcL6dn6A6uSYrx/Pn5A7LnxRQDciB87i4wyG8N8V0JLFQIrv2qSCTtZrsoZrb44z+HNCOmDcIr3gX0iDoZjCAjsEOhLVSyzNkuv+WfsBxL0jhQQMyyVS4MDMEZDIVnqPJlZXxrni0Wf4i0WgM4fPSNDYoa9DKht55EdsSx+CesTh ;{id = 62540 (zsk), size = 1024b}
+	st9.st8.os3.su.	60	IN	DNSKEY	257 3 7 AwEAAdRzfwr7Qxnk/W0LVdbYVWlH0rmT+ovSUONwgiz09G9Pk2MH+oBb0qaieqVe77w+kqy4FaGGZ/EM6GrQSwNPAziSgZQtQVZiOXgprio84XAR+LErwF56URbPUdy4utZXfzKmAxY5XUJSkyu/tZAZsZUHXnemSKlMzZcPTCC/5uxavOXS3XLw+ZjWfQyhKY+WM094rxE/66Ru1iS0MTQd8Px5+646E+PJMJEJ63OWRlKtZl2bmMXfC48bHmlVF3kBDjZxF4mptk8wRddEGnwDadlN/kzdPsA1d3JYRceLMM0UbWpwH+K8s6dfWWkCZeWpl83V8cVVXxj+JNxQxwNL1E8= ;{id = 24069 (ksk), size = 2048b}
+	st9.st8.os3.su.	60	IN	RRSIG	DNSKEY 7 4 60 20160926103115 20160829103115 24069 st9.st8.os3.su. e/AdswhIIlKh1o5lI0UxtEHd4o6dFayxAPK5volIdg4qHPs41lEUFNFUHl5OvQB3Y4HmjVMofZ60C6WzC4KX4+2C3lXcXye7f/uzEVjAI+Pi/LlFTxViNwikCGcA+qzkYTgh9VUUuVyPat3tFDm+5UjEdZ0pLOhey7QtXXlivtPEMqXegb3P1iiN1+6ZJTYruGNnh2uluK5yBzPwHrlkE6tJ+XAchRPGxBAMIbZ7r68I1ocI//0mxlvIubuarpLQ1CtsQy5bvJHmSw9M6RdQ8dVjPrDJpjUAmw+h4QXETs0xOw+mZmETR4mhoft9dlJX4rSQkMHPuIVMqOZnpCs6MA==
+	st9.st8.os3.su.	3600	IN	NSEC3PARAM	1 0 1 86c292f35753ccb439b2be07552ce45e08ad278e68aee187 
+	st9.st8.os3.su.	3600	IN	RRSIG	NSEC3PARAM 7 4 3600 20160926103115 20160829103115 62540 st9.st8.os3.su. nFlrxcrhKXFXBbTIyN6NCsrdrD58lJ2xRSfLpe1xTge7ef1bcRW/03gBUCTp+cy/BKORQJ45xYlhZX77vKPU7dmc1LHWZrYuajnSeHboRdh3Or5meQsJoiiBUuXj3fcNxXVXQ/GqvXfqwt2ognbeu3hz6PHGCrAYxbx9zEUTbKs=
+	0grd75hvufojhcu2tervpke9aa4lseh5.st9.st8.os3.su.	60	IN	NSEC3	1 1 1 86c292f35753ccb439b2be07552ce45e08ad278e68aee187  0grd75hvufojhcu2tervpke9aa4lseh5 A NS SOA RRSIG DNSSECKEY NSEC3PARAM 
+	0grd75hvufojhcu2tervpke9aa4lseh5.st9.st8.os3.su.	60	IN	RRSIG	NSEC3 7 5 60 20160926103115 20160829103115 62540 st9.st8.os3.su. EB6BplFrHrOs6fq7ozy2H0C7sN0SqtS0uVc3pJiY9HMDJ1AUgx7a37kJR3XloamqKJklPzbzEogbspHq1/7g6HpM8sOBCH9SUWSaCmCnrRtCgSJjsZqm0CIq6HhpovYgIRYHGRzlC8AHb5NYdz2e6wcQ4wUpJUvQUuehnwbH+Fw=
+
+	all RR's got their RRSIG and NSEC3 resources. Also zone had it's ZSK DNSKEY.
+
+13. DS records of zone that they deligated to me.
+
+14. debug_result.jpg
+
+15. DNSKEY and DS for st9.os3.su zone. DNSKEY stored in zone file. DS key should be stored at os3.su zone. DS hash needed to verify DNSKEY of child zone.
+
+
+16. = 
+	(b) First, you'll need to generate a new key, that will replace the current key.
+		Add the new key to the zone file
+		Re-sign the zone with old keys
+		Wait for highest TTL time, to update caching servers
+		Add the old key as passive to the zone
+		Sign the one with new key
+		Wait for highest TTL
+		Clean zone from old ZSK key
+		Resign it with new ZSK key
+	(c) The opeartions should be a bit different, and you also should add public KSK to parent DNS.
+
