@@ -1,0 +1,172 @@
+Step-by-Step report:
+
+1. By pressing F9 got into boot menu.
+2. Tried to load from network device, but got error, that NBP is too big too fit in free base memory.
+3. After sometime of googling understood that i need PXE in UEFI boot mode, not legacy.
+4. F10 send me to system settings, where i change that option.
+5. Tried to load from network controller, and it worked.
+6. Choosed language, timezone, forced to use UEFI and automaticly parted hdd by GPT in 3 partitions.
+7. Choosed to install security updates and openSSH, XFCE desktop and basic ubuntu server.
+8. After installation had finished installed cinnamon wm, setted up openssh to another port and turned on ubuntu firewall.
+9. Checked that my partition is GPT with gparted. 
+$ gparted -l /dev/sda
+10. Made backup of hdd to file by command 
+$ dd if=/dev/sda of=dump bs=1 count=1500
+11. Found UEFI specifications and GPT description from google.
+12. wrote annotation to dump
+
+
+1.
+	a) UEFI PXE booting - Unified Extensible Firmware Interface that lies between OS and hardware. It inits hardware at startup and starts bootloader. In future UEFI'll change Basic Input Output System.
+PXE is Preboot Execution Environment client-server software that helps boot computer without local datastorage like CD, HDD, etc. It uses IP, UDP, DHCP, TFTP, BOOTP protocols.
+	b) PXE working example:
+		1) PXE inits.
+		2) DHCP component of client's PXE sends DHCPDISCOVER packet containing specific PXE option to port 67 by UDP protocol. By this action it asks network configurations (address and other) and TFTP server address with Network Booting Program.
+		3) Client loads NBP to its own RAM, verifies if it is possible for example in UEFI Secure Boot and executes it.
+		4) NBP in most cases loads additional files from TFTP to load minimal enviroment, in our case Linux kernel.
+
+	c) Working from PXE helps to boot huge amount of machines and/or install OS on them with less spend of resources.
+
+2. 
+	a) GPT - GUID Partition Table is a standart for the layout of the partition table on a storage device using Globally Unique Identifiers. It is part of UEFI, but used in BIOS systems to avoid MBR limitations. Most current OS's support GTP.
+	b) GPT use logical block addressing.
+		LBA0 contains Protective MBR. It needs to protect GPT disk from erasing or damaging, after misrecognizing by MBR-based disk utils.
+		LBA1 contains signature, ASCII string "EFI PART", that idintifies EFI-compatible partition header. 
+			Then goes revision number - the version of header.
+			Size of header in bytes, that must be greater then 92 ant less or equal of the logical block size.
+			Next is CRC32 checksum for the header. Computed by setting this field to 0 and getting CRC32 for HeaderSize bytes.
+			Then goes 4 zero bytes.
+			After that number of LBA that contains that data
+			LBA address of reserve GPT header at the end of disk.
+			LBA address of first and after that last usable blocks.
+			Guid of disk
+			The starting LBA of the Partition Entry array
+			Number of partitions in the array
+			Size of each entry in array
+			CRC32 of partition entry array. Computed over a byte length of number of partitions * size of partitons
+			Rest size of the block is reserved by UEFI. Contains zero value.
+
+		LBA2-N has parition table for each parition. Contains:
+			Partition type GUID
+			Unique partition GUID
+			LBA address of partitoin start
+			LBA address of partition end
+			Partition attributes
+			Null-terminated string containing name of the partition
+			The rest of partition entry if any, contains zero value and reserved by UEFI.
+
+	c) Partition table is needed for system to know where one partition starts and ends. Partitions themselves helps to store data in different file systems and devided from each other. If data on one partition will be damaged, information on other ones we'll be ok.
+
+3.
+	a) gdisk - program for partition tables creating and manipulating.
+	b) Firstly it checks partition type on disk. In case of GPT, gdisk will use it. If it finds a valid MBR or other, but no GPT, it tries to convert it into GPT. When exit with w option it'll replace MBR with GPT.
+	c) You can do vaarious things.
+		1. List partiton table for device
+		2. Save partition data to file.
+		3. Change GPT name of a partition.
+		4. Delete partiton.
+		5. Show detailed info about partition.
+		6. Create new partiton.
+		7. Clear all partiton data.
+		8. Fix damaged GPT structures.
+		etc.
+
+4. Protective MBR is MBR with one EEh type partition that describes all GPT drive. It needs for security reasons. When OSs or programs that can't read GPT disks try to work with such partition, they'll recognize one unknown type partition and no empty space. They wouldn't try to modify and "repair" that parition, untill user explicitly requests it.
+
+
+Dump annotation:
+
+DEC Offset 
+0 - 440 boot code that is unused by UEFI systems
+440 - 443 - Unique MBR Disk Signature. Unused. Zero.
+444 - Unused. Zero.
+446 - 509 - MBR record
+510 - 511 Signature setted to AA55 or 43605 in DEC
+512 - Rest of block, if any exists is reserved. Zero value.
+
+446 - Start of one partition MBR record. Setted to zero to indicate that partition is not bootable. Must be ignored in UEFI.
+447 - 449 - Starting LBA field. LBA address of GPT partition Header. In our case first LBA.
+450 - Partition type. Equeals EE or 238 that means EFI partition
+451 - 453 CHS address of last logical block on disk. FF FF FE - 16777214 DEC 
+454 - 457 LBA address of GPT Partition Header. 00 00 00 01 - 1 DEC
+458 - 461 LBA size of disk minus 1. 74 70 69 AF 1953525167 DEC
+
+512 - 519 - Signature. Identifies EFI-compatible partitoin header table. This value contains ASCII string "EFI PART" encoded as 64-bit constant 54 52 41 50 20 49 46 45
+520 - 523 - Revision number for this header. Not version of UEFI. In our case 00 01 00 00 - 1.0 version
+524 - 527 - Size in bytes of GPT Header. Greater then or equal 92 less or equal block size (512). 00 00 00 5C - 92
+528 - 531 - CRC32 Checksum for the GPT Header. Computed by setting this field to 0 and getting CRC32 for HeaderSize bytes. 74 70 6D AF - 1953525167
+532 - 535 - Reserved. Zero values.
+536 - 543 - LBA address of this data structure 00 00 00 00 00 00 00 01 - 1
+544 - 551 - LBA address of alternate GPT Header 00 00 00 00 74 70 6D AF - 1953525167
+552 - 559 - LBA address of first usable by partition block. 00 00 00 00 00 00 00 22 - 34
+560 - 567 - LBA address of last usable by partition block. 00 00 00 00 74 70 6D 8E - 1953525134
+568 - 583 - Disk GUID that can be use to uniquely identify disk. 13F2A473-AE4D-43F7-A3B3-BEDB38B0FC59
+584 - 591 - Starting LBA of partition Entry array - 00 00 00 00 00 00 00 02 - 2
+592 - 595 - Number of entites in partition array - 00 00 00 80 - 128
+596 - 599 - Size of each entry in that array - 00 00 00 80 - 128
+600 - 603 - That arrays CRC32. Computed over a byte length of number of partitions * size of partiton. - 80 94 7E 05 - 2157215237
+604 - 1023 - Reserved by UEFI. Must be zero.
+
+1024 - 1039 - Partition type GUID. C12A7328-F81F-11D2-BA4B-00A0C93EC93B (EFI System partition)
+1040 - 1055 - Unique partition GUID. FBFD82EE-B85F-4BB4-9B66-0585680BCD50
+1056 - 1063 - Starting LBA of partition. 00 00 00 00 00 00 08 00 - 2048
+1064 - 1071 - Ending LBA of partition. 00 10 07 FF - 1050623
+1072 - 1079 - Partition attributes. 
+1080 - 1151 - Null-terminated string containing name of the partition. In our case "EFI System Partition"
+
+1152 - 1167 - Partition type GUID. 0FC63DAF-8483-4772-8E79-3D69D8477DE4 (Linux filesystem)
+1168 - 1183 - Unique partition GUID. 104CD757-ABAA-452D-B174-A062C588855D
+1184 - 1191 - Starting LBA. 00 00 00 00 00 10 08 00 - 1050624
+1192 - 1199 - Endnig LBA.  73 73 57 FF 00 00 00 00 - 1936939007
+1200 - 1207 - Partition attributes
+1208 - 1279 - Name of partiton. Zero for this partition
+
+1280 - 1295 - Partition type GUID. 657FD6D-A4AB-43C4-84E5-0933C84B4F4F (Linux swap)
+1296 - 1311 - Unique partition GUID. 16837EBB-51B7-4E27-80A4-3B830DFDF894
+1312 - 1319 - Starting LBA. 1936939008
+1320 - 1327 - Ending LBA. 1953523711
+1328 - 1335 - Attributes
+1336 - 1407 - Name of partition. Zero for this partition.
+
+a) First partition table entry start at 1024 byte offset from start
+b) In 4K disk 1 block = 4K. partition entry start from 3 block. 8Kb = 8192 bytes
+
+2. ZFS (1 + 9) Gb partition
+1408 - 1423 - BA 7C 6E 51    CF 6E D6 11    8F F8 00 02    2D 09 71 2B 	  		#it'll stand for FreeBSD ZFS GUID type
+1424 - 1439 - A4 5F C1 87    40 DE B7 47    9A 44 D9 0E    BF 42 E6 C6          # Uniq GUID
+1440 - 1447 - 00 68 70 74	 00	00 00 00	00 68 B0 75    00 00 00 00			# StartingLBA = 1953523712. EndingLBA=1974495232. Size=10GB. (10*1024*1024*1024)/512=20971520 blocks for it
+1448 - 1457 - 00 00 00 00  	 00 00 00 00    D8 00 53 00    33 00 00 00			# 8 bytes of attributes and 72 bytes for partition name "ØS3"
+1456 - 1463 - 00 00 00 00    00 00 00 00    00 00 00 00    00 00 00 00
+1464 - 1535 - 00 00 00 00    00 00 00 00    00 00 00 00    00 00 00 00
+
+
+3.
+MBR limits number of primary partitions by 4. That's why we used extended partiiton, instead of one of them. Extended parition can store much more numbers of logical partitions with different file systems.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
