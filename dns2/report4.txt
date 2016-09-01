@@ -1,0 +1,91 @@
+1. The most popular use case of reverse DNS is verifying from adress of email to prevent phishing emails.
+2. 
+    2.1 add new zone field to nsd config
+        zone:
+            name: "9.192.10.in-addr.arpa"
+            zonefile: "9.192.10.in-addr.arpa"
+    2.2 add rule to unbound config, that says that that local zone will be served by nsd on 55 port    
+        local-zone: "9.192.10.in-addr.arpa" nodefault   port: 55
+    2.3 create zone file for nsd
+        9.192.10.in-addr.arpa
+3. $ drill -x 10.192.9.1
+    ;; ->>HEADER<<- opcode: QUERY, rcode: NOERROR, id: 13419
+    ;; flags: qr aa rd ; QUERY: 1, ANSWER: 1, AUTHORITY: 2, ADDITIONAL: 0
+    ;; QUESTION SECTION:
+    ;; 1.9.192.10.in-addr.arpa. IN  PTR
+
+    ;; ANSWER SECTION:
+    1.9.192.10.in-addr.arpa.    3600    IN  PTR st9.os3.su.
+
+    ;; AUTHORITY SECTION:
+    9.192.10.in-addr.arpa.  3600    IN  NS  ns1.st9.os3.su.
+    9.192.10.in-addr.arpa.  3600    IN  NS  ns2.st9.os3.su.
+
+    ;; ADDITIONAL SECTION:
+
+    ;; Query time: 0 msec
+    ;; SERVER: 127.0.0.1
+    ;; WHEN: Thu Sep  1 22:20:44 2016
+    ;; MSG SIZE  rcvd: 101
+
+4. 
+    4.1 add forward-zone to unbound config
+        forward-zone:
+            name: "st9.st8.os3.su"
+            forward-addr: 127.0.0.1@55
+
+    4.2 add two zone fields to nsd config for our zone that we delegate and for zone delegated to us
+        zone:
+            name: "st9.st8.os3.su"
+            zonefile: "st8.os3.su"
+            notify: 188.130.155.41 NOKEY
+            provide-xfr: 188.130.155.41 NOKEY
+        zone:
+            name: "st8.st9.os3.su"
+            zonefile: "st09.os3.su"
+            allow-notify: 188.130.155.41 NOKEY
+            request-xfr: 188.130.155.41 NOKEY
+    4.3 in st9 zone file we should add NS record to neighbors machine
+        st8.st9.os3.su. IN      NS              188.130.155.41
+
+    4.4 drill st9.st8.os3.su
+            ;; ->>HEADER<<- opcode: QUERY, rcode: NOERROR, id: 62569
+            ;; flags: qr aa rd ; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
+            ;; QUESTION SECTION:
+            ;; st9.st8.os3.su.  IN  A
+
+            ;; ANSWER SECTION:
+            st9.st8.os3.su. 60  IN  A   188.130.155.42
+
+            ;; AUTHORITY SECTION:
+            st9.st8.os3.su. 60  IN  NS  st9.os3.su.
+
+            ;; ADDITIONAL SECTION:
+
+            ;; Query time: 0 msec
+            ;; SERVER: 127.0.0.1
+            ;; WHEN: Thu Sep  1 22:31:41 2016
+            ;; MSG SIZE  rcvd: 66
+
+        drill h1.st8.st9.os3.su @188.130.155.41
+            ;; ->>HEADER<<- opcode: QUERY, rcode: NOERROR, id: 65195
+            ;; flags: qr aa rd ra ; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 1
+            ;; QUESTION SECTION:
+            ;; h1.st8.st9.os3.su.   IN  A
+
+            ;; ANSWER SECTION:
+            h1.st8.st9.os3.su.  172800  IN  A   10.192.8.2
+
+            ;; AUTHORITY SECTION:
+            st8.st9.os3.su. 172800  IN  NS  st8.os3.su.
+
+            ;; ADDITIONAL SECTION:
+            st8.os3.su. 172800  IN  A   188.130.155.41
+
+            ;; Query time: 0 msec
+            ;; SERVER: 188.130.155.41
+            ;; WHEN: Thu Sep  1 22:33:11 2016
+            ;; MSG SIZE  rcvd: 85
+5. added allow-notify, and notify with addressed to master and slave servers.
+6. slave will resolve responses
+
