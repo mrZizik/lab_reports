@@ -5,7 +5,7 @@ Step by Step Unbound caching server setup
 4. cd unbound-1.5.9
 5. ./configure
 6. make
-7. make install ++
+7. make install
 8. Go to /usr/local/etc/unbound/unbound.conf and edit it. There we should specify port, interfaces and eneble remote control and ower username. 
 9. Then we should chown unbound files to ower user, log file for example, cause it'll downgrade it's priveleges and can't edit them.
 10. After that we can start unbound with unbound-control start and look for status with unbound-status
