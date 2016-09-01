@@ -31,7 +31,11 @@ Our configration file is located at /etc/nsd/nsd.conf
 	zone:
  		name: "st9.os3.su."
  		zonefile: "st09.os3.su"
-12. 
+12. Also we need add forward zone to unbound
+	forward-zone:
+		name: st9.os.su
+		forward-addr: 127.0.0.1@55
+
  
 
 
