@@ -1,6 +1,6 @@
 Step-by-Step report:
 
-1. By pressing F9 got into boot menu.
+1. By pressing F9 got into boot menu .
 2. Tried to load from network device, but got error, that NBP is too big too fit in free base memory.
 3. After sometime of googling understood that i need PXE in UEFI boot mode, not legacy.
 4. F10 send me to system settings, where i change that option.
