@@ -87,5 +87,7 @@
             ;; WHEN: Thu Sep  1 22:33:11 2016
             ;; MSG SIZE  rcvd: 85
 5. added allow-notify, and notify with addressed to master and slave servers.
-6. slave will resolve responses
+6. slave will resolve responses.
+7. 
+
 
