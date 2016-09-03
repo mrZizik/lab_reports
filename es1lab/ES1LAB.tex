@@ -1,0 +1,174 @@
+\documentclass[10pt]{article}
+% Эта строка — комментарий, она не будет показана в выходном файле
+\usepackage{ucs}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{listings}
+\usepackage[utf8x]{inputenc } % Включаем поддержку UTF8
+\title{Essential Skills. Lab 1}
+\date{02 September 2016}
+\author{Ali Abdulmadzhidov}
+
+\begin{document}
+\renewcommand*\rmdefault{cmss}
+  \maketitle
+  \section{Step by step DokuWiki installation and setup     \newline}
+
+  \begin{enumerate}
+    \item Checking apache2 installed
+    \begin{verbatim}
+    service apache2 status
+    \end{verbatim}
+    \item Installing DokuWiki
+    \begin{verbatim}
+    sudo apt install dokuwiki
+    \end{verbatim}
+    \item Set password for user admin in wiki while installing
+    \item Realizing that we haven't enabled php in apache2 config. 
+    \begin{verbatim}
+    nano /etc/apache2/apache2.conf
+    LoadModule php7_module modules/libphp7.so 
+    \end{verbatim}
+    \item Realizing that we haven't got libapache2-mod-php and apache2 won't start without it. 
+    \begin{verbatim}
+    sudo apt install libapache2-mod-php 
+    \end{verbatim}
+    \item Restarting apache2. 
+    \begin{verbatim}
+    sudo service apache2 restart
+    \end{verbatim}
+    \item Go to http://localhost/dokuwiki/doku.php and add our first page about Federative Wiki
+  \end{enumerate}
+
+  \section{XML entities creating    \newline}
+  \begin{enumerate}
+    \item XML + DDT
+    \begin{verbatim}
+        <!DOCTYPE root
+        [
+        <!ELEMENT root (animal)>
+        <!ELEMENT animal (name,skin,voice)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT skin (#PCDATA)>
+        <!ELEMENT voice (#PCDATA)>
+        <!ENTITY  skin "have skin">
+        <!ENTITY  fur "have fur">
+        <!ENTITY  feathers "have feathers">
+        <!ENTITY  bark "bark">
+        <!ENTITY  mur "mur">
+        <!ENTITY  bee "bee">
+        <!ENTITY  brr "brr">
+        <!ENTITY  mooo "mooo">
+        <!ENTITY  oink "oink">
+        <!ENTITY  whistle "whistle">
+        <!ENTITY  no_voice "no_voice">
+        ]>
+        <root>
+<animal>
+            <name>cow</name>
+            <skin>&skin;</skin>
+            <voice>&mooo;</voice>
+        </animal>
+        <animal>
+            <name>sheep</name>
+            <skin>&fur;</skin>
+            <voice>&bee;</voice>
+        </animal>
+        <animal>
+            <name>horse</name>
+            <skin>&skin;</skin>
+            <voice>&brr;</voice>
+        </animal>
+        <animal>
+            <name>pig</name>
+            <skin>&skin;</skin>
+            <voice>&oink;</voice>
+        </animal>
+        <animal>
+            <name>mockingbird</name>
+            <skin>&feathers;</skin>
+            <voice>&whistle;</voice>
+        </animal>
+        <animal>
+            <name>eal</name>
+            <skin>&feathers;</skin>
+            <voice>&whistle;</voice>
+        </animal>
+</root>
+    \end{verbatim}
+    \item XS SCHEME
+    \begin{verbatim}
+    <?xml version="1.0" encoding="utf-8"?>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="root"
+      <xs:element name="animal" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="voice" type="xs:string"/>
+            <xs:element name="skin" type="xs:string"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      </xs:element>
+    </xs:schema>
+    \end{verbatim}
+  \end{enumerate}
+\section*{XSLT and CSS \\}
+\begin{enumerate}
+\item XSLT
+\begin{verbatim}
+<?xml version='1.0' encoding='UTF-8'?>
+<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
+<xsl:template match='/'>
+  <html>
+  <body>
+  <h2>Animals</h2>
+    <table border='1'>
+      <tr>
+        <th style='text-align:left'>Name</th>
+        <th style='text-align:left'>Skin</th>
+        <th style='text-align:left'>Voice</th>
+      </tr>
+      <xsl:for-each select='root/animal'>
+      <tr>
+        <td class='name-vl'><xsl:value-of select='name'/></td>
+        <td class='skin-vl'><xsl:value-of select='skin'/></td>
+        <td class='voice-vl'><xsl:value-of select='voice'/></td>
+      </tr>
+      </xsl:for-each>
+    </table>
+  </body>
+  </html>
+</xsl:template>
+</xsl:stylesheet>
+\end{verbatim}
+
+\item CSS
+\begin{verbatim}
+td {
+    bg-color: #ecb;
+}
+th {
+    bg-color: red;  
+}
+.name {
+    color: #0f0;
+}
+.name:hovered {
+    color: #00f;
+}
+.voice {
+    color: #00f;
+}
+.voice:hovered {
+    color: #0f0;
+}
+.skin {
+    color: #f00;
+}
+.skin:hovered {
+    color: #f0f;
+}
+\end{verbatim}
+\end{enumerate} 
+\end{document}
