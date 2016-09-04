@@ -1,4 +1,37 @@
+#Unbound
+
 server:
+	verbosity: 1
+	interface: 127.0.0.1
+	interface: 188.130.155.42	unblock-lan-zones: yes
+    local-zone: "9.192.10.in-addr.arpa" nodefault	port: 55
+	outgoing-range: 1024
+	outgoing-port-permit: 32768-65000
+	outgoing-port-avoid: "3200-3208"
+	do-ip4: yes
+	do-ip6: yes
+	do-udp: yes
+	do-tcp: yes
+	access-control: 0.0.0.0/0 allow	username: "mrzizik"
+	logfile: unbound
+	module-config: "validator iterator"
+	trust-anchor: ".   IN DS   19036 8 2 49AAC11D7B6F6446702E54A1607371607A1A41855200FD2CE1CDDE32F24E8FB5"
+	trusted-keys-file: "root.key"
+remote-control:	
+	control-enable: yes
+
+
+forward-zone:
+	name: st9.os.su
+	forward-addr: 127.0.0.1@55
+	
+
+
+#NSD
+
+
+
+server
 	server-count: 1
 	ip-address: 188.130.155.42
 	ip-address: 127.0.0.
