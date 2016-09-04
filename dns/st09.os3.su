@@ -1,0 +1,23 @@
+$TTL 1M
+st9.os3.su.     IN      SOA     st9.os3.su. admin.st9.os3.su. (
+        201608212      ; serial
+        1M              ; refresh
+        1M              ; retry
+        1M              ; expire
+        1M )            ; minimum
+ 
+st8.st9.os3.su. IN DS 4399 5 1 C75AA93BE7FBFC97304A10A4F12DF7A711F4D166
+st8.st9.os3.su. IN DS 4399 5 2 90BAC20E8BC47E5A18F89C83085DEB249D19531250C03F628F70CB4F 3EC3557C
+@               IN      NS              st9.os3.su.
+@               IN      A               188.130.155.42
+@               IN      MX      10      mail
+pochta          IN      MX      10      mail
+ns              IN      CNAME           st9.os3.su.
+ns1             IN      A               188.130.155.42
+ns2             IN      A               188.130.155.42
+www             IN      A               188.130.155.42
+mail            IN      A               188.130.155.42
+imap            IN      CNAME           mail
+st8.st9.os3.su. IN 		NS 				188.130.155.41
+
+

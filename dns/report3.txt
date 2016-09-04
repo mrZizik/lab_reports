@@ -27,7 +27,7 @@ First 8 steps of installing is like for unbound.
 Our configration file is located at /etc/nsd/nsd.conf
 9. We should change the port in our config, to avoid conflicts with unbound
 10. Next we should create zone file in zone folder with our st9.os3.su. zone
-11. When we added all neede records, we can change config of nsd, and add 
+11. When we added all needed records, we can change config of nsd, and add 
 	zone:
  		name: "st9.os3.su."
  		zonefile: "st09.os3.su"
@@ -35,6 +35,32 @@ Our configration file is located at /etc/nsd/nsd.conf
 	forward-zone:
 		name: st9.os.su
 		forward-addr: 127.0.0.1@55
+
+13. zone:
+$TTL 1M
+st9.os3.su.     IN      SOA     st9.os3.su. admin.st9.os3.su. (
+        201608212      ; serial
+        1M              ; refresh
+        1M              ; retry
+        1M              ; expire
+        1M )            ; minimum
+
+@               IN      NS              st9.os3.su.
+@               IN      A               188.130.155.42
+@               IN      MX      10      mail
+pochta          IN      MX      10      mail
+ns              IN      CNAME           st9.os3.su.
+ns1             IN      A               188.130.155.42
+ns2             IN      A               188.130.155.42
+www             IN      A               188.130.155.42
+mail            IN      A               188.130.155.42
+imap            IN      CNAME           mail
+st8.st9.os3.su. IN 		NS 				188.130.155.41
+
+14. ip adress of our machine with dns server
+
+
+
 
  
 
