@@ -102,7 +102,7 @@ h1.st8.st9.os3.su.      300     IN      A   188.130.155.41
 ;; WHEN: Sat Sep 03 12:58:44 MSK 2016
 
 
-9.
+9. 10.
     9.1 The slave server asks SOA record of zone from master, and compares it's serial code.
     9.2 The slave server asks zone transfer. Master sends all zone rr's in answer section
 11. Added this properties to zone config
