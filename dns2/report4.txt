@@ -87,8 +87,8 @@
             ;; WHEN: Thu Sep  1 22:33:11 2016
             ;; MSG SIZE  rcvd: 85
 5. added allow-notify, and notify with addressed to master and slave servers.
-6. slave will resolve responses.
-7.
+6. Slave server will resolve responses.
+7. If slave server goes down, you'll lost delegation rule. This would affect to DNSSec working for example.
 8.
 dig axfr @188.130.155.41 st8.st9.os3.su
 
