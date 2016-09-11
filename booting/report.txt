@@ -1,3 +1,4 @@
+
 Step-by-Step report:
 
 1. By pressing F9 got into boot menu .
@@ -16,16 +17,17 @@ $ dd if=/dev/sda of=dump bs=1 count=1500
 12. wrote annotation to dump
 
 
-1.
-	a) UEFI PXE booting - Unified Extensible Firmware Interface that lies between OS and hardware. It inits hardware at startup and starts bootloader. In future UEFI'll change Basic Input Output System.
-PXE is Preboot Execution Environment client-server software that helps boot computer without local datastorage like CD, HDD, etc. It uses IP, UDP, DHCP, TFTP, BOOTP protocols.
+2.1.1  What is UEFI and UEFI PXE Booting
+	a) UEFI - Unified Extensible Firmware Interface is software interface that lies between OS and hardware firmware. It inits hardware at startup and starts bootloader. In future it'll replace Basic Input Output System.
+	PXE is Preboot Execution Environment client-server software that helps boot computer without local datastorage like CD, HDD, etc. It uses IP, UDP, DHCP, TFTP, BOOTP protocols.
 	b) PXE working example:
 		1) PXE inits.
 		2) DHCP component of client's PXE sends DHCPDISCOVER packet containing specific PXE option to port 67 by UDP protocol. By this action it asks network configurations (address and other) and TFTP server address with Network Booting Program.
 		3) Client loads NBP to its own RAM, verifies if it is possible for example in UEFI Secure Boot and executes it.
 		4) NBP in most cases loads additional files from TFTP to load minimal enviroment, in our case Linux kernel.
 
-	c) Working from PXE helps to boot huge amount of machines and/or install OS on them with less spend of resources.
+	c) When you boot from hard disk or a CD you use \EFI\BOOT\BOOT\*.EFI files. System can boot from different EFI files and bootloader suppose to be already installed to the computer.\
+	On opposite site booting from PXE helps us to start machine without any disk or CD using only network card. PXElinux loader downloads the linux image and gives all management to it. After that linux asks server where is the root filesystem and then starts loading.
 
 2. 
 	a) GPT - GUID Partition Table is a standart for the layout of the partition table on a storage device using Globally Unique Identifiers. It is part of UEFI, but used in BIOS systems to avoid MBR limitations. Most current OS's support GTP.
@@ -90,6 +92,7 @@ DEC Offset
 451 - 453 CHS address of last logical block on disk. FF FF FE - 16777214 DEC 
 454 - 457 LBA address of GPT Partition Header. 00 00 00 01 - 1 DEC
 458 - 461 LBA size of disk minus 1. 74 70 69 AF 1953525167 DEC
+461 - 511 Three partition records each by 16 bytes and set to zero.
 
 512 - 519 - Signature. Identifies EFI-compatible partitoin header table. This value contains ASCII string "EFI PART" encoded as 64-bit constant 54 52 41 50 20 49 46 45
 520 - 523 - Revision number for this header. Not version of UEFI. In our case 00 01 00 00 - 1.0 version
@@ -134,14 +137,14 @@ b) In 4K disk 1 block = 4K. partition entry start from 3 block. 8Kb = 8192 bytes
 2. ZFS (1 + 9) Gb partition
 1408 - 1423 - BA 7C 6E 51    CF 6E D6 11    8F F8 00 02    2D 09 71 2B 	  		#it'll stand for FreeBSD ZFS GUID type
 1424 - 1439 - A4 5F C1 87    40 DE B7 47    9A 44 D9 0E    BF 42 E6 C6          # Uniq GUID
-1440 - 1447 - 00 68 70 74	 00	00 00 00	00 68 B0 75    00 00 00 00			# StartingLBA = 1953523712. EndingLBA=1974495232. Size=10GB. (10*1024*1024*1024)/512=20971520 blocks for it
+1440 - 1447 - 00 68 70 74	 00	00 00 00	10 68 B0 75    00 00 00 00			# StartingLBA = 1953523712. EndingLBA=1974495233. Size=10GB. (10*1024*1024*1024)/512=20971520 blocks for it 
 1448 - 1457 - 00 00 00 00  	 00 00 00 00    D8 00 53 00    33 00 00 00			# 8 bytes of attributes and 72 bytes for partition name "ØS3"
 1456 - 1463 - 00 00 00 00    00 00 00 00    00 00 00 00    00 00 00 00
 1464 - 1535 - 00 00 00 00    00 00 00 00    00 00 00 00    00 00 00 00
 
 
 3.
-MBR limits number of primary partitions by 4. That's why we used extended partiiton, instead of one of them. Extended parition can store much more numbers of logical partitions with different file systems.
+MBR limits number of primary partitions by 4. That's why we used extended partiiton, instead of one of them. Extended parition can store unlitmited number of logical partitions with different file systems, but some software/OS's will show only part of them.
 
 
 
