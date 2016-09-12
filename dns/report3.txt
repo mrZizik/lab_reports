@@ -1,64 +1,102 @@
 Step by Step Unbound caching server setup
-1. wget http://unbound.net/downloads/unbound-1.5.9.tar.gz
-2. sha256sum unbound-1.5.9.tar.gz should be "01328cfac99ab5b8c47115151896a244979e442e284eb962c0ea84b7782b6990". By this we assure of integrity of file.
-3. tar -xzvf unbound-1.5.9.tar.gz
-4. cd unbound-1.5.9
-5. ./configure
-6. make
-7. make install
+1. wget http://unbound.net/downloads/unbound-1.5.9.tar.gz #downloading archive containing source code
+2. wget wget http://unbound.net/downloads/unbound-1.5.9.tar.gz.asc #downloading PGP signature
+2.1 Trying to check signature. 
+	gpg --verify unbound-1.5.9.tar.gz.asc
+	Get answer that public keys not found and id to get keys.
+2.2 Download public keys by id from repo
+	gpg --keyserver pool.sks-keyservers.net --recv-keys 0x7e045f8d
+2.3 Try to check it second time
+	gpg --verify unbound-1.5.9.tar.gz.asc
+	Success
+3. tar -xzvf unbound 1.5.9.tar.gz #unzip archive with sources
+4. cd unbound-1.5.9 #go to folder with src
+5. ./configure #use autotools to generate Makefile
+6. make #Build
+7. make install #Install
 8. Go to /usr/local/etc/unbound/unbound.conf and edit it. There we should specify port, interfaces and eneble remote control and ower username. 
 9. Then we should chown unbound files to ower user, log file for example, cause it'll downgrade it's priveleges and can't edit them.
 10. After that we can start unbound with unbound-control start and look for status with unbound-status
 10.5 By the way unbound has root server addreses in it's code, but we can put them to root.hints file near configration.
 11. We can check our cache server with dig. dig ya.ru @127.0.0.1 first time will return answer with some delay, next time it will do it in 0 ms, because answer is already cached.
 
+
+----------------------------------------------------------------------------
+
 Answers: 
 1. Signature verification helps us to be assure in programms integrity.
 2. In my mind SHA256 is best, cause it's easy to check and still gains needed level of security. But most sites also gives another variations
 3. It saves big amount of time, that will be spent to find host going from root, to another servers etc.
 In our example, first query goes in 200-500ms, next in 0ms of course. 
-4. unbound.conf
+Also it frees network bandwith and network units for some more usefull purposes.
+4. /usr/local/etc/unbound/unbound.conf
 5. Cause it helps to use one programs when writing another
-6. Added control-enable: yes
-7. stop/status/start etc.
-8. nameserver 127.0.0.1
+	git status &> /dev/null # return value'll be stored in $?. Return value of last command allways there.
+	if [ $? -eq 0 ]; then 
+  		echo "git status exited successfully"
+	else
+  		echo "git status exited with error code"
+	fi
 
+	We check if return value equals 0. It means that there is no error in last 		
+	command. It successed or not.
+6. Added control-enable: yes
+	For security resons we can note interfaces, that are allowed or not to use -control. Also we can change default port, or use keys and certificates for SSL.
+	The most common usage is to start, stop or watch status of server. You also can add zones, records, lookup, flush caches, watch security of zones and dump any information for future purpose
+7.	control stop - stops server
+	start - start server.
+	reload - reloads data flushing all cached data
+	status - shows status of server. Is it running, are there any errors and other stuff
+	stats - show statistics
+	stats - show peaks on statistic
+	dump_cache - prints all caches to stndout, from it you can write it to file or send to another script.
+8. nameserver 127.0.0.1
+	no. It won't cause NetworkManager in Ubuntu rewrites this file. You can write your config to /etc/interfaces or use GUI NetworkManager to save settings after reboot.
+
+
+-----------------------------
+NSD installation step by step
 First 8 steps of installing is like for unbound.
 Our configration file is located at /etc/nsd/nsd.conf
 9. We should change the port in our config, to avoid conflicts with unbound
 10. Next we should create zone file in zone folder with our st9.os3.su. zone
 11. When we added all needed records, we can change config of nsd, and add 
 	zone:
- 		name: "st9.os3.su."
- 		zonefile: "st09.os3.su"
+ 		name: "st9.os3.su." ; name of zone, containts valid labels.
+ 		zonefile: "st09.os3.su" ; zone file that rules this domain records. You can name it as you want
 12. Also we need add forward zone to unbound
 	forward-zone:
-		name: st9.os.su
-		forward-addr: 127.0.0.1@55
+		name: st9.os.su; name of zone to forward
+		forward-addr: 127.0.0.1@55 ; to whom unbound should forward. After @ goes port. If port is not defined go to 53. 
 
-13. zone:
+------------------------------
+
+9. zone:
+
 $TTL 1M
-st9.os3.su.     IN      SOA     st9.os3.su. admin.st9.os3.su. (
+st9.os3.su.     IN      SOA     st9.os3.su. admin.st9.os3.su. ( 
         201608212      ; serial
         1M              ; refresh
         1M              ; retry
         1M              ; expire
-        1M )            ; minimum
+        1M )            ; minimum 
+        ;SOA Record - sets some of zone's settings. first fiels is zone name, second is class, then rr type, main ns that serves this domain and email address, whith dot instead of @ symbol
 
 @               IN      NS              st9.os3.su.
-@               IN      A               188.130.155.42
-@               IN      MX      10      mail
-pochta          IN      MX      10      mail
-ns              IN      CNAME           st9.os3.su.
-ns1             IN      A               188.130.155.42
-ns2             IN      A               188.130.155.42
+ ; points to ns record for this zone. @ stands for original and is "st9.os3.su" in our situation
+@               IN      A               188.130.155.42 ; says that st9.os3.su has ip 188.130.155.42
+@               IN      MX      10      mail ; and mail in st9.os3.su served by mail.st9.os3.su
+pochta          IN      MX      10      mail ; also main for pochta.st9.os3.su server by mail.st9.o3.su
+ns              IN      CNAME           st9.os3.su. ; says than ns.st9.os3.su is same as st9.os3.su
+ns              IN      A               188.130.155.42 ; says that ns.st9.os3.su has ip 188.130.155.42
 www             IN      A               188.130.155.42
 mail            IN      A               188.130.155.42
 imap            IN      CNAME           mail
-st8.st9.os3.su. IN 		NS 				188.130.155.41
+st8.st9.os3.su. IN 		NS 				st8.os3.su ; ns server of my subdomain, that i delegate in next lab
 
-14. ip adress of our machine with dns server
+10. subdomain that Azat will delegate to me and ip address to my ns server. He would put one ns and one a record in os3.su DNS.
 
+11. Each subdomain should have two ns records, with Glue A records for them.
 
 
 
