@@ -14,15 +14,14 @@
   \maketitle
   \section{Debian packagins system    \newline}
 
-  \begin{enumerate}
-    \item How does it work?
+  \subsection {How does it work? \\ \\}
         Debian package system has various different level tools for user. The base of package system is dpkg - Debian package manager. In spite of man page says that the description of steps in installing or removing process is inadequate, i'll try.
         
         \subsubsection*{*.deb - Debian package}
             Debian package contains three sections:
                 \begin{description}
-                    \item[Global header] Contains version of debian-binary package. Current is 2.0
-                    \item[Control section] Meta information about package. Confiles, preinst, postinst, prerm, postrm scripts, list of dependecies, md5 hashsumm, brief description. 
+                    \item[Global header] Contains version of debian package. Current version is 2.0
+                    \item[Control section] Meta information about package. Conffiles, preinst, postinst, prerm, postrm scripts, list of dependecies, md5 hashsumm, brief description. 
                     \item[Data section] Includes installable files
                 \end{description}
         \subsubsection*{Installation}
@@ -44,8 +43,8 @@
         \end{enumerate}
 
         \subsubsection*{Removing}
-        dpkg -remove
-        Removes an installed package, but lefts connfiles
+        dpkg -remove \\
+        Removes an installed package, but lefts conffiles
         \begin{enumerate}[label=\arabic*,ref=\theenumi]
             \item Run prerm script
             \item Remove isntalled files
@@ -53,179 +52,95 @@
         \end{enumerate}
 
         \subsubsection*{Purge}
-        dpkg -purge
-        Purges (removes) an installed or removed package with connfiles.
+        dpkg -purge \\
+        Purges (removes) an installed or removed package with conffiles.
         \begin{enumerate}[label=\arabic*,ref=\theenumi]
             \item Remove package
             \item Run posterm script
         \end{enumerate}
 
+    \subsection {How doest it deals with dependecies? \\ \\}
+    Debian package dependecies list is stored Control Section of .deb package.
+    By default dpkg doesn't download all dependecies, but after installation we can call apt or another tool to install them.
+    \begin{verbatim}
+        apt -f install
+    \end{verbatim}
+    This command will find all broken dependecies and install them for all packages
+
+    \subsection {Does it use the GNU build tools? How? \\ \\}
+    Debian Package System doesn't use autotools for installation or other common actions with it's packets. But autotools are needed to build .deb packets from sources.
 
 
+\section{OpenSUSE packaging system    \newline}
 
-    \begin{verbatim}
-    wget ftp://ftp.sendmail.org/pub/sendmail/sendmail.8.15.2.tar.gz
-    \end{verbatim}
-    \item Cheking signature of file
-    \begin{verbatim}
-    wget ftp://ftp.sendmail.org/pub/sendmail/sendmail.8.15.2.tar.gz.sig
-    wget http://www.sendmail.com/sm/open_source/security/pgp_keys/sendmail2015.asc
-    gpg --import sendmail2015.asc
-    gpg --verify sendmail.8.15.2.tar.gz.sig
-    \end{verbatim}
-    \item Extract souces
-    \begin{verbatim}
-    tar -xzvf sendmail.8.15.2.tar.gz
-    \end{verbatim}
-    \item Read readme file first... No, really for the first time I just builded it and can't start. Then remove all staff and read readme file. 
-    \begin{verbatim}
-    cat README
-    \end{verbatim}
-    \item Add 
-    \begin{verbatim}
-    sudo apt install libapache2-mod-php 
-    \end{verbatim}
-    \item Restarting apache2. 
-    \begin{verbatim}
-    sudo service apache2 restart
-    \end{verbatim}
-    \item Go to http://localhost/dokuwiki/doku.php and add our first page about Federative Wiki
-  \end{enumerate}
+    \subsection {How does it work? \\ \\}
+        OpenSUSE package is a bit simillar to debian one's. But it uses rpm packages, that are considered to be standartized for linux by foundation.\newline \newline
+        
+        \subsubsection*{*.rpm - RPM Package Manager/Red Hat Package Manager}
+            Originally was created for Red Hat linux, but was added to LBS standat. By default has name 
+            \begin{verbatim}
+            <name>-<version>-<release>.<architecture>.rpm
+            \end{verbatim}
+                A package also has metadata, such as:
+                \begin{enumerate}
+                    \item summary,
+                    \item description,
+                    \item list of files contained in the package,
+                    \item version of the software it contains and release number of the package,
+                    \item information about where and whern this package was built and it's author,
+                    \item what architecture it has been built for,
+                    \item checksums of the files contained in the package,
+                    \item license of the software it contains,
+                    \item dependecies
+                \end{enumerate}
 
-  \section{XML entities creating    \newline}
-  \begin{enumerate}
-    \item XML + DDT
-    \begin{verbatim}
-        <!DOCTYPE root
-        [
-        <!ELEMENT root (animal)>
-        <!ELEMENT animal (name,skin,voice)>
-        <!ELEMENT name (#PCDATA)>
-        <!ELEMENT skin (#PCDATA)>
-        <!ELEMENT voice (#PCDATA)>
-        <!ENTITY  skin "have skin">
-        <!ENTITY  fur "have fur">
-        <!ENTITY  feathers "have feathers">
-        <!ENTITY  bark "bark">
-        <!ENTITY  mur "mur">
-        <!ENTITY  bee "bee">
-        <!ENTITY  brr "brr">
-        <!ENTITY  mooo "mooo">
-        <!ENTITY  oink "oink">
-        <!ENTITY  whistle "whistle">
-        <!ENTITY  no_voice "no_voice">
-        ]>
-        <root>
-<animal>
-            <name>cow</name>
-            <skin>&skin;</skin>
-            <voice>&mooo;</voice>
-        </animal>
-        <animal>
-            <name>sheep</name>
-            <skin>&fur;</skin>
-            <voice>&bee;</voice>
-        </animal>
-        <animal>
-            <name>horse</name>
-            <skin>&skin;</skin>
-            <voice>&brr;</voice>
-        </animal>
-        <animal>
-            <name>pig</name>
-            <skin>&skin;</skin>
-            <voice>&oink;</voice>
-        </animal>
-        <animal>
-            <name>mockingbird</name>
-            <skin>&feathers;</skin>
-            <voice>&whistle;</voice>
-        </animal>
-        <animal>
-            <name>eal</name>
-            <skin>&feathers;</skin>
-            <voice>&whistle;</voice>
-        </animal>
-</root>
-    \end{verbatim}
-    \item XS SCHEME
-    \begin{verbatim}
-    <?xml version="1.0" encoding="utf-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="root">
-        <xs:complexType>
-        <xs:sequence>
-            <xs:element name="animal" maxOccurs="unbounded">
-                <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="name" type="xs:string"/>
-                    <xs:element name="voice" type="xs:string"/>
-                    <xs:element name="skin" type="xs:string"/>
-                </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        <xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-    \end{verbatim}
-  \end{enumerate}
-\section*{XSLT and CSS \\}
-\begin{enumerate}
-\item XSLT
+        \subsubsection{Usage}
+        \begin{description}
+            \item[Installation] \begin{verbatim} zypper install <package>.rpm/<package_name_in_repo> \end{verbatim}
+            \item[Remove] \begin{verbatim} zypper remove <package>.rpm/<package_name_in_repo> \end{verbatim}
+            \item[Update] \begin{verbatim} zypper update <package>.rpm/<package_name_in_repo> \end{verbatim}
+            \item[Search] \begin{verbatim} zypper searche <key> \end{verbatim}
+            \item[Build from srpm] \begin{verbatim} zypper source-install <package>.srpm/<package_name_in_repo> \end{verbatim}
+            \item[Info] \begin{verbatim} zypper info <package>.rpm/<package_name_in_repo> \end{verbatim}
+        \end{description} 
+
+
+    \subsection {How doest it deals with dependecies?\\ \\}
+    Zypper package manager loads all dependecies by list that from package.
+    RPM package manager leaves this stuff to user. He should install all deps manually. \newline \newline
+
+    \subsection {Does it use the GNU build tools? How? \\ \\ }
+    OpenSUSE package managers doesn't need autotools to install packages, cause they downloadas already builded, but you need autotools to rebuild rpm from sources or srpm.
+
+
+\section{Assignment 2. Installing pacman clone from sources    \newline}
+\subsection{Building for our platform \\ \\}
 \begin{verbatim}
-<?xml version='1.0' encoding='UTF-8'?>
-<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-<xsl:template match='/'>
-  <html>
-  <body>
-  <h2>Animals</h2>
-    <table border='1'>
-      <tr>
-        <th style='text-align:left'>Name</th>
-        <th style='text-align:left'>Skin</th>
-        <th style='text-align:left'>Voice</th>
-      </tr>
-      <xsl:for-each select='root/animal'>
-      <tr>
-        <td class='name-vl'><xsl:value-of select='name'/></td>
-        <td class='skin-vl'><xsl:value-of select='skin'/></td>
-        <td class='voice-vl'><xsl:value-of select='voice'/></td>
-      </tr>
-      </xsl:for-each>
-    </table>
-  </body>
-  </html>
-</xsl:template>
-</xsl:stylesheet>
+wget https://sourceforge.net/projects/myman/files/latest/download # Download sources
+tar -xvf download # Extraction from archive
+cd myman-wip-2009-10-30 # Go to src dir
+./configure # Use autotools to configurate for our platform
+make # Try to build. Find missing dependicies
+sudo apt install libncurses5-dev # Install them
+sudo apt install groff # 
+make # Second try
+make install # Installation
 \end{verbatim}
 
-\item CSS
+\subsection{Building for i386 \\ \\}
 \begin{verbatim}
-td {
-    background: #eeccbb;
-}
-th {
-    background: #ffff00;  
-}
-.name-vl {
-    color: #0f0;
-}
-.name-vl:hover {
-    color: #00f;
-}
-.voice-vl {
-    color: #00f;
-}
-.voice-vl:hover {
-    color: #0f0;
-}
-.skin-vl {
-    color: #f00;
-}
-.skin-vl:hover {
-    color: #f0f;
-}
+wget https://sourceforge.net/projects/myman/files/latest/download # Download sources
+tar -xvf download # Extraction from archive
+cd myman-wip-2009-10-30 # Go to src dir
+./configure CC='gcc -m32' CXX='g++ -m32'# Use autotools to configurate for i386 platform
+make # Try to build. Find missing dependicies
+sudo apt install libncurses5-dev:i386 # Install them
+sudo apt install groff:i386 # 
+make # Second try
+make install # Installation
+file myman # checking result. We should see that this app is compiled for 
+myman: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=f06c79f4155713cd456e1aa5de11a2482afec255, not stripped
 \end{verbatim}
-\end{enumerate} 
+
+
 \end{document}

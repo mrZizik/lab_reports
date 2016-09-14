@@ -31,11 +31,11 @@ In our example, first query goes in 200-500ms, next in 0ms of course.
 Also it frees network bandwith and network units for some more usefull purposes.
 4. /usr/local/etc/unbound/unbound.conf
 5. Cause it helps to use one programs when writing another
-	git status &> /dev/null # return value'll be stored in $?. Return value of last command allways there.
+	ping ya.ru # return value'll be stored in $?. Return value of last command allways there.
 	if [ $? -eq 0 ]; then 
-  		echo "git status exited successfully"
+  		echo "ping successfully"
 	else
-  		echo "git status exited with error code"
+  		echo "ping with error code"
 	fi
 
 	We check if return value equals 0. It means that there is no error in last 		
@@ -51,7 +51,7 @@ Also it frees network bandwith and network units for some more usefull purposes.
 	stats - show peaks on statistic
 	dump_cache - prints all caches to stndout, from it you can write it to file or send to another script.
 8. nameserver 127.0.0.1
-	no. It won't cause NetworkManager in Ubuntu rewrites this file. You can write your config to /etc/interfaces or use GUI NetworkManager to save settings after reboot.
+	no. It won't work after reboot cause NetworkManager in Ubuntu rewrites this file. You can write your config to /etc/interfaces or use GUI NetworkManager to save settings after reboot.
 
 
 -----------------------------
@@ -84,15 +84,21 @@ st9.os3.su.     IN      SOA     st9.os3.su. admin.st9.os3.su. (
 
 @               IN      NS              st9.os3.su.
  ; points to ns record for this zone. @ stands for original and is "st9.os3.su" in our situation
-@               IN      A               188.130.155.42 ; says that st9.os3.su has ip 188.130.155.42
-@               IN      MX      10      mail ; and mail in st9.os3.su served by mail.st9.os3.su
-pochta          IN      MX      10      mail ; also main for pochta.st9.os3.su server by mail.st9.o3.su
-ns              IN      CNAME           st9.os3.su. ; says than ns.st9.os3.su is same as st9.os3.su
-ns              IN      A               188.130.155.42 ; says that ns.st9.os3.su has ip 188.130.155.42
+@               IN      A               188.130.155.42 
+; says that st9.os3.su has ip 188.130.155.42
+@               IN      MX      10      mail 
+; and mail in st9.os3.su served by mail.st9.os3.su
+pochta          IN      MX      10      mail 
+; also main for pochta.st9.os3.su server by mail.st9.o3.su
+ns              IN      CNAME           st9.os3.su. 
+; says than ns.st9.os3.su is same as st9.os3.su
+ns              IN      A               188.130.155.42 
+; says that ns.st9.os3.su has ip 188.130.155.42
 www             IN      A               188.130.155.42
 mail            IN      A               188.130.155.42
 imap            IN      CNAME           mail
-st8.st9.os3.su. IN 		NS 				st8.os3.su ; ns server of my subdomain, that i delegate in next lab
+st8.st9.os3.su. IN 		NS 				st8.os3.su 
+; ns server of my subdomain, that i delegate in next lab
 
 10. subdomain that Azat will delegate to me and ip address to my ns server. He would put one ns and one a record in os3.su DNS.
 
