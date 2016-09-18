@@ -1,0 +1,28 @@
+\documentclass[10pt]{article}
+% Эта строка — комментарий, она не будет показана в выходном файле
+\usepackage{ucs}
+\usepackage[a4paper]{geometry}
+\usepackage{a4wide}
+\usepackage{enumitem}
+\usepackage[utf8x]{inputenc } % Включаем поддержку UTF8
+\title{Essential Skills. Lab 3}
+\date{15 September 2016}
+\author{Ali Abdulmadzhidov}
+
+\begin{document}
+\renewcommand*\rmdefault{cmss}
+  \maketitle
+  \section{1. Unix regular expression to show all lines that contain URI's in a html file. \newline}
+  \begin{enumerate}
+  \item \begin{verbatim} wget www.csszengarden.com \end{verbatim} helps us to retrieve page to file
+  \item \begin{verbatim} cat index.html | grep -E ".+href.+" >> 1.txt \end{verbatim} saves all lines with uri's to 1.txt file
+  \end{enumerate}
+
+
+  \section{2. Regexp to filter Dutch telephone land numbers correctly.\newline}
+  \begin{verbatim}+?((\d{3,13})|(\d{2}\s\d{2}\s\d{3}\s\d{4})|
+  (\d{2}\s\d{2}\s\d{3}\s\d{2}\s\d{2})|([(]\d{3}[)]\s\d{3}\s\d{2}\s\d{2}))\end{verbatim}
+
+  \section{3. Visa card's validation regexp. \newline}
+  \begin{verbatim}(?:4\d{3}|5[1-5]\d{2}|6011|3[47]\d{2})([- ]?)\d{4}\1\d{4}\1\d{4}\end{verbatim}
+\end{document}

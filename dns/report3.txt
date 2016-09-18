@@ -2,13 +2,13 @@ Step by Step Unbound caching server setup
 1. wget http://unbound.net/downloads/unbound-1.5.9.tar.gz #downloading archive containing source code
 2. wget wget http://unbound.net/downloads/unbound-1.5.9.tar.gz.asc #downloading PGP signature
 2.1 Trying to check signature. 
-	gpg --verify unbound-1.5.9.tar.gz.asc
-	Get answer that public keys not found and id to get keys.
+    gpg --verify unbound-1.5.9.tar.gz.asc
+    Get answer that public keys not found and id to get keys.
 2.2 Download public keys by id from repo
-	gpg --keyserver pool.sks-keyservers.net --recv-keys 0x7e045f8d
+    gpg --keyserver pool.sks-keyservers.net --recv-keys 0x7e045f8d
 2.3 Try to check it second time
-	gpg --verify unbound-1.5.9.tar.gz.asc
-	Success
+    gpg --verify unbound-1.5.9.tar.gz.asc
+    Success
 3. tar -xzvf unbound 1.5.9.tar.gz #unzip archive with sources
 4. cd unbound-1.5.9 #go to folder with src
 5. ./configure #use autotools to generate Makefile
@@ -31,27 +31,27 @@ In our example, first query goes in 200-500ms, next in 0ms of course.
 Also it frees network bandwith and network units for some more usefull purposes.
 4. /usr/local/etc/unbound/unbound.conf
 5. Cause it helps to use one programs when writing another
-	ping ya.ru # return value'll be stored in $?. Return value of last command allways there.
-	if [ $? -eq 0 ]; then 
-  		echo "ping successfully"
-	else
-  		echo "ping with error code"
-	fi
+    ping ya.ru # return value'll be stored in $?. Return value of last command allways there.
+    if [ $? -eq 0 ]; then 
+        echo "ping successfully"
+    else
+        echo "ping with error code"
+    fi
 
-	We check if return value equals 0. It means that there is no error in last 		
-	command. It successed or not.
+    We check if return value equals 0. It means that there is no error in last      
+    command. It successed or not.
 6. Added control-enable: yes
-	For security resons we can note interfaces, that are allowed or not to use -control. Also we can change default port, or use keys and certificates for SSL.
-	The most common usage is to start, stop or watch status of server. You also can add zones, records, lookup, flush caches, watch security of zones and dump any information for future purpose
-7.	control stop - stops server
-	start - start server.
-	reload - reloads data flushing all cached data
-	status - shows status of server. Is it running, are there any errors and other stuff
-	stats - show statistics
-	stats - show peaks on statistic
-	dump_cache - prints all caches to stndout, from it you can write it to file or send to another script.
+    For security resons we can note interfaces, that are allowed or not to use -control. Also we can change default port, or use keys and certificates for SSL.
+    The most common usage is to start, stop or watch status of server. You also can add zones, records, lookup, flush caches, watch security of zones and dump any information for future purpose
+7.  control stop - stops server
+    start - start server.
+    reload - reloads data flushing all cached data
+    status - shows status of server. Is it running, are there any errors and other stuff
+    stats - show statistics
+    stats - show peaks on statistic
+    dump_cache - prints all caches to stndout, from it you can write it to file or send to another script.
 8. nameserver 127.0.0.1
-	no. It won't work after reboot cause NetworkManager in Ubuntu rewrites this file. You can write your config to /etc/interfaces or use GUI NetworkManager to save settings after reboot.
+    no. It won't work after reboot cause NetworkManager in Ubuntu rewrites this file. You can write your config to /etc/interfaces or use GUI NetworkManager to save settings after reboot.
 
 
 -----------------------------
@@ -61,13 +61,13 @@ Our configration file is located at /etc/nsd/nsd.conf
 9. We should change the port in our config, to avoid conflicts with unbound
 10. Next we should create zone file in zone folder with our st9.os3.su. zone
 11. When we added all needed records, we can change config of nsd, and add 
-	zone:
- 		name: "st9.os3.su." ; name of zone, containts valid labels.
- 		zonefile: "st09.os3.su" ; zone file that rules this domain records. You can name it as you want
+    zone:
+        name: "st9.os3.su." ; name of zone, containts valid labels.
+        zonefile: "st09.os3.su" ; zone file that rules this domain records. You can name it as you want
 12. Also we need add forward zone to unbound
-	forward-zone:
-		name: st9.os.su; name of zone to forward
-		forward-addr: 127.0.0.1@55 ; to whom unbound should forward. After @ goes port. If port is not defined go to 53. 
+    forward-zone:
+        name: st9.os.su; name of zone to forward
+        forward-addr: 127.0.0.1@55 ; to whom unbound should forward. After @ goes port. If port is not defined go to 53. 
 
 ------------------------------
 
@@ -97,16 +97,13 @@ ns              IN      A               188.130.155.42
 www             IN      A               188.130.155.42
 mail            IN      A               188.130.155.42
 imap            IN      CNAME           mail
-st8.st9.os3.su. IN 		NS 				st8.os3.su 
+st8.st9.os3.su. IN      NS              st8.os3.su 
 ; ns server of my subdomain, that i delegate in next lab
 
 10. subdomain that Azat will delegate to me and ip address to my ns server. He would put one ns and one a record in os3.su DNS.
 
 11. Each subdomain should have two ns records, with Glue A records for them.
 
-
-
- 
 
 
 
