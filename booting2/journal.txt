@@ -1,3 +1,5 @@
+
+
 -- Logs begin at Чт 2016-09-22 14:00:30 MSK, end at Чт 2016-09-22 14:01:33 MSK. --
 сен 22 14:00:30 SNE09 systemd-journald[248]: Runtime journal (/run/log/journal/) is 8.0M, max 78.9M, 70.9M free.
 сен 22 14:00:30 SNE09 kernel: microcode: CPU0 microcode updated early to revision 0x1e, date = 2015-08-13

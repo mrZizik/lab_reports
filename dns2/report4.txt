@@ -43,7 +43,7 @@ dig -x 188.130.155.42
     ;; WHEN: Thu Sep  1 22:20:44 2016
     ;; MSG SIZE  rcvd: 101
 
-4.  !!!FIX: No, zone transferring wasnt isn't needed there, but i was writing report after finishing all tasks, that's why i post final verison.
+4.  !!!FIX: No, zone transferring isn't needed there, but i was writing report after finishing all tasks, that's why i post final verison.
     4.1 add forward-zone to unbound config
         forward-zone:
             name: "st9.st8.os3.su"
