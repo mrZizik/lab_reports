@@ -1,9 +1,24 @@
 1. The most popular use case of reverse DNS is verifying from adress of email to prevent phishing emails.
+For example, we get email from some ip, we look it's domain with reverse lookup and compare it with domain in from field. If they are same, email passes the check.
+There are several utils, that helps to make reverse lookup query. Some of them are online like this http://remote.12dt.com/. You just need write ip there, to get domain.
+You also can make reverse query with dig like this.
+dig -x 188.130.155.42
+
+
 2. 
     2.1 add new zone field to nsd config
         zone:
             name: "9.192.10.in-addr.arpa"
             zonefile: "9.192.10.in-addr.arpa"
+
+        zone file:
+            9.192.10.in-addr.arpa. 10800 IN SOA st9.os3.su. admin.st9.os3.su.
+                                604800     ; refresh (1 week)
+                                86400      ; retry (1 day)
+                                2419200    ; expire (4 weeks)
+                                604800     ; minimum (1 week)
+                                )
+            1.9.192.10.in-addr.arpa    IN  PTR     st9.os3.su # this PTR record says us that ip address 10.192.9.1 points to domain name st9.os3.su
     2.2 add rule to unbound config, that says that that local zone will be served by nsd on 55 port    
         local-zone: "9.192.10.in-addr.arpa" nodefault   port: 55
     2.3 create zone file for nsd
@@ -28,7 +43,7 @@
     ;; WHEN: Thu Sep  1 22:20:44 2016
     ;; MSG SIZE  rcvd: 101
 
-4. 
+4.  !!!FIX: No, zone transferring wasnt isn't needed there, but i was writing report after finishing all tasks, that's why i post final verison.
     4.1 add forward-zone to unbound config
         forward-zone:
             name: "st9.st8.os3.su"
@@ -87,24 +102,38 @@
             ;; WHEN: Thu Sep  1 22:33:11 2016
             ;; MSG SIZE  rcvd: 85
 5. added allow-notify, and notify with addressed to master and slave servers.
-6. Slave server will resolve responses.
+6. Slave server will resolve responses untill EXPIRE time in SOA record will pass.
 7. If slave server goes down, you'll lost delegation rule. This would affect to DNSSec working for example.
+    7.1 Please answer to the question,what is disadvantages when the secondary DNS server have their own zone configuration file (not transferred from the master)?:
+        You'll need to make all changes on both servers 
 8.
 dig axfr @188.130.155.41 st8.st9.os3.su
 
-; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> axfr @nsztm1.digi.ninja zonetransfer.me
+; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> axfr @188.130.155.41 st8.st9.os3.su
 ; (1 server found)
 ;; global options: +cmd
-st8.st9.os3.su.        7200    IN      SOA     st8.os3.su. ubuntu.st8.os3.su. 2014101601 172800 900 1209600 3600
+st8.st9.os3.su.        7200    IN      SOA     st8.os3.su. ubuntu.st8.os3.su. 2016090201 172800 900 1209600 3600
 h1.st8.st9.os3.su.      300     IN      A   188.130.155.41
 ;; Query time: 21 msec
 ;; SERVER: 188.130.155.41#53(188.130.155.41)
 ;; WHEN: Sat Sep 03 12:58:44 MSK 2016
 
+dig axfr @188.130.155.42 st9.st8.os3.su
+
+; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> axfr @188.130.155.42 st9.st8.os3.su
+; (1 server found)
+;; global options: +cmd
+st9.st8.os3.su.        7200    IN      SOA     st9.os3.su. admin.st9.os3.su. 2016090211 172800 900 1209600 3600
+st9.st8.os3.su.      300     IN      A   188.130.155.42
+;; Query time: 21 msec
+;; SERVER: 188.130.155.42#53(188.130.155.42)
+;; WHEN: Thu Sep 15 16:30:44 MSK 2016
+
 
 9. 10.
     9.1 The slave server asks SOA record of zone from master, and compares it's serial code.
-    9.2 The slave server asks zone transfer. Master sends all zone rr's in answer section
+    There is RFC for comparing serial codes rfc1982 SERIAL ARIFMETIC. But this way isn't used everywhere. There are many servers who just compare two numbers identical or not, or is it in some range that is defined.
+    9.2 The slave server asks zone transfer. Master sends all zone rr's in answer section. We can watch them in nsd logs, or by dig axfr command.
 11. Added this properties to zone config
     notify: 188.130.155.41 NOKEY
     provide-xfr: 188.130.155.41 NOKEY
@@ -112,8 +141,13 @@ h1.st8.st9.os3.su.      300     IN      A   188.130.155.41
     allow-notify: 188.130.155.41 NOKEY
     request-xfr: 188.130.155.41 NOKEY
 
+    For security resons we can generate TSIG keys and use them. 
+
 12. set this option in config file
         chroot: "/usr/local/etc/nsd"
+    2nd try
+        chroot: "/home/mrzizik/nsdroot"
+    Needed to take all config file and zones there
 13.
     Primary Name Server
 

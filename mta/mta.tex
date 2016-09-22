@@ -11,173 +11,217 @@
 \begin{document}
 \renewcommand*\rmdefault{cmss}
   \maketitle
-  \section{Step by step Sendmail installation from sources and setup     \newline}
+  \section{Step by step Sendmail installation and setup     \newline}
+    \begin{enumerate}
+        \item Installing sendmail from repositories.
+        \begin{verbatim}sudo apt install sendmail\end{verbatim}
+        \item Added line to sendmail.mc to turn on sendmail on external interfaces.
+        \begin{verbatim}DAEMON_OPTIONS(`Port=smtp,Addr=188.130.155.42, Name=MTA')dnl\end{verbatim}
+        \item Adding new user to system, for mail purpose with shell false.
+        \begin{verbatim}sudo useradd -s /bin/false a.abdulmadzhidov\end{verbatim}
+        \item Adding access rules to files (used standart one). Added aliases for mail for my name to be sended to username mailbox. Also added alias for postmaster to root.
+            ali: a.abdulmadzhidov
+            postmaster: root
+        \item Creating config, aliases, access db files.
+        \begin{verbatim}make\end{verbatim}
+        \begin{verbatim}cd /etc/mail\end{verbatim}
+        \begin{verbatim}makemap hash access < access\end{verbatim}
+        \begin{verbatim}makemap hash aliases < aliases\end{verbatim}
+        \item Starting sendmail
+        \begin{verbatim}sudo service sendmail start\end{verbatim}
+        \item Checking it's running
+        \begin{verbatim}sudo service sendmail status\end{verbatim}
+    \end{enumerate} 
+    \section*{Answers}
+    \begin{enumerate}
+       \item 
+            \begin{enumerate}
+                \item What are you need to add to you DNS zone?
+                MX record for mail.st9.os3.su
+                GLUE A record for record above
+                PTR record from 42.155.130.188.in-addr.arpa. to mail.st9.os3.su
+                \item What extra information should be modified in PTR records for your IP, please provide this information to Azat.?
+                He should add PTR record for our ip to mail.st9.os3.su
+            \end{enumerate} 
+        \item 
+            \begin{enumerate}
+                \item Add a local account with your name.surename@stX.os3.su on your experimental machine and make sure that the MTA can deliver mail to it. Show the required configuration.
+                \\
+                Done in installation. We need to add user to system by useradd command, and add him to aliases file pointing usermname for mail and username in system who'll get mail for that user.
+                \item Log
+                \begin{verbatim}
+From mrfreezzzer@mail.ru  Sun Sep 18 22:32:47 2016
+Return-Path: <mrfreezzzer@mail.ru>
+Received: from f330.i.mail.ru (f330.i.mail.ru [217.69.140.226])
+    by mail.st9.os3.su (8.15.2/8.15.2) with ESMTP id u8IJWlqw022764
+    for <ali@mail.st9.os3.su>; Sun, 18 Sep 2016 22:32:47 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail2;
+    h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:Subject:To:From; bh=fZ/TjBBqITo3TadkefY4XHR+QFq3hEXRxXdFi+zxIHs=;
+    b=NEoH02bhDCvx1/U5CFyAOlRUPqPTctvMxpGaQ2kYq94yqrMMNGpgOou7tAt8q6zfeUifLj1Lo6s95AJzkx8GgCdCxVgj/h37TNNXhu8EI+ynUIzne8LBBa6ECYKkwqxWC2IebIqsEpRhS5YqZH9Am/joHGxQRIuqbrf6c/c/qCk=;
+Received: from [188.130.155.154] (ident=mail)
+    by f330.i.mail.ru with local (envelope-from <mrfreezzzer@mail.ru>)
+    id 1blhpW-0001Br-EC
+    for ali@mail.st9.os3.su; Sun, 18 Sep 2016 22:32:46 +0300
+Received: from [188.130.155.154] by e.mail.ru with HTTP;
+    Sun, 18 Sep 2016 22:32:46 +0300
+From: =?UTF-8?B?0JDQu9C4INCQ0LHQtNGD0LvQvNCw0LbQuNC00L7Qsg==?= <mrfreezzzer@mail.ru>
+To: =?UTF-8?B?YWxp?= <ali@mail.st9.os3.su>
+Subject: =?UTF-8?B?Z2hqZ2hq?=
+MIME-Version: 1.0
+X-Mailer: Mail.Ru Mailer 1.0
+X-Originating-IP: [188.130.155.154]
+Date: Sun, 18 Sep 2016 22:32:46 +0300
+Reply-To: =?UTF-8?B?0JDQu9C4INCQ0LHQtNGD0LvQvNCw0LbQuNC00L7Qsg==?= <mrfreezzzer@mail.ru>
+X-Priority: 3 (Normal)
+Message-ID: <1474227166.17218210@f330.i.mail.ru>
+Content-Type: multipart/alternative;
+    boundary="--ALT--cL7RylSXAt3xuXh9IxOtpViiLeuCqAb71474227166"
+Authentication-Results: f330.i.mail.ru; auth=pass smtp.auth=mrfreezzzer@mail.ru smtp.mailfrom=mrfreezzzer@mail.ru
+X-95568C8E: 26815A15162540332840C59422DF1D5F199E47233F92776887959EFD9D048BA7C7B69D01972835153FC638AC42481FF8202895C63B50EB1067A1F204FDFC066C056B84F00A4844CEA8B0A4CD5757725850096BB181122863DC486A557FBD259A02A25C8A631CD0830FAD040E62B240F983FAB1837865CABA56D3983D7DC64F3B37AB95548734FFC173D42130AE1FBFDDE80FFA8285C16F69E80962FF9BA714797F46F790C81E7CE89706376B72A28421D76FB7D251B0F1EB09043B40D620717B56FDDA3F302AC58A0B3E7816C5E096C79ADF67231DAE8492AC54829705B7485015FEE5D97E0C5D7E410B9203F5845215D29A4D576C8C33EFCC02425DCD1736530A9E56D228FD3B34F7840D99C63BE10C494F1A4A73623B6BAA99C1767DC8DF702C7B639B9D57591C6A7B5F82DAE1CA9C1687EA4C5593F41C619F1BA6E5ED2B42BC42BABAB7E101F77E71BF67B0FE3FA2248190AD017C3BB6F4E2C5D00449FA05D9F3D6D224100BE43373D8D537493728E883161B769C70BB
+X-Mailru-Sender: F602C57692161D0AE7BEC8AF795BFC16F517E54B8E90ABBF77F13EDC6E3CFDDC8457918EA0E798C0F0D203FE66146AB1
+X-Mras: OK
+X-Spam: undefined
 
-  \begin{enumerate}
-    \item Downloading sources from official site
-    \begin{verbatim}
-    wget ftp://ftp.sendmail.org/pub/sendmail/sendmail.8.15.2.tar.gz
-    \end{verbatim}
-    \item Cheking signature of file
-    \begin{verbatim}
-    wget ftp://ftp.sendmail.org/pub/sendmail/sendmail.8.15.2.tar.gz.sig
-    wget http://www.sendmail.com/sm/open_source/security/pgp_keys/sendmail2015.asc
-    gpg --import sendmail2015.asc
-    gpg --verify sendmail.8.15.2.tar.gz.sig
-    \end{verbatim}
-    \item Extract souces
-    \begin{verbatim}
-    tar -xzvf sendmail.8.15.2.tar.gz
-    \end{verbatim}
-    \item Read readme file first... No, really for the first time I just builded it and can't start. Then remove all staff and read readme file. 
-    \begin{verbatim}
-    cat README
-    \end{verbatim}
-    \item Add 
-    \begin{verbatim}
-    sudo apt install libapache2-mod-php 
-    \end{verbatim}
-    \item Restarting apache2. 
-    \begin{verbatim}
-    sudo service apache2 restart
-    \end{verbatim}
-    \item Go to http://localhost/dokuwiki/doku.php and add our first page about Federative Wiki
-  \end{enumerate}
 
-  \section{XML entities creating    \newline}
-  \begin{enumerate}
-    \item XML + DDT
-    \begin{verbatim}
-        <!DOCTYPE root
-        [
-        <!ELEMENT root (animal)>
-        <!ELEMENT animal (name,skin,voice)>
-        <!ELEMENT name (#PCDATA)>
-        <!ELEMENT skin (#PCDATA)>
-        <!ELEMENT voice (#PCDATA)>
-        <!ENTITY  skin "have skin">
-        <!ENTITY  fur "have fur">
-        <!ENTITY  feathers "have feathers">
-        <!ENTITY  bark "bark">
-        <!ENTITY  mur "mur">
-        <!ENTITY  bee "bee">
-        <!ENTITY  brr "brr">
-        <!ENTITY  mooo "mooo">
-        <!ENTITY  oink "oink">
-        <!ENTITY  whistle "whistle">
-        <!ENTITY  no_voice "no_voice">
-        ]>
-        <root>
-<animal>
-            <name>cow</name>
-            <skin>&skin;</skin>
-            <voice>&mooo;</voice>
-        </animal>
-        <animal>
-            <name>sheep</name>
-            <skin>&fur;</skin>
-            <voice>&bee;</voice>
-        </animal>
-        <animal>
-            <name>horse</name>
-            <skin>&skin;</skin>
-            <voice>&brr;</voice>
-        </animal>
-        <animal>
-            <name>pig</name>
-            <skin>&skin;</skin>
-            <voice>&oink;</voice>
-        </animal>
-        <animal>
-            <name>mockingbird</name>
-            <skin>&feathers;</skin>
-            <voice>&whistle;</voice>
-        </animal>
-        <animal>
-            <name>eal</name>
-            <skin>&feathers;</skin>
-            <voice>&whistle;</voice>
-        </animal>
-</root>
-    \end{verbatim}
-    \item XS SCHEME
-    \begin{verbatim}
-    <?xml version="1.0" encoding="utf-8"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-    <xs:element name="root">
-        <xs:complexType>
-        <xs:sequence>
-            <xs:element name="animal" maxOccurs="unbounded">
-                <xs:complexType>
-                <xs:sequence>
-                    <xs:element name="name" type="xs:string"/>
-                    <xs:element name="voice" type="xs:string"/>
-                    <xs:element name="skin" type="xs:string"/>
-                </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-        <xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
-    \end{verbatim}
-  \end{enumerate}
-\section*{XSLT and CSS \\}
-\begin{enumerate}
-\item XSLT
-\begin{verbatim}
-<?xml version='1.0' encoding='UTF-8'?>
-<xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform'>
-<xsl:template match='/'>
-  <html>
-  <body>
-  <h2>Animals</h2>
-    <table border='1'>
-      <tr>
-        <th style='text-align:left'>Name</th>
-        <th style='text-align:left'>Skin</th>
-        <th style='text-align:left'>Voice</th>
-      </tr>
-      <xsl:for-each select='root/animal'>
-      <tr>
-        <td class='name-vl'><xsl:value-of select='name'/></td>
-        <td class='skin-vl'><xsl:value-of select='skin'/></td>
-        <td class='voice-vl'><xsl:value-of select='voice'/></td>
-      </tr>
-      </xsl:for-each>
-    </table>
-  </body>
-  </html>
-</xsl:template>
-</xsl:stylesheet>
-\end{verbatim}
+----ALT--cL7RylSXAt3xuXh9IxOtpViiLeuCqAb71474227166
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+YmJramhqaAoKCtChINGD0LLQsNC20LXQvdC40LXQvCwK0JDQu9C4INCQ0LHQtNGD0LvQvNCw0LTQ
+ttC40LTQvtCyCmFiZHVsbWFkamlkb3ZAbGl2ZS5ydQ==
 
-\item CSS
-\begin{verbatim}
-td {
-    background: #eeccbb;
-}
-th {
-    background: #ffff00;  
-}
-.name-vl {
-    color: #0f0;
-}
-.name-vl:hover {
-    color: #00f;
-}
-.voice-vl {
-    color: #00f;
-}
-.voice-vl:hover {
-    color: #0f0;
-}
-.skin-vl {
-    color: #f00;
-}
-.skin-vl:hover {
-    color: #f0f;
-}
-\end{verbatim}
-\end{enumerate} 
+    ----ALT--cL7RylSXAt3xuXh9IxOtpViiLeuCqAb71474227166
+    Content-Type: text/html; charset=utf-8
+    Content-Transfer-Encoding: base64
+
+    CjxIVE1MPjxCT0RZPmJia2poamg8YnI+PGJyPjxicj7QoSDRg9Cy0LDQttC10L3QuNC10LwsPGJy
+    PtCQ0LvQuCDQkNCx0LTRg9C70LzQsNC00LbQuNC00L7Qsjxicj5hYmR1bG1hZGppZG92QGxpdmUu
+    cnU8L0JPRFk+PC9IVE1MPgo=
+
+    ----ALT--cL7RylSXAt3xuXh9IxOtpViiLeuCqAb71474227166--
+                \end{verbatim}
+
+
+                \item Log telnet
+                \begin{verbatim}
+telnet 127.0.0.1 25
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+220 mail.st9.os3.su ESMTP Sendmail 8.15.2/8.15.2; Sun, 18 Sep 2016 23:43:30 +0300
+ehlo mail.st9.os3.su
+250-mail.st9.os3.su Hello localhost [127.0.0.1], pleased to meet you
+250-ENHANCEDSTATUSCODES
+250-PIPELINING
+250-EXPN
+250-VERB
+250-8BITMIME
+250-SIZE
+250-DSN
+250-ETRN
+250-AUTH DIGEST-MD5 CRAM-MD5
+250-DELIVERBY
+250 HELP
+mail from: st9.os3.su
+553 5.5.4 st9.os3.su... Domain name required for sender address st9.os3.su
+mail from: ali@mail.st9.os3.su
+250 2.1.0 ali@mail.st9.os3.su... Sender ok
+rcpt to: mrfreezzzer@mail.ru
+250 2.1.5 mrfreezzzer@mail.ru... Recipient ok
+data
+354 Enter mail, end with "." on a line by itself
+text
+.
+250 2.0.0 u8IKhUSX023153 Message accepted for delivery
+                \end{verbatim}
+            \end{enumerate} 
+    \end{enumerate} 
+
+    \section{Mail Backup \\}
+    \subsection{'First, describe you have done on your own server to create two backup MTAs for
+your domain.'\\}
+        We need to add two MX resource records to our zone, with lower priority.
+        \begin{verbatim}
+            mail            IN      MX      10       mail.st15.os3.su.
+            mail            IN      MX      5        mail.st12.os3.su.
+        \end{verbatim}
+        10 and 5 in records are priority. Greater number, lower priority. In our zone, mail would go to mail.st12 and if it fails there too, it'll go to mail.st15
+
+
+    \subsection{'Setting up our sendmail server as backup for other two\\}
+        \begin{enumerate}
+            \item Add to features to sendmail.mc. access\_db to allow relay not our mails to needed mail servers, and mailertable that shows which emails on what server should we send.
+            \begin{verbatim}
+            FEATURE(access_db, `hash -o -T /etc/mail/access')
+            FEATURE(mailertable, `hash -o -T /etc/mail/mailertable')
+            \end{verbatim}
+            \item Add rules to route mails to /etc/mail/mailertable
+            \begin{verbatim}
+            mail.st12.os3.su    smtp:mail.st12.os3.su
+            st12.os3.su    smtp:mail.st12.os3.su
+            mail.st15.os3.su    smtp:mail.st15.os3.su
+            st15.os3.su    smtp:mail.st15.os3.su
+            \end{verbatim}
+            \item Add rules to access relay for mail server that we are backuping to /etc/mail/access
+            \begin{verbatim}
+            TO:mail.st12.os3.su RELAY
+            TO:st12.os3.su  RELAY
+            TO:st15.os3.su  RELAY
+            TO:mail.st15.os3.su RELAY
+            \end{verbatim}
+            \item To compile config files and create hash db files from mailertable and access files we need to call make all command in /etc/mail folder
+            \item reloading config files in sendmail
+            \begin{verbatim}
+            service sendmail reload
+            \end{verbatim}
+        \end{enumerate}
+
+
+
+        \subsection{Log of backup and getting my mail}
+        We can see that sudent15@mail.st15.os3.su was sending it to my root@mail.st9.os3.su it went through mail.st12.os3.su and when i turned on my sendmail it recieved to me.
+        \begin{verbatim}
+        From sudent15@st15.os3.su  Mon Sep 19 13:26:49 2016
+        Return-Path: <sudent15@st15.os3.su>
+        Received: from st12.os3.su (mail.st12.os3.su [188.130.155.45])
+            by mail.st9.os3.su (8.15.2/8.15.2) with ESMTP id u8JAQmYE029325
+            for <root@mail.st9.os3.su>; Mon, 19 Sep 2016 13:26:49 +0300
+        Received: from mail.st15.os3.su ([188.130.155.48] helo=st15.os3.su)
+            by st12.os3.su with esmtp (Exim 4.87_167-ff5929e)
+            (envelope-from <sudent15@st15.os3.su>)
+            id 1bkqO9-0006Bs-AL
+            for root@mail.st9.os3.su; Fri, 16 Sep 2016 13:28:57 +0300
+        Received: by st15.os3.su (Postfix, from userid 1000)
+            id 5089120210E4; Fri, 16 Sep 2016 13:28:53 +0300 (MSK)
+        Message-Id: <20160916102853.5089120210E4@st15.os3.su>
+        Date: Fri, 16 Sep 2016 13:28:53 +0300 (MSK)
+        From: sudent15@st15.os3.su (Student15)
+        Status: O
+        Content-Length: 7
+        Lines: 1
+
+        test35
+        \end{verbatim}
+
+
+        \section{Installint mail client \\}
+        I chose mutt - minimalistic mail client that can read and send mails. 
+        \begin{enumerate}
+            \item Sendmail stores mails in /var/mail/$username$ file and mutt reads them from that file.
+            \item In format of ASCII text file, formed like mail in logs above.
+        \end{enumerate}
+
+        \section{Mail queue \\}
+        \begin{enumerate}
+            \item Sendmail queues mails in /var/spool/mqueue by itself.
+            \item Like other queues it assures deleviry of every mail to recepient or return to sender.
+            For example, if sender's mail server is off, mail will stay in queue and sendmail will try to send it later.
+            \item /var/spool/mqueue
+            \item with util name mailq and sendmail.
+            For example we can watch all mails in queue by mail command and try to send them with sendmail -q.
+        \end{enumerate}
+
+
+
+
+
 \end{document}

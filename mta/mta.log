@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  7 SEP 2016 14:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  21 SEP 2016 01:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -148,51 +148,146 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--14
 
  []
 
-
-Overfull \hbox (21.87628pt too wide) in paragraph at lines 27--27
- []    \OT1/cmtt/m/n/10 wget http://www.sendmail.com/sm/open_source/security/pg
-p_keys/sendmail2015.asc[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-
- []
-
 [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 126--126
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (54.37619pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/rel
+axed; d=mail.ru; s=mail2;[] 
+ []
+
+
+Overfull \hbox (253.87445pt too wide) in paragraph at lines 101--101
+ []    \OT1/cmtt/m/n/10 h=Content-Type:Message-ID:Reply-To:Date:MIME-Version:Su
+bject:To:From; bh=fZ/TjBBqITo3TadkefY4XHR+QFq3hEXRxXdFi+zxIHs=;[] 
+ []
+
+
+Overfull \hbox (553.12184pt too wide) in paragraph at lines 101--101
+ []    \OT1/cmtt/m/n/10 b=NEoH02bhDCvx1/U5CFyAOlRUPqPTctvMxpGaQ2kYq94yqrMMNGpgO
+ou7tAt8q6zfeUifLj1Lo6s95AJzkx8GgCdCxVgj/h37TNNXhu8EI+ynUIzne8LBBa6ECYKkwqxWC2Ie
+bIqsEpRhS5YqZH9Am/joHGxQRIuqbrf6c/c/qCk=;[] 
+ []
+
+
+Overfull \hbox (54.37619pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 From: =?UTF-8?B?0JDQu9C4INCQ0LHQtNGD0LvQvNCw0LbQuNC00L7Qsg=
+=?= <mrfreezzzer@mail.ru>[] 
+ []
+
+
+Overfull \hbox (75.376pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 Reply-To: =?UTF-8?B?0JDQu9C4INCQ0LHQtNGD0LvQvNCw0LbQuNC00L7
+Qsg==?= <mrfreezzzer@mail.ru>[] 
+ []
+
+
+Overfull \hbox (206.62486pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 Authentication-Results: f330.i.mail.ru; auth=pass smtp.auth
+=mrfreezzzer@mail.ru smtp.mailfrom=mrfreezzzer@mail.ru[] 
+ []
+
+
+Overfull \hbox (3624.34506pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 X-95568C8E: 26815A15162540332840C59422DF1D5F199E47233F92776
+887959EFD9D048BA7C7B69D01972835153FC638AC42481FF8202895C63B50EB1067A1F204FDFC06
+6C056B84F00A4844CEA8B0A4CD5757725850096BB181122863DC486A557FBD259A02A25C8A631CD
+0830FAD040E62B240F983FAB1837865CABA56D3983D7DC64F3B37AB95548734FFC173D42130AE1F
+BFDDE80FFA8285C16F69E80962FF9BA714797F46F790C81E7CE89706376B72A28421D76FB7D251B
+0F1EB09043B40D620717B56FDDA3F302AC58A0B3E7816C5E096C79ADF67231DAE8492AC54829705
+B7485015FEE5D97E0C5D7E410B9203F5845215D29A4D576C8C33EFCC02425DCD1736530A9E56D22
+8FD3B34F7840D99C63BE10C494F1A4A73623B6BAA99C1767DC8DF702C7B639B9D57591C6A7B5F82
+DAE1CA9C1687EA4C5593F41C619F1BA6E5ED2B42BC42BABAB7E101F77E71BF67B0FE3FA2248190A
+D017C3BB6F4E2C5D00449FA05D9F3D6D224100BE43373D8D537493728E883161B769C70BB[] 
+ []
+
+
+Overfull \hbox (206.62486pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 X-Mailru-Sender: F602C57692161D0AE7BEC8AF795BFC16F517E54B8E
+90ABBF77F13EDC6E3CFDDC8457918EA0E798C0F0D203FE66146AB1[] 
+ []
+
+
+Overfull \hbox (12.37656pt too wide) in paragraph at lines 101--101
+ []\OT1/cmtt/m/n/10 YmJramhqaAoKCtChINGD0LLQsNC20LXQvdC40LXQvCwK0JDQu9C4INCQ0LH
+QtNGD0LvQvNCw0LTQ[] 
+ []
+
+
+Overfull \hbox (33.37637pt too wide) in paragraph at lines 101--101
+ []    \OT1/cmtt/m/n/10 CjxIVE1MPjxCT0RZPmJia2poamg8YnI+PGJyPjxicj7QoSDRg9Cy0LD
+QttC10L3QuNC10LwsPGJy[] 
+ []
+
+
+Overfull \hbox (33.37637pt too wide) in paragraph at lines 101--101
+ []    \OT1/cmtt/m/n/10 PtCQ0LvQuCDQkNCx0LTRg9C70LzQsNC00LbQuNC00L7Qsjxicj5hYmR
+1bG1hZGppZG92QGxpdmUu[] 
+ []
+
+
+Overfull \hbox (38.62633pt too wide) in paragraph at lines 135--135
+ []\OT1/cmtt/m/n/10 220 mail.st9.os3.su ESMTP Sendmail 8.15.2/8.15.2; Sun, 18 S
+ep 2016 23:43:30 +0300[] 
+ []
+
+[2]
+Overfull \hbox (1.87665pt too wide) in paragraph at lines 135--135
+ []\OT1/cmtt/m/n/10 553 5.5.4 st9.os3.su... Domain name required for sender add
+ress st9.os3.su[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 139--139
 
  []
 
 
-Overfull \hbox (6.12642pt too wide) in paragraph at lines 154--154
- []\OT1/cmtt/m/n/10 <xsl:stylesheet version='1.0' xmlns:xsl='http://www.w3.org/
-1999/XSL/Transform'>[] 
+Underfull \hbox (badness 10000) in paragraph at lines 141--141
+
  []
 
-[3] [4] (/Users/mrZizik/study/lab_reports/mta/mta.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--150
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
+
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 209.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 209.
+
+Underfull \hbox (badness 10000) in paragraph at lines 213--213
+
+ []
+
+[4] (/Users/mrZizik/study/lab_reports/mta/mta.aux) ) 
 Here is how much of TeX's memory you used:
- 2354 strings out of 493014
- 34694 string characters out of 6133352
- 111227 words of memory out of 5000000
- 5919 multiletter control sequences out of 15000+600000
- 7749 words of font info for 28 fonts, out of 8000000 for 9000
+ 2359 strings out of 493014
+ 34771 string characters out of 6133352
+ 109227 words of memory out of 5000000
+ 5924 multiletter control sequences out of 15000+600000
+ 8350 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 26i,6n,32p,389b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/201
-6/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2016/texmf
--dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2016/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/mrZizik/study/lab_reports/mta/mta.pdf (4 pages, 81373 
-bytes).
+ 26i,6n,32p,811b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2016/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/mrZizik/study/lab_reports/mta/mta.pdf (4 pages, 100217
+ bytes).
 PDF statistics:
- 41 PDF objects out of 1000 (max. 8388607)
- 28 compressed objects within 1 object stream
+ 45 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
