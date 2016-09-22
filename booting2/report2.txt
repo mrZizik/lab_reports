@@ -92,9 +92,25 @@ All this verifications help to avoid loading non trusted programms by legal user
     Firstly GRUB loads linux kernel. Kernel loads initrd disk, preloads some drivers, and starts systemrd. 
     Systemd loads default.target, and it's dependecies start executing in parallel. By this time initrd fs replaces by real root filesystem. Next goes all other services, like network, ufw, etc.
 
+    All system units can be printed by
+    $ systemctl list-unit-files
+
+    We can see systemd loading order in plot or in log from 950 line. Order of loading depends by Afer and Before instructions in systemd config.
+    You can see list of loading daemons with dependeices by:
+    $ systemd-analyze critical-chain --fuzz 1h > demons.txt
+
+    Linux loading log: http://pastebin.com/h2QMTwX2
+    At 950 line systemd starts.
+
+
 10.
     (a) systemd starts network service, it's configs stored at /etc/network/ and /etc/init.d/network. Then NetworkManager starts, who manages all network configuration in ubuntu. NetworkManagers configs stored at /etc/NetworkManager
     (b) NetworkManager
+
+    In journal we can see that on 796 line kernel start network hardware
+    On 1134 line resolv conf updates by NetworkManager
+    On 1240 systemd starts wicd network manager.
+    On 1246 interfaces starts
     
 
 
