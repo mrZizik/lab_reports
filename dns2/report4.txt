@@ -130,10 +130,13 @@ st9.st8.os3.su.      300     IN      A   188.130.155.42
 ;; WHEN: Thu Sep 15 16:30:44 MSK 2016
 
 
-9. 10.
+9.
     9.1 The slave server asks SOA record of zone from master, and compares it's serial code.
     There is RFC for comparing serial codes rfc1982 SERIAL ARIFMETIC. But this way isn't used everywhere. There are many servers who just compare two numbers identical or not, or is it in some range that is defined.
     9.2 The slave server asks zone transfer. Master sends all zone rr's in answer section. We can watch them in nsd logs, or by dig axfr command.
+    
+10. We can see what records was transferred in dig axfr command.
+
 11. Added this properties to zone config
     notify: 188.130.155.41 NOKEY
     provide-xfr: 188.130.155.41 NOKEY
