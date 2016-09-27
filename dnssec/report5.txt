@@ -1,19 +1,96 @@
 Step by Step Unbound validatong resolver configuration:
-1. Firstly go to https://data.iana.org/root-anchors/draft-icann-dnssec-trust-anchor.html and get initial DS recodrd for root zone. It should be added to root-trust-anchor file.
+1. Firstly go to https://data.iana.org/root-anchors/draft-icann-dnssec-trust-anchor.html and get initial DS recodrd for root zone. It should be added to unbound config like this 'trust-anchor: "$ZONE  IN DS  $KEYTAG $ALGORITHM $DIGESTTYPE $DIGEST"' way.
 2. Then we turn on validator and iterator modules in unbound.conf.
 
 1. Validating resolver is a DNS resolver that knows how to perform DNSSEC validation of the data that it receives, to be assure that the data that receives through is integrate.
-2. I downloaded asc signature and called
-	$ gpg --verify root-anchors.asc root-anchors.xml
-	he says me that he can't find public key with id. Then i called 
-	$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 0F6C91D2
-	It downloaded needed public key, and i verified that signature.
-	$ gpg --verify root-anchors.asc root-anchors.xml
+
+2. 
+	(a & b) 
+		1.Checking signature of root-acnhors
+		I downloaded asc signature and called
+		$ gpg --verify root-anchors.asc root-anchors.xml
+		he says me that he can't find public key with id. Then i called 
+		$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 0F6C91D2
+		It downloaded needed public key, and i verified that signature.
+		$ gpg --verify root-anchors.asc root-anchors.xml
+		2. Then we open that file, and add line to /usr/local/etc/unbound/unbound.conf with such patter
+		trust-anchor: "$ZONE  IN DS  $KEYTAG $ALGORITHM $DIGESTTYPE $DIGEST"
+		or in our situtation is
+		trust-anchor: ".   IN DS   19036 8 2 49AAC11D7B6F6446702E54A1607371607A1A41855200FD2CE1CDDE32F24E8FB5"
+		3. Also we need to turn on validator and iterator modules in unbound.conf
+		module-config: "validator iterator"
+		4. And restart unbound
+
+
 3. dig showes DNSkeys and adds flag AD(Authenticated data) to answer. This flags show that answer was validated.
-4. /usr/local/etc/unbound/
+
+dig isc.org +dnssec @127.0.0.1
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> isc.org +dnssec @127.0.0.1
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 23848
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 4096
+;; QUESTION SECTION:
+;isc.org.			IN	A
+
+;; ANSWER SECTION:
+isc.org.		60	IN	A	149.20.64.69
+isc.org.		60	IN	RRSIG	A 5 2 60 20161019234041 20160919234041 13953 isc.org. kNiHCgMW2/o+CzR0XIQeac0Gj5WpMaW4RWIKliyMFlkVFL/nT+gP1K6/ vLR4l7yfrfQP7te9wC4vicCcMpS1zPERXy/04KQBOVIz2qIuRKGzLOLT gSrhnmq68H3h7B17IGunDOKqFfRQNU7OKq1yOMRwwS5VHHlt/zMiJ7n5 Bcc=
+
+;; Query time: 565 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Mon Sep 26 16:10:30 MSK 2016
+;; MSG SIZE  rcvd: 219
+
+__
+
+dig os3.nl +dnssec @127.0.0.1
+
+; <<>> DiG 9.10.3-P4-Ubuntu <<>> os3.nl +dnssec @127.0.0.1
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46349
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags: do; udp: 4096
+;; QUESTION SECTION:
+;os3.nl.				IN	A
+
+;; ANSWER SECTION:
+os3.nl.			21600	IN	A	145.100.96.70
+os3.nl.			21600	IN	RRSIG	A 5 2 21600 20161025034701 20160925034701 42048 os3.nl. WAWQsZ0UE9+msdUj1dmgyRV4Ea6fgy+n4MBIIL2+fGLuQVK6+sfGNAsO BxwfVOjG+A97m++Qe8JQTzMPngTSFxRFodJaWOEj3S5i5Jk0wiPy5Ipt LqVSGklMrWfrX2mBUl2lJ9XU7hanJvlDWdVdBDCuo0a0WqKTIvylAo6O h2w=
+
+;; Query time: 951 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Mon Sep 26 16:11:12 MSK 2016
+;; MSG SIZE  rcvd: 217
+
+
+4. 
+cat /usr/local/etc/unbound/root.key
+; autotrust trust anchor file
+;;id: . 1
+;;last_queried: 1472455183 ;;Mon Aug 29 10:19:43 2016
+;;last_success: 1472455183 ;;Mon Aug 29 10:19:43 2016
+;;next_probe_time: 1472494466 ;;Mon Aug 29 21:14:26 2016
+;;query_failed: 0
+;;query_interval: 43200
+;;retry_time: 8640
+.	172800	IN	DNSKEY	257 3 8 AwEAAagAIKlVZrpC6Ia7gEzahOR+9W29euxhJhVVLOyQbSEW0O8gcCjFFVQUTf6v58fLjwBd0YI0EzrAcQqBGCzh/RStIoO8g0NfnfL2MTJRkxoXbfDaUeVPQuYEhg37NZWAJQ9VnMVDxP/VHL496M/QZxkjf5/Efucp2gaDX6RS6CXpoY68LsvPVjR0ZSwzz1apAzvN9dlzEheX7ICJBBtuA6G3LQpzW5hOA2hzCTMjJPJ8LbqF6dsV6DoBQzgul0sGIcGOYl7OyQdXfZ57relSQageu+ipAdTTJ25AsRTAoub8ONGcLmqrAmRLKBP1dfwhYB4N7knNnulqQxA+Uk1ihz0= ;{id = 19036 (ksk), size = 2048b} ;;state=2 [  VALID  ] ;;count=0 ;;lastchange=1472452175 ;;Mon Aug 29 09:29:35 2016
+
+
+
 5. The managed-keys statement, like trusted-keys, defines DNSSEC security roots. The difference is that managed-keys can be kept up to date automatically, without intervention from the resolver operator.
 6. Changed unbound.conf field trusted-keys. 
 7. Linux got SERVFAIL answer
+
+8. there is no 8th question in lab.
+
 9. I prefer RSA, cause it gains needed level of security, using with big enough keys. It also gives good speed of verification in compare with ECDSA.
 10. 
 	I used only different key size. KSK has longer key, cause it changes rarely then ZSK. You also can can use ECDSA for KSK, cause it gives stronger then RSA with same key size.
