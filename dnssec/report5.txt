@@ -3,6 +3,10 @@ Step by Step Unbound validatong resolver configuration:
 2. Then we turn on validator and iterator modules in unbound.conf.
 
 1. Validating resolver is a DNS resolver that knows how to perform DNSSEC validation of the data that it receives, to be assure that the data that receives through is integrate.
+For example we need to validate os3.nl.
+1. Resolver goes to root and asks it's ZSK and compares it with that he already has in trusted-anchor. Root doesn't know about os3.nl and it sends adress of NS for .nl and DS RR for it.
+2. Resolver validates DS with ZSK from root zone that it has. Then resolver asks zsk for .com and validates it with DS record. 
+3. Resolver does same stuff for os3.nl and if all is ok returns answer with AD flag.
 
 2. 
 	(a & b) 
@@ -86,8 +90,9 @@ cat /usr/local/etc/unbound/root.key
 
 
 5. The managed-keys statement, like trusted-keys, defines DNSSEC security roots. The difference is that managed-keys can be kept up to date automatically, without intervention from the resolver operator.
+Trusted keys we need to make isles-of-trust, where we will have local root, and chain of trust going from it
 6. Changed unbound.conf field trusted-keys. 
-7. Linux got SERVFAIL answer
+7. Linux got SERVFAIL answer. Tried to dig.
 
 8. there is no 8th question in lab.
 
@@ -231,20 +236,31 @@ www.st9.os3.su.	60	IN	RRSIG	A 7 4 60 20161017120050 20160919120050 46172 st9.os3
 sudo ldns-key2ds -n -1 st8.os3.su.signed && ldns-key2ds -n -2 st8.os3.su.signed
 this command generates two ds keys. Don't be confused, i just named zone file for st9.st8.os3.su, that is delegated to me, as st8.os3.su.
 
-14. debug_result.jpg
+14. zone1dnssec.jpg and zone2dnssec.jpg
 
-15. DNSKEY and DS for st9.os3.su zone. DNSKEY stored in zone file. DS key should be stored at os3.su zone. DS hash needed to verify DNSKEY of child zone.
+15. We have to type of keys in our zone. ZSK and KSK. First is used to signing zone. All RR's are signed with ZSK. Also we have KSK, with which, we sign our ZSK. Both of them are stored in zone file. 
+At parent zone, we have DS key - hash of KSK - to check thaht KSK's integrity.
 
 
 16. = 
-	(b) First, you'll need to generate a new key, that will replace the current key.
-		Add the new key to the zone file
+	(a) Wee need to make rollover like method i desctibed below, cause if we just change key without doing it by protocol, dns wouldn't work properly untill all server would updated their records.
+	(b) 1. First, you'll need to generate a new key, that will replace the current key.
+		> ldns-keygen -a RSASHA1_NSEC3 -b 1024 st9.os3.su
+		It creates Kst9.os3.su.+007+46172.key 
+		2. Add the new key to the zone file
+		> cat Kst9.os3.su.+007+46172.key >> st09.os3.su
 		Re-sign the zone with old keys
+		> ldns-signzone st09.os3.su Kst9.os3.su.+007+01268 Kst9.os3.su.+007+26016
 		Wait for highest TTL time, to update caching servers
 		Add the old key as passive to the zone
+		> cat Kst9.os3.su.+007+01268.key >> st09.os3.su
 		Sign the one with new key
+		> ldns-signzone st09.os3.su Kst9.os3.su.+007+01268 Kst9.os3.su.+007+26016
 		Wait for highest TTL
 		Clean zone from old ZSK key
 		Resign it with new ZSK key
-	(c) The opeartions should be a bit different, and you also should add public KSK to parent DNS.
+		> ldns-signzone st09.os3.su Kst9.os3.su.+007+01268 Kst9.os3.su.+007+26016
+	(c) TTL in SOA. We need to wait until caching servers are updated.
+
+17. The opeartions should be a bit different. You need to generate new KSK, sign zone with ZSK and 2KSK's and then add new KSK to parent zone. Then, when all is updatedm you can clean out old KSK, and resign your zone only with new KSK.
 

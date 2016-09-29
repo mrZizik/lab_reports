@@ -1,0 +1,301 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  29 SEP 2016 20:40
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**/Users/mrZizik/study/lab_reports/mta2/mta.tex
+(/Users/mrZizik/study/lab_reports/mta2/mta.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/ucs.sty
+Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
+(/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2013/05/13 UCS: Unicode global data
+)
+\uc@secondtry=\count87
+\uc@combtoks=\toks14
+\uc@combtoksb=\toks15
+\uc@temptokena=\toks16
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count88
+\Gm@cntv=\count89
+\c@Gm@tempcnt=\count90
+\Gm@bindingoffset=\dimen103
+\Gm@wd@mp=\dimen104
+\Gm@odd@mp=\dimen105
+\Gm@even@mp=\dimen106
+\Gm@layoutwidth=\dimen107
+\Gm@layoutheight=\dimen108
+\Gm@layouthoffset=\dimen109
+\Gm@layoutvoffset=\dimen110
+\Gm@dimlist=\toks18
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count91
+\lst@gtempboxa=\box26
+\lst@token=\toks19
+\lst@length=\count92
+\lst@currlwidth=\dimen111
+\lst@column=\count93
+\lst@pos=\count94
+\lst@lostspace=\dimen112
+\lst@width=\dimen113
+\lst@newlines=\count95
+\lst@lineno=\count96
+\lst@maxwidth=\dimen114
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count97
+\lst@skipnumbers=\count98
+\lst@framebox=\box27
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
+(/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+)) (/Users/mrZizik/study/lab_reports/mta2/mta.aux)
+\openout1 = `mta.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/ucsencs.def
+File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
+)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(81.94394pt, 433.62pt, 81.94394pt)
+* v-part:(T,H,B)=(48.93872pt, 722.7pt, 73.40813pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=433.62pt
+* \textheight=722.7pt
+* \oddsidemargin=9.67395pt
+* \evensidemargin=9.67395pt
+* \topmargin=-60.33127pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count99
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 13.
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 32--32
+
+ []
+
+[1
+
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--147
+
+ []
+
+[3]
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 221--221
+[]        \OT1/cmtt/m/n/10 220 mail.st9.os3.su ESMTP Sendmail 8.15.2/8.15.2; We
+d, 28 Sep 2016 14:23:46 +0300[] 
+ []
+
+
+Overfull \hbox (107.12529pt too wide) in paragraph at lines 221--221
+[]        \OT1/cmtt/m/n/10 250-mail.st9.os3.su Hello mail.st9.os3.su [188.130.1
+55.42] (may be forged), pleased to meet you[] 
+ []
+
+
+Overfull \hbox (49.3758pt too wide) in paragraph at lines 234--234
+[]        \OT1/cmtt/m/n/10 Received: from altmail.st9.os3.su (mail.st9.os3.su [
+188.130.155.42] (may be forged))[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 237--237
+
+ []
+
+[4]
+Overfull \hbox (111.1255pt too wide) in paragraph at lines 267--267
+ []                \OT1/cmtt/m/n/10 INPUT_MAIL_FILTER(`spfmilter',`S=unix:/var/
+run/spf-milter-python/spfmiltersock')dnl[] 
+ []
+
+
+Overfull \hbox (957.61787pt too wide) in paragraph at lines 306--306
+[]        \OT1/cmtt/m/n/10 Received-SPF: Pass (mail.st9.os3.su: domain of mail.
+st12.os3.su designates 188.130.155.45 as permitted sender) client-ip=188.130.15
+5.45; envelope-from="mboldyrev@mail.st12.os3.su"; helo=st12.os3.su; receiver=ma
+il.st9.os3.su; mechanism=all; identity=mailfrom[] 
+ []
+
+
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 306--306
+[]            \OT1/cmtt/m/n/10 d=mail.st12.os3.su; s=default; h=Date:From:Messa
+ge-Id:Sender:Reply-To:Subject[] 
+ []
+
+[5]
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 306--306
+[]            \OT1/cmtt/m/n/10 Content-Description:Resent-Date:Resent-From:Rese
+nt-Sender:Resent-To:Resent-Cc[] 
+ []
+
+
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 306--306
+[]            \OT1/cmtt/m/n/10 :Resent-Message-ID:In-Reply-To:References:List-I
+d:List-Help:List-Unsubscribe:[] 
+ []
+
+
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 306--306
+[]            \OT1/cmtt/m/n/10 bh=a+WK1yvGvIXnnB6UKyVEidaky0FPifEFBKk53/i4JBU=;
+ b=hYKT80UtVIRX0YF+SS2PYXsCTL[] 
+ []
+
+
+Overfull \hbox (33.62593pt too wide) in paragraph at lines 306--306
+[]            \OT1/cmtt/m/n/10 UddZRwMvdLLPhbIOZ1R1mYhPP9ZR86dw57boR5mGUZXPvNxh
+r55lHGwM1UWqinI/N9K5viaRIYT6u[] 
+ []
+
+
+Overfull \hbox (831.61897pt too wide) in paragraph at lines 331--331
+[]        \OT1/cmtt/m/n/10 Received-SPF: None (mail.st9.os3.su: 188.130.155.41 
+is neither permitted nor denied by domain of st8.os3.su) client-ip=188.130.155.
+41; envelope-from="sne8@st8.os3.su"; helo=mail.st8.os3.su; receiver=mail.st9.os
+3.su; identity=mailfrom[] 
+ []
+
+
+Overfull \hbox (2.1262pt too wide) in paragraph at lines 331--331
+[]        \OT1/cmtt/m/n/10 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed
+; d=st8.os3.su; s=mail;[] 
+ []
+
+[6]
+Overfull \hbox (200.37473pt too wide) in paragraph at lines 357--357
+ []            \OT1/cmtt/m/n/10 INPUT_MAIL_FILTER(`spamassassin', `S=local:/var
+/run/spamass/spamass.sock, F=T, T=C:15m;S:4m;R:4m;E:10m')[] 
+ []
+
+
+Overfull \hbox (0.87646pt too wide) in paragraph at lines 380--380
+ []            \OT1/cmtt/m/n/10 openssl req -new -x509 -keyout cakey.pem -out c
+acert.pem -days 365[] 
+ []
+
+
+Overfull \hbox (63.87592pt too wide) in paragraph at lines 380--380
+ []            \OT1/cmtt/m/n/10 openssl req -nodes -new -x509 -keyout sendmail.
+pem -out sendmail.pem -days 365[] 
+ []
+
+
+Overfull \hbox (6.12642pt too wide) in paragraph at lines 394--394
+ []            \OT1/cmtt/m/n/10 define(`confAUTH_MECHANISMS', `LOGIN PLAIN DIGE
+ST-MD5 CRAM-MD5')dnl[] 
+ []
+
+[7] (/Users/mrZizik/study/lab_reports/mta2/mta.aux) ) 
+Here is how much of TeX's memory you used:
+ 2357 strings out of 493014
+ 34750 string characters out of 6133352
+ 111229 words of memory out of 5000000
+ 5922 multiletter control sequences out of 15000+600000
+ 8644 words of font info for 31 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 26i,6n,32p,407b,245s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2016/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2016/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2016/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2016/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/mrZizik/study/lab_reports/mta2/mta.pdf (7 pages, 93410
+ bytes).
+PDF statistics:
+ 52 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
