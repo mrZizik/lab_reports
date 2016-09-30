@@ -58,6 +58,12 @@
             \item Remove package
             \item Run posterm script
         \end{enumerate}
+        \subsection{Tech requirments}
+        \begin{enumerate}
+        \item build-essential
+        \item dev scripts
+        \item Root rights to install something
+        \end{enumerate}
 
     \subsection {How doest it deals with dependecies? \\ \\}
     Debian package dependecies list is stored Control Section of .deb package.
@@ -69,6 +75,7 @@
 
     \subsection {Does it use the GNU build tools? How? \\ \\}
     Debian Package System doesn't use autotools for installation or other common actions with it's packets. But autotools are needed to build .deb packets from sources.
+
 
 
 \section{OpenSUSE packaging system    \newline}
@@ -141,6 +148,15 @@ make install # Installation
 file myman # checking result. We should see that this app is compiled for 
 myman: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.32, BuildID[sha1]=f06c79f4155713cd456e1aa5de11a2482afec255, not stripped
 \end{verbatim}
+
+Autotools containts
+\begin{enumerate}
+\item Autoconf that reads configure.in and make ./configure script
+\item Automake that makes Makefile.in from Makefile.am, that in their order reads by ./configure and becomes Make file for make
+\item Libtool that manages making static or dinamic libs in Unix.
+\end{enumerate}
+
+Attached screenshots of working game and file type.
 
 
 \end{document}
