@@ -11,9 +11,9 @@
 \renewcommand*\rmdefault{cmss}
 \maketitle
 \section{REST calculator}
-Caluclator can add,subtract,multiply or divide 2 vars.
+Caluclator can add,subtract,multiply or divide 2 vars. Also it connects to another webserver that make greeting from username.
 
-Written on python, using Flask framework.
+Written on python, using Flask framework. Using urllib2 to make REST GET request to another service.
 If you try to make GET query on it, it'll answer with message. \\ \\
 \includegraphics[scale=0.5]{get} \\ \\
 You can work with calculater via POST method \\ \\ 
@@ -28,10 +28,13 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 from pprint import pprint as pprint
 import json
+import urllib2
+
 
 @app.route('/', methods=['GET'])
 def hello():
-    return jsonify({'message': 'Please provide POST query to this server with var1, var2 and meth=(plus, minus, multiply, divide) parameters'})
+    greetings = urllib2.urlopen("http://188.130.155.37:8080/User").read()
+    return jsonify({'message': greetings + ' please provide POST query to this server with var1, var2 and meth=(plus, minus, multiply, divide) parameters'})
 
 @app.route('/', methods=['POST'])
 def calc():

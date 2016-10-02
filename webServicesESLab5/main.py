@@ -2,13 +2,14 @@
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
-from pprint import pprint as pprint
+from pprint import pprint
 import json
+import urllib2
 
 @app.route('/', methods=['GET'])
 def hello():
-    return jsonify({'message': 'Please provide POST query to this server with var1, var2 and meth=(plus, minus, multiply, divide) parameters'})
-
+    greetings = urllib2.urlopen("http://188.130.155.37:8080/User").read()
+    return jsonify({'message': greetings + '. Please provide POST query to this server with var1, var2 and meth=(plus, minus, multiply, divide) parameters'})
 @app.route('/', methods=['POST'])
 def calc():
 	response = ""
