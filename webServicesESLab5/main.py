@@ -7,7 +7,7 @@ import json
 
 @app.route('/', methods=['GET'])
 def hello():
-    return jsonify({'message': 'Please provide POST query to this server with var1 var and (plus, minus, multiply, divide) parameters'})
+    return jsonify({'message': 'Please provide POST query to this server with var1, var2 and meth=(plus, minus, multiply, divide) parameters'})
 
 @app.route('/', methods=['POST'])
 def calc():
@@ -30,16 +30,13 @@ def calc():
 			divide = var1/var2
 			response = str(var1) +" divide " + str(var2) + "=" + str(divide)
 		else:
-			response = "Don't know that method" + meth
+			response = "Don't know that method " + meth
 	else:
 		response = "Check parameters"
 	return jsonify({'message': response})
 
 def checkVars(req):
-	print isinstance(int(req['var1']),int)
-	print isinstance(int(req['var2']),int)
-	print str(req['meth'])
-	return isinstance(int(req['var1']),int) and isinstance(int(req['var2']),int) and isinstance(str(req['meth']),str)
+	return req['var1'].isdigit() and req['var2'].isdigit() and req['meth']!= None
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5005, debug=True)
