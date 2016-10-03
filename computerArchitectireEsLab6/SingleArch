@@ -1,0 +1,9 @@
+ SingleArch 
+ 	Add - 6 cycl 6 instr 
+ 	ForLoo - 45 cycl 45 inst
+ 	Square - 99 cycl 99 instr
+ Multi
+ 	Add - 22 cycl 6 instr
+ 	Forloo = 171 cycl 45 instr
+ 	Square = 354 cycl 99 instr
+ -/-/
