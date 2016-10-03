@@ -6,4 +6,7 @@
  	Add - 22 cycl 6 instr
  	Forloo = 171 cycl 45 instr
  	Square = 354 cycl 99 instr
- -/-/
+ Pilined
+ 	Add - 108 108
+ 	Forloo 25 25
+ 	Square - 128 128
