@@ -19,92 +19,147 @@ We add 1010 (right to left) from constant's. Output on leds is 1011 \\ \\
 \section{Perfomance measurement}
 \subsection{Installation SIM-PL}
 \begin{enumerate}
-	\item Downloading SimPL and components
-		\begin{verbatim}
-			wget https://staff.fnwi.uva.nl/t.r.walstra/innopolis/SIM-­‐PL_2.3.0.zip
-			wget https://staff.fnwi.uva.nl/e.h.steffens/Downloads/Arco/Innopolis/Component_Lab_1.zip	
-		\end{verbatim}
-	\item Unzipping
-		\begin{verbatim}
-			unzip SIM-­‐PL_2.3.0.zip -d SIMPL
-			unzip components_lab_1.zip -d comps
-		\end{verbatim}
-	\item Executing executor
-		\begin{verbatim}
-			cd SIMPL
-			java -jar executor.jar
-		\end{verbatim}
-	\item File-Open needed architecture. Than in code viewer file-open needed asm program. 
+    \item Downloading SimPL and components
+        \begin{verbatim}
+            wget https://staff.fnwi.uva.nl/t.r.walstra/innopolis/SIM-­‐PL_2.3.0.zip
+            wget https://staff.fnwi.uva.nl/e.h.steffens/Downloads/Arco/Innopolis/Component_Lab_1.zip    
+        \end{verbatim}
+    \item Unzipping
+        \begin{verbatim}
+            unzip SIM-­‐PL_2.3.0.zip -d SIMPL
+            unzip components_lab_1.zip -d comps
+        \end{verbatim}
+    \item Executing executor
+        \begin{verbatim}
+            cd SIMPL
+            java -jar executor.jar
+        \end{verbatim}
+    \item File-Open needed architecture. Than in code viewer file-open needed asm program. 
 \end{enumerate}
 
 \subsection{Measuring parameters. Assume that we have 10hz clock rate}
-	\subsubsection{Singlecycle}
-		\subsubsection{ForLoop.asm}
-		\begin{enumerate}
-			\item 45 instructions
-			\item CPI - 1
-			\item CpuTime = 4.5sec
+    \subsubsection{Singlecycle}
+        \subsubsection{ForLoop.asm}
+        \begin{enumerate}
+            \item 45 instructions
+            \item CPI - 1
+            \item CpuTime = 4.5sec
+        \end{enumerate}
+        \subsubsection{Addition.asm}
+        \begin{enumerate}
+            \item 6 instructions
+            \item CPI - 1
+            \item CpuTime = 0.6sec
+        \end{enumerate}
+        \subsubsection{Square.asm}
+        \begin{enumerate}
+            \item 99 instructions
+            \item CPI - 1
+            \item CpuTime = 9.9sec
+        \end{enumerate}
 
-		\end{enumerate}
-		\subsubsection{Addition.asm}
-		\begin{enumerate}
-			\item 6 instructions
-			\item CPI - 1
-			\item CpuTime = 0.6sec
-			
-		\end{enumerate}
-		\subsubsection{Square.asm}
-		\begin{enumerate}
-			\item 99 instructions
-			\item CPI - 1
-			\item CpuTime = 9.9sec
-			
-		\end{enumerate}
+    \subsubsection{Multicycle}
+        \subsubsection{ForLoop.asm}
+        \begin{enumerate}
+            \item 46 instructions
+            \item CPI - 3.8
+            \item CpuTime = 17.1 sec
+        \end{enumerate}
+        \subsubsection{Addition.asm}
+        \begin{enumerate}
+            \item 6 instructions
+            \item CPI - 3.6
+            \item CpuTime = 2.2 sec
+        \end{enumerate}
+        \subsubsection{Square.asm}
+        \begin{enumerate}
+            \item 117 instructions
+            \item CPI - 3.5
+            \item CpuTime = 35.4 sec
+        \end{enumerate}
 
-	\subsubsection{Multicycle}
-		\subsubsection{ForLoop.asm}
-		\begin{enumerate}
-			\item 46 instructions
-			\item CPI - 3.8
-			\item CpuTime = 17.1 sec
+    \subsubsection{Pipelined}
+        \subsubsection{ForLoop.asm}
+        \begin{enumerate}
+            \item 25 instructions
+            \item CPI - 1
+            \item CpuTime - 2.5 seс
+        \end{enumerate}
+        \subsubsection{Addition.asm}
+        \begin{enumerate}
+            \item 108 instructions
+            \item CPI - 1
+            \item CpuTime = 10.8 sec
+        \end{enumerate}
+        \subsubsection{Square.asm}
+        \begin{enumerate}
+            \item 128 instructions
+            \item CPI - 1
+            \item CpuTime - 12.8 sec            
+        \end{enumerate}
 
-		\end{enumerate}
-		\subsubsection{Addition.asm}
-		\begin{enumerate}
-			\item 6 instructions
-			\item CPI - 3.6
-			\item CpuTime = 2.2 sec
 
-		\end{enumerate}
-		\subsubsection{Square.asm}
-		\begin{enumerate}
-			\item 117 instructions
-			\item CPI - 3.5
-			\item CpuTime = 35.4 sec
-			
-		\end{enumerate}
+\subsection{Explain the following}
+    \begin{enumerate}
+        \item For forloop pipelined perfomed the best, cause
+        \item CPI - 1
+        \item CpuTime = 10.8 sec
+        \end{enumerate}
+\subsection{Explain the following}
+    \begin{enumerate}
+        \item ADDI - adds a register and a sign-extended immediate value and saves result in another register
+        \item NOP - command that does nothing. Used to make delay or to force memory alignment.
+        \item LI - puts number to register.
+        \begin{verbatim}li $s0, 123 # puts 123 to #s0\end{verbatim}
+        \item BNE - jumps to label
+        \begin{verbatim}
+        label:  li $s0, 0
+                BNE label
+        \end{verbatim}
+    \end{enumerate}
 
-	\subsubsection{Pipelined}
-		\subsubsection{ForLoop.asm}
-		\begin{enumerate}
-			\item 25 instructions
-			\item CPI - 1
-			\item CpuTime - 2.5 sec
+\subsection{Subtracting 2 variables}
+\begin{verbatim}
+    # Generated assembly code
+    @include "Mips.wasm"
+     
+    #
+    .data MyRegisters : REGISTERS
+    0x00 : WORD 0x00 # put $0 to zero (default assumption)
+     
+    .data MyMemory : DATAMEM
+    0x00 : WORD 0x00
+     
+    # De instructiecodes worden in
+    .code MyCode: MIPS, MyMemory
+     
+    # Sla getal 1 op in register 1
+    LI      $4, 1
+    ADD     $1, $4, $0
+     
+    # Sla getal 2 op in register 2
+    LI      $5, 2
+    ADD     $2, $5, $0
+     
+    # Tel register 1 en 2 bij elkaar op
+    # en plaats het resultaat in register 3
+    SUB     $6, $1, $2
+    ADD     $3, $6, $0
+     
+    # - Orginal C code -
+    #{
+    #       int a;
+    #       int b;
+    #
+    #       int result;
+    #
+    #       a = 1;
+    #       b = 2;
+    #
+    #       result = a - b;
+    #
+    #}
 
-		\end{enumerate}
-		\subsubsection{Addition.asm}
-		\begin{enumerate}
-			\item 108 instructions
-			\item CPI - 1
-			\item CpuTime = 10.8 sec
-			
-		\end{enumerate}
-		\subsubsection{Square.asm}
-		\begin{enumerate}
-			\item 128 instructions
-			\item CPI - 1
-			\item CpuTime - 12.8 sec
-			
-		\end{enumerate}
+\end{verbatim}
 
 \end{document}
