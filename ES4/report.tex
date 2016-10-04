@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage{ucs}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{listings}
+\usepackage[utf8x]{inputenc } % Включаем поддержку UTF8
+\usepackage{graphicx}
+\usepackage{natbib}
+\title{Essential Skills. Lab 4}
+\date{04 October 2016}
+\author{Ali Abdulmadzhidov}
+
+\begin{document}
+\renewcommand*\rmdefault{cmss}
+\maketitle
+\section{History of git commands}
+\begin{enumerate}
+    \item git init - initiliazies new git repo on your local machine.
+    \item git status - shows current state of repo
+    \begin{verbatim}
+        >git status
+        # On branch master
+        # Changes not staged for commit:
+        #   (use "git add <file>..." to update what will be committed)
+        #   (use "git checkout -- <file>..." to discard changes in working directory)
+        #
+        #   modified:   main.tex
+        #
+        no changes added to commit (use "git add" and/or "git commit -a")
+    \end{verbatim}
+    \item git clone - Clones remote repo to local one, where you can modify it.
+    \begin{verbatim}
+        git clone git@st9.os3.su:/home/git/project.git
+    \end{verbatim}
+    \item git add - adds files from working dir to staging area for further commit
+    \begin{verbatim}
+        git add some_file.php
+    \end{verbatim}
+    \item git checkout - undos git add, and frees index.
+    \item git commit - commits and fixes all from index on local repo
+    \begin{verbatim}
+        git commit -m "commit_message"
+    \end{verbatim}
+    \item git push - pushes our new commits to remote repo.
+    \begin{verbatim}
+        git commit -m "commit_message"
+    \end{verbatim}
+\end{enumerate}
+
+\section{Link with credintials}
+    \begin{verbatim}
+        #
+    \end{verbatim}
+
+
+\section{Commands to compile}
+    \begin{verbatim}
+        make
+        make clean # to remove all temp files.
+    \end{verbatim}
+
+
+
+\section{Makefile}
+    \begin{verbatim}
+        filename=main
+        pdf: 
+            pdflatex ${filename}
+        clean:
+            rm -f *.ps *.aux *.toc *.bbl *.blg *.log
+    \end{verbatim}
+
+\end{document}
