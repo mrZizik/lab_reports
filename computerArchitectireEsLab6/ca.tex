@@ -16,17 +16,20 @@ We add 1000 (right to left) from constant's. Output on leds is 1001. \\ \\
 We add 1010 (right to left) from constant's. Output on leds is 1011 \\ \\
 \includegraphics[width=\textwidth, scale=0.5]{circuit2} \\ \\
 
+Same with 6 elements \\ \\
+\includegraphics[width=\textwidth, scale=0.5]{circuit3} \\ \\
+
 \section{Perfomance measurement}
 \subsection{Installation SIM-PL}
 \begin{enumerate}
     \item Downloading SimPL and components
         \begin{verbatim}
-            wget https://staff.fnwi.uva.nl/t.r.walstra/innopolis/SIM-­‐PL_2.3.0.zip
-            wget https://staff.fnwi.uva.nl/e.h.steffens/Downloads/Arco/Innopolis/Component_Lab_1.zip    
+            wget https://staff.fnwi.uva.nl/t.r.walstra/innopolis/SIM-­PL_2.3.0.zip
+            wget https://staff.fnwi.uva.nl/e.h.steffens/Downloads/Arco/Innopolis/ComponentLab1.zip
         \end{verbatim}
     \item Unzipping
         \begin{verbatim}
-            unzip SIM-­‐PL_2.3.0.zip -d SIMPL
+            unzip SIM-­PL_2.3.0.zip -d SIMPL
             unzip components_lab_1.zip -d comps
         \end{verbatim}
     \item Executing executor
@@ -37,13 +40,13 @@ We add 1010 (right to left) from constant's. Output on leds is 1011 \\ \\
     \item File-Open needed architecture. Than in code viewer file-open needed asm program. 
 \end{enumerate}
 
-\subsection{Measuring parameters. Assume that we have 10hz clock rate}
-    \subsubsection{Singlecycle}
+\subsection{Measuring parameters.}
+    \subsubsection{Singlecycle. Assume that we have 10hz clock rate}
         \subsubsection{ForLoop.asm}
         \begin{enumerate}
             \item 45 instructions
             \item CPI - 1
-            \item CpuTime = 4.5sec
+            \item CpuTime = 4.5sec. 
         \end{enumerate}
         \subsubsection{Addition.asm}
         \begin{enumerate}
@@ -55,55 +58,55 @@ We add 1010 (right to left) from constant's. Output on leds is 1011 \\ \\
         \begin{enumerate}
             \item 99 instructions
             \item CPI - 1
-            \item CpuTime = 9.9sec
+            \item CpuTime = 9.9sec  
         \end{enumerate}
 
-    \subsubsection{Multicycle}
+    \subsubsection{Multicycle. Assume that we have 50hz clock rate}
         \subsubsection{ForLoop.asm}
         \begin{enumerate}
             \item 46 instructions
             \item CPI - 3.8
-            \item CpuTime = 17.1 sec
+            \item CpuTime = 3 sec 
         \end{enumerate}
         \subsubsection{Addition.asm}
         \begin{enumerate}
             \item 6 instructions
             \item CPI - 3.6
-            \item CpuTime = 2.2 sec
+            \item CpuTime = 0.44 sec
         \end{enumerate}
         \subsubsection{Square.asm}
         \begin{enumerate}
             \item 117 instructions
             \item CPI - 3.5
-            \item CpuTime = 35.4 sec
+            \item CpuTime = 7.08 sec
         \end{enumerate}
 
-    \subsubsection{Pipelined}
+    \subsubsection{Pipelined Assume that we have 50hz clock rate}
         \subsubsection{ForLoop.asm}
         \begin{enumerate}
             \item 25 instructions
             \item CPI - 1
-            \item CpuTime - 2.5 seс
+            \item CpuTime = 0.5 seс
         \end{enumerate}
         \subsubsection{Addition.asm}
         \begin{enumerate}
             \item 108 instructions
             \item CPI - 1
-            \item CpuTime = 10.8 sec
+            \item CpuTime = 2.16 sec
         \end{enumerate}
         \subsubsection{Square.asm}
         \begin{enumerate}
             \item 128 instructions
             \item CPI - 1
-            \item CpuTime - 12.8 sec            
+            \item CpuTime - 2.56 sec            
         \end{enumerate}
 
 
 \subsection{Explain the following}
     \begin{enumerate}
-        \item For forloop pipelined perfomed the best, cause
-        \item CPI - 1
-        \item CpuTime = 10.8 sec
+        \item addition.asm was performed good by three archs. In forloop and square pipelined was the best, cause it can it has shorter cycle and can divide instrcutions to execute them in one time.
+        \item program counter shows memory adress of instruction that is executing now or'll be executed next
+        \item multicycle take more then one cycle to execute instruction.
         \end{enumerate}
 \subsection{Explain the following}
     \begin{enumerate}
