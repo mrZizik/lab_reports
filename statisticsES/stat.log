@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  4 OCT 2016 21:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.1)  5 OCT 2016 11:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/Users/mrZizik/study/lab_reports/computerArchitectireEsLab6/ca.tex
-(/Users/mrZizik/study/lab_reports/computerArchitectireEsLab6/ca.tex
+**/Users/mrZizik/study/lab_reports/statisticsES/stat.tex
+(/Users/mrZizik/study/lab_reports/statisticsES/stat.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls
@@ -83,8 +83,8 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
-) (/Users/mrZizik/study/lab_reports/computerArchitectireEsLab6/ca.aux)
-\openout1 = `ca.aux'.
+) (/Users/mrZizik/study/lab_reports/statisticsES/stat.aux)
+\openout1 = `stat.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
@@ -190,116 +190,189 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 12.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 12.
-<circuit1.png, id=1, 998.73125pt x 304.13625pt>
-File: circuit1.png Graphic file (type png)
-<use circuit1.png>
-Package pdftex.def Info: circuit1.png used on input line 15.
-(pdftex.def)             Requested size: 499.3644pt x 152.06775pt.
-<circuit2.png, id=3, 986.68625pt x 299.1175pt>
-File: circuit2.png Graphic file (type png)
-<use circuit2.png>
-Package pdftex.def Info: circuit2.png used on input line 17.
-(pdftex.def)             Requested size: 493.34192pt x 149.55838pt.
+<hist1.png, id=1, 296.10625pt x 291.0875pt>
+File: hist1.png Graphic file (type png)
+<use hist1.png>
+Package pdftex.def Info: hist1.png used on input line 61.
+(pdftex.def)             Requested size: 148.05275pt x 145.54338pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 14--18
-
- []
-
-<circuit3.jpg, id=4, 958.58125pt x 359.3425pt>
-File: circuit3.jpg Graphic file (type jpg)
-<use circuit3.jpg>
-Package pdftex.def Info: circuit3.jpg used on input line 20.
-(pdftex.def)             Requested size: 479.28946pt x 179.6708pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 
  []
 
 [1
 
-{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/
-mrZizik/study/lab_reports/computerArchitectireEsLab6/circuit1.png> </Users/mrZi
-zik/study/lab_reports/computerArchitectireEsLab6/circuit2.png> </Users/mrZizik/
-study/lab_reports/computerArchitectireEsLab6/circuit3.jpg>] (/usr/local/texlive
-/2016/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
-Overfull \hbox (16.62633pt too wide) in paragraph at lines 29--29
- []            \OT1/cmtt/m/n/10 wget https://staff.fnwi.uva.nl/t.r.walstra/inno
-polis/SIM--PL_2.3.0.zip[] 
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <hist2.
+png, id=14, 290.08376pt x 284.06125pt>
+File: hist2.png Graphic file (type png)
+<use hist2.png>
+Package pdftex.def Info: hist2.png used on input line 65.
+(pdftex.def)             Requested size: 290.08304pt x 284.06053pt.
+<boxplot.png, id=15, 274.02374pt x 241.90375pt>
+File: boxplot.png Graphic file (type png)
+<use boxplot.png>
+Package pdftex.def Info: boxplot.png used on input line 70.
+(pdftex.def)             Requested size: 137.01154pt x 120.95157pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
  []
 
 
-Overfull \hbox (105.87555pt too wide) in paragraph at lines 29--29
- []            \OT1/cmtt/m/n/10 wget https://staff.fnwi.uva.nl/e.h.steffens/Dow
-nloads/Arco/Innopolis/ComponentLab1.zip[] 
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
  []
 
-[2] (/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/data/uni-4.def
-File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
-)
-! Undefined control sequence.
-\u-default-1089 #1->\cyrs 
-                          
-l.89             \item CpuTime = 0.5 seс
-                                         
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[2 </Users/mrZizik/study/lab_reports/statisticsES/hist1.png> </Users/mrZizik/st
+udy/lab_reports/statisticsES/hist2.png> </Users/mrZizik/study/lab_reports/stati
+sticsES/boxplot.png>]
 
-[3] [4] (/Users/mrZizik/study/lab_reports/computerArchitectireEsLab6/ca.aux) ) 
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.73         \end{verbatim} \\ \\
+                                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.74         \includegraphics
+                             [scale=0.5]{boxplot2} \\ \\
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<boxplot2.png, id=22, 281.05pt x 248.93pt>
+File: boxplot2.png Graphic file (type png)
+<use boxplot2.png>
+Package pdftex.def Info: boxplot2.png used on input line 74.
+(pdftex.def)             Requested size: 140.52464pt x 124.46469pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+
+ []
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.86         \end{verbatim} \\ \\
+                                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.87     \includegraphics
+                         [scale=0.5]{stem}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+<stem.png, id=23, 536.0025pt x 312.16624pt>
+File: stem.png Graphic file (type png)
+<use stem.png>
+Package pdftex.def Info: stem.png used on input line 87.
+(pdftex.def)             Requested size: 268.0006pt x 156.08273pt.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+)
+Overfull \hbox (11.37637pt too wide) in paragraph at lines 103--103
+ []     \OT1/cmtt/m/n/10 [1] 13.72015 19.07084 18.43827 22.96638 28.46689 34.92
+449 42.14046 47.86178[] 
+ []
+
+[3 </Users/mrZizik/study/lab_reports/statisticsES/boxplot2.png> </Users/mrZizik
+/study/lab_reports/statisticsES/stem.png>]
+Overfull \hbox (32.37619pt too wide) in paragraph at lines 159--159
+ []        \OT1/cmtt/m/n/10 > aggregate(airquality$Solar.R, list(Month=airquali
+ty$Month), mean, na.rm=T)[] 
+ []
+
+[4]
+Overfull \hbox (21.87628pt too wide) in paragraph at lines 169--169
+ []        \OT1/cmtt/m/n/10 > aggregate(airquality$Solar.R, list(Month=airquali
+ty$Month), sd, na.rm=T)[] 
+ []
+
+[5]
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236         \end{verbatim} \\ \\
+                                  
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.237     \item
+                Use dot notation to find the means of “Temp“, with the r...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[6] [7] [8] (/Users/mrZizik/study/lab_reports/statisticsES/stat.aux) ) 
 Here is how much of TeX's memory you used:
- 3655 strings out of 493014
- 48559 string characters out of 6133352
- 111839 words of memory out of 5000000
- 7165 multiletter control sequences out of 15000+600000
- 8644 words of font info for 31 fonts, out of 8000000 for 9000
+ 2513 strings out of 493014
+ 37329 string characters out of 6133352
+ 123826 words of memory out of 5000000
+ 6025 multiletter control sequences out of 15000+600000
+ 7749 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,31p,411b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
-<
-/usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/lo
-cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/l
-ocal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on /Users/mrZizik/study/lab_reports/computerArchitectireEsLab6/c
-a.pdf (4 pages, 107192 bytes).
+ 37i,6n,31p,399b,330s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texl
+ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on /Users/mrZizik/study/lab_reports/statisticsES/stat.pdf (8 pag
+es, 117578 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
