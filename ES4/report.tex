@@ -12,20 +12,37 @@
 \begin{document}
 \renewcommand*\rmdefault{cmss}
 \maketitle
+
+\section{Git server creating}
+\begin{enumerate}
+	\item Adding user and logging in as him
+	\begin{verbatim}
+		> sudo adduser git
+		> su git
+	\end{verbatim}
+	\item Initiating git bare repository from git user
+	\begin{verbatim}
+		> mkdir ~/project && cd ~/project
+		> git --bare init
+	\end{verbatim}
+	\item Exiting from git user
+	\begin{enumerate}
+		> exit
+	\end{enumerate}
+	\item Go to /etc/passwd and block shell for that user
+	\begin{verbatim}
+		> sudo nano /etc/passwd
+		...
+		git:x:1002:1002:git,1,123321,12321,a:/home/git:/usr/bin/git-shell
+		...
+	\end{verbatim}
+\end{enumerate}
+
 \section{History of git commands}
 \begin{enumerate}
     \item git init - initiliazies new git repo on your local machine.
-    \item git status - shows current state of repo
-    \begin{verbatim}
-        >git status
-        # On branch master
-        # Changes not staged for commit:
-        #   (use "git add <file>..." to update what will be committed)
-        #   (use "git checkout -- <file>..." to discard changes in working directory)
-        #
-        #   modified:   main.tex
-        #
-        no changes added to commit (use "git add" and/or "git commit -a")
+    \item git stasdasdasd
+        no cashanges added to commit (use "git add" and/or "git commit -a")
     \end{verbatim}
     \item git clone - Clones remote repo to local one, where you can modify it.
     \begin{verbatim}
@@ -69,5 +86,109 @@
         clean:
             rm -f *.ps *.aux *.toc *.bbl *.blg *.log
     \end{verbatim}
+
+
+Main latex file
+\begin{verbatim}
+\documentclass[10pt]{article}
+% Эта строка — комментарий, она не будет показана в выходном файле
+\usepackage{ucs}
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{listings}
+\usepackage[utf8x]{inputenc } % Включаем поддержку UTF8
+\usepackage{graphicx}
+\title{Essential Skills. Lab 4}
+\date{25 September 2016}
+\author{Ali Abdulmadzhidov, Oleg Ilin, Timur Samigullin}
+
+\begin{document}
+\renewcommand*\rmdefault{cmss}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\input{ali/main}
+\newpage
+\input{oleg/main}
+\newpage
+\input{timur/main}
+\end{document}
+\end{verbatim}
+
+My latex file ali/main.tex
+\begin{verbatim}
+\section{Starting with git and github}
+\textbf{Git} \cite{git} is version control system created by \textit{Linus} Torvalds in 2005 for development of linux kernel. For nowadays it is the most popular version system control. 
+Github \cite{github} (figure \ref{logo}) is webbased git repository storage.
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{ali/github-logo.jpg}
+\caption{Github logo \label{logo}}
+\end{figure}
+\begin{enumerate}
+    \item Firstly you need to install it
+    \begin{verbatim}
+        apt install git
+    end{verbatim}
+    \item Setup your credintials
+    \begin{verbatim}
+        git config --global user.name "Ali Abdulmadzhidov"
+        git config --global user.email "a.abdulmadzhidov@innopolis.ru"
+    end{verbatim}
+    \item Now you can init new...
+    \begin{verbatim}
+        mkdir project
+        git init
+    end{verbatim}
+    \item Now you can init new...
+    \begin{verbatim}
+        mkdir project
+        git init
+    end{verbatim}
+    \item ...or clone exisitng one \cite{swipecards}
+    \begin{verbatim}
+        git clone https://github.com/Diolor/Swipecards.git 
+    end{verbatim}
+    \item You can look to repo's status with
+    \begin{verbatim}
+        git status
+    end{verbatim}
+    \item And watch all modifications in files with
+    \begin{verbatim}
+        git diff
+    end{verbatim}
+    \item You can add edited files to index with
+    \begin{verbatim}
+        git add <filename>
+    end{verbatim}
+    \item and commit them
+    \begin{verbatim}
+        git commit -m <message>
+    end{verbatim}
+    \item Push modifications to remote repo
+    \begin{verbatim}
+        git push origin <branch>
+    end{verbatim}
+    \item Pull modifications from remote repo
+    \begin{verbatim}
+        git pull
+    end{verbatim}
+    
+\end{enumerate}
+
+\medskip
+ 
+\begin{thebibliography}{9}
+\bibitem{git} 
+https://ru.wikipedia.org/wiki/Git
+ 
+\bibitem{github} 
+https://github.com/
+ 
+\bibitem{swipecards} 
+https://github.com/Diolor/Swipecards
+\end{thebibliography}
+\end{verbatim}
 
 \end{document}

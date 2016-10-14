@@ -1,0 +1,75 @@
+ * Running on http://0.0.0.0:5005/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 241-959-137
+10.240.16.163 - - [09/Oct/2016 22:24:28] "GET / HTTP/1.1" 500 -
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2000, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1991, in wsgi_app
+    response = self.make_response(self.handle_exception(e))
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1567, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1641, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1544, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1639, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1625, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/mrzizik/lab_reports/webServicesESLab5/main.py", line 11, in hello
+    greetings = urllib2.urlopen("http://188.130.155.37:8080/User").read()
+  File "/usr/lib/python2.7/urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "/usr/lib/python2.7/urllib2.py", line 429, in open
+    response = self._open(req, data)
+  File "/usr/lib/python2.7/urllib2.py", line 447, in _open
+    '_open', req)
+  File "/usr/lib/python2.7/urllib2.py", line 407, in _call_chain
+    result = func(*args)
+  File "/usr/lib/python2.7/urllib2.py", line 1228, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "/usr/lib/python2.7/urllib2.py", line 1198, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 113] No route to host>
+ * Detected change in '/home/mrzizik/lab_reports/webServicesESLab5/main.py', reloading
+ * Running on http://0.0.0.0:5005/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 241-959-137
+10.240.16.163 - - [09/Oct/2016 22:31:43] "GET / HTTP/1.1" 200 -
+10.240.16.163 - - [09/Oct/2016 22:31:55] "POST / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:11] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:16] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:21] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:22] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:23] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:24] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Oct/2016 13:10:25] "GET / HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:5005/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger pin code: 241-959-137
+127.0.0.1 - - [13/Oct/2016 13:29:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [13/Oct/2016 13:29:52] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [13/Oct/2016 13:29:52] "GET /favicon.ico HTTP/1.1" 404 -
+10.240.16.150 - - [13/Oct/2016 19:25:56] "POST / HTTP/1.1" 200 -
+10.240.16.150 - - [13/Oct/2016 21:47:12] "POST / HTTP/1.1" 200 -

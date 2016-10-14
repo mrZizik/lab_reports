@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.4)  4 OCT 2016 15:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.4)  14 OCT 2016 13:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -250,33 +250,543 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 14.
 
-Overfull \hbox (37.62614pt too wide) in paragraph at lines 29--29
- []        \OT1/cmtt/m/n/10 #   (use "git checkout -- <file>..." to discard cha
-nges in working directory)[] 
- []
 
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.31 	\end{enumerate}
+                     
+? 
+
+! LaTeX Error: \begin{enumerate} on input line 42 ended by \end{verbatim}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.46     \end{verbatim}
+                       
+? 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47     \item g
+                it clone - Clones remote repo to local one, where you can mo...
+
+? 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.51     \item g
+                it add - adds files from working dir to staging area for fur...
+
+? 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.55     \item g
+                it checkout - undos git add, and frees index.
+? 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.56     \item g
+                it commit - commits and fixes all from index on local repo
+? 
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.60     \item g
+                it push - pushes our new commits to remote repo.
+? 
+
+! LaTeX Error: \begin{document} ended by \end{enumerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.64 \end{enumerate}
+                    
+? 
+! Extra \endgroup.
+<recently read> \endgroup 
+                          
+l.64 \end{enumerate}
+                    
+? 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./report.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-4.def
+File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
+)
+! Undefined control sequence.
+\u-default-1069 #1->\CYREREV 
+                             
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1090 #1->\cyrt 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1089 #1->\cyrs 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1090 #1->\cyrt 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1088 #1->\cyrr 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1082 #1->\cyrk 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-32.def
+File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
+)
+! Undefined control sequence.
+\u-default-1082 #1->\cyrk 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1084 #1->\cyrm 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1084 #1->\cyrm 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1085 #1->\cyrn 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1090 #1->\cyrt 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1088 #1->\cyrr 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1080 #1->\cyri 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1081 #1->\cyrishrt 
+                              
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1085 #1->\cyrn 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1085 #1->\cyrn 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1073 #1->\cyrb 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1091 #1->\cyru 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1076 #1->\cyrd 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1090 #1->\cyrt 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1087 #1->\cyrp 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1082 #1->\cyrk 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1079 #1->\cyrz 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1085 #1->\cyrn 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1074 #1->\cyrv 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1074 #1->\cyrv 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1099 #1->\cyrery 
+                            
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1093 #1->\cyrh 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1076 #1->\cyrd 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1085 #1->\cyrn 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1084 #1->\cyrm 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1092 #1->\cyrf 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1081 #1->\cyrishrt 
+                              
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1083 #1->\cyrl 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1042 #1->\CYRV 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1082 #1->\cyrk 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1083 #1->\cyrl 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1102 #1->\cyryu 
+                           
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1095 #1->\cyrch 
+                           
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1072 #1->\cyra 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1084 #1->\cyrm 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1087 #1->\cyrp 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1086 #1->\cyro 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1076 #1->\cyrd 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1076 #1->\cyrd 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1077 #1->\cyre 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1088 #1->\cyrr 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1078 #1->\cyrzh 
+                           
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1082 #1->\cyrk 
+                          
+l.117 \end{verbatim}
+                    
+? 
+! Undefined control sequence.
+\u-default-1091 #1->\cyru 
+                          
+l.117 \end{verbatim}
+                    
+? 
+
+Overfull \hbox (537.62154pt too wide) in paragraph at lines 192--192
+[]\OT1/cmtt/m/n/10 \textbf{Git} \cite{git} is version control system created by
+ \textit{Linus} Torvalds in 2005 for development of linux kernel. For nowadays 
+it is the most popular version system control.[] 
+ []
+
+[2] [3] [4] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 3897 strings out of 494953
- 56137 string characters out of 6180977
+ 5069 strings out of 494953
+ 68115 string characters out of 6180977
  133701 words of memory out of 5000000
- 7148 multiletter control sequences out of 15000+600000
+ 8314 multiletter control sequences out of 15000+600000
  7749 words of font info for 28 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,32p,355b,249s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on report.pdf (2 pages, 73621 bytes).
+ 38i,6n,32p,355b,731s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on report.pdf (4 pages, 81686 bytes).
 PDF statistics:
- 35 PDF objects out of 1000 (max. 8388607)
- 24 compressed objects within 1 object stream
+ 41 PDF objects out of 1000 (max. 8388607)
+ 28 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
