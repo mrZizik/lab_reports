@@ -1,0 +1,25 @@
+1. 
+2. Middleware helps to support different computers and give unified access interface to them. Also it helps in interapplication communication, security, accouncting and masking of/recovery some failures.
+
+
+3. Transparency is property of DS to present itself as single computer system.
+There are 
+	access transparency (hiding differencies in data representation and way of acess to resources),
+	ex. search engines - we don't care in which way data is stored in internet, google just give as info
+ 	
+ 	location, migration and relocation transparency (hiding of location and movements of resources even while in use), 
+  	ex. dns - we didn't need to know where dns records are located on system and are they moved or not.
+
+  	replication transparency,
+  	ex. cdn service - 
+
+  	concurrency transparency (hiding of using of resource by several competitive users),
+  	also webservers
+
+
+  	failure transparency (hiding failures and recovery of resources)
+  	torrents
+
+4. For example system may be so slow, that it have to report that it is down, but really it just slow in reposonding.
+
+5. 
