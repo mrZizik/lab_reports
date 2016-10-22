@@ -1,4 +1,5 @@
-1. 
+1. Google services. For example youtube. It seems single server for user, but it has many cdn's and servers all over the world, which is locatioon transparency.
+
 2. Middleware helps to support different computers and give unified access interface to them. Also it helps in interapplication communication, security, accouncting and masking of/recovery some failures.
 
 
@@ -22,4 +23,11 @@ There are
 
 4. For example system may be so slow, that it have to report that it is down, but really it just slow in reposonding.
 
-5. 
+5. When you try to achieve maximum transparency, you can loose system performance, for example in failure transparency.
+6. Open DS services work on predefined rules. Also it can easily cooperate with other opern DS and allows apps to be ported between different variations of same system.
+7. System is scalable if it can grow in number of components, geographical size and/or number and size of administrative domains without unacceptable big loose of performance.
+8. Scaling can be done through distributing, replicating and caching.
+Distributing for geographical scaling, replicating for size scaling and caching for administative domains.
+9. For example in migration transparency. Some components of pervasive system are mobile, and it's better they be migration transparent. 
+
+
