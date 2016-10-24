@@ -26,8 +26,8 @@ There are
 5. When you try to achieve maximum transparency, you can loose system performance, for example in failure transparency.
 6. Open DS services work on predefined rules. Also it can easily cooperate with other opern DS and allows apps to be ported between different variations of same system.
 7. System is scalable if it can grow in number of components, geographical size and/or number and size of administrative domains without unacceptable big loose of performance.
-8. Scaling can be done through distributing, replicating and caching.
-Distributing for geographical scaling, replicating for size scaling and caching for administative domains.
+8. Scaling can be done through hiding communcation latencies, distributing, replicating and caching.
+Hiding commication latencies and caching for geographical scaling, replicating for size scaling and distributing for administative domains scalling.
 9. For example in migration transparency. Some components of pervasive system are mobile, and it's better they be migration transparent. 
 
 
