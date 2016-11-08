@@ -19,8 +19,14 @@
   In transposition ciphers units stay unchaged, but chage their place in plaintext
   \subsection{Affine}
   Affine - monoalphabetic substitution cipher, where each letter changed to character by function \begin{equation} E(x) = (ax + b) mod m \end{equation}, where a and b are keys, x is numerical form of letter, counted from beginin of alphabet (A=0, b=1 ...) and m is numbers of symbols in that alphabet. Also a and m should be coprime, because if they are not, decryption might be impossible.
+  
+  \subsubsection{Weaknesses}
+
   Affine cipher has all weaknesses of monoalphabetic substitutional ciphers. There are only 12 numbers that are coprime with 26 and less then 26. Also only 26  values for b. 12*26=312 posible a,b combinations. Becouse of this, it can be easily carcked with bruteforce. Also it is weak for frequenty analize, and if cryptoanalyst can discover plaintext of 2 cipher characters, he can obtain key by solving simultaneous equation.
   For decryption we use function \begin{equation} D(x) = a^{-1}(x - b) mod m \end{equation}.
+
+
+
 
   \subsubsection{Encrypting example}
   \begin{enumerate}
@@ -51,7 +57,9 @@
   \end{enumerate}
   \subsection{Playfair}
   Playfair - simmetric and first litteral digram substitution cipher, invented by Charles Wheatstone, but named by Lord Playfair who promoted use of that cipher. Harder to break, that single letter substitutional ciphers, cause it's harder to make frequency analysis for bigrams. Nowadays it is not used cause even smartphones easily break it in seconds.
-
+  \subsubsection{Weaknesses}
+  Plyafair is susceptitable for frequency analize, but because it is done on pairs of letters, it is significantly harder to crack. By hand this task in merely imposible, but with the help of a computer, it can be done in seconds.
+  Another useful weakness of the Playfair Cipher is the fact that the same pair of letters reversed will produce the same pair of letters reversed in ciphertext. For example, if the plaintext "er" encrypts to "HY", then the plaintext "re" will encrypt rto "YH". This is useful in some words in english such as "departed" which start and end with the same pair of letter in reverse.
   \subsubsection{Encryption}
   To encrypt we use 5x5 square starting from keyword and finished by rest of ordered alphabet without J (suppose J==I) like:
   \begin{verbatim}  
@@ -90,7 +98,8 @@
   \subsection{ADFGVX}
   ADFGVX (ADFGX in origin) is cipher that was originally invented by Lt. Fritz Nebel and upgrageded in 1918. It uses both substitional and transpostitional methods, that made it very strong for usage in WWI. 
   Cipher is named after six characters that used in it. Those was chosen because they look very different in Morse code, that makes errors more rare.
-
+  \subsection{Comparing with Playfair}
+  ADFGVX is more stronger then Playfair because it uses both substitutional and transpositional ways of cryptography. Also ADFGVX keyset is bgger than playfairs.
   \susbsubsection{Encryption}
   Let's encrypt `RFC'.
   First we need 5x5 square filled with secret mixed alphabet - substition key

@@ -43,9 +43,11 @@ Also i put rotor settings to "**DOG**" and tried to decode first 3 symbols. Resu
 
 There is maximum variants of keys for **Viola**:
 
-$5 * (30^{20})*37276043023296000*6190283353629375=402286475176704820302504069968261460000000000000000000000000000 $
+$5 * (30^{20})*37276043023296000*6190283353629375=$
 
-, where 5 - number reflectors, 30^20 variations (30^2 variations for each rotor (ring settings and rotor settings)),  37276043023296000 variations to put 10 unique rotors from 50 and 6190283353629375 variations of plugboard with 30 elements and 15 pairs.
+$=402286475176704820302504069968261460000000000000000000000000000 $
+
+, where 5 - number reflectors, $30^{20}$ variations ($30^2$ variations for each rotor (ring settings and rotor settings)),  37276043023296000 variations to put 10 unique rotors from 50 and 6190283353629375 variations of plugboard with 30 elements and 15 pairs.
 
 ```python
 def alphabet_variations(n,m):
@@ -60,7 +62,7 @@ $3 * (26^{6})*60*150738274937250=8381777611525548310080000 $
 
 
 
-, where 3 numbers of reflectors, 26^6 variations of each rotor setting and ring setting, 60 variations of 3 rotor from 5, 150738274937250 ways to connect 26 letters with 10 connectors by formula, that i wrote in python above.
+, where 3 numbers of reflectors, $26^6$ variations of each rotor setting and ring setting, 60 variations of 3 rotor from 5, 150738274937250 ways to connect 26 letters with 10 connectors by formula, that i wrote in python above.
 
 
 
