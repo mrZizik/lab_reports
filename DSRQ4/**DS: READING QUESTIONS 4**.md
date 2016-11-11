@@ -53,6 +53,7 @@ For example enitity 1
 3rd element of table'll be - $1+2^{3-1}=5$ vut we haven't got node 5, next available node was 9th, but now it'll be 11th.
 
 ####5. Consider an entity moving from location A to B, while passing several intermediate locations where it will reside for only a relatively short time. When arriving at B, it settles down for a while. Changing an address in a hierarchical location service may still take a relatively long time to complete, and should therefore be avoided when visiting an intermediate location. How canthe entity be located at an intermediate location? 
+
 When the entity begins moving, it should leave forwarding pointer in A to intermediate location. And so each time when entity moves.When entityarrives in B, it adds new address to hierarchical location service. The chain of pointers then cleanes up, and address in A deletes.
 
 ####6. 6. Which design decisions were made to provide performance and availability of DNS?
@@ -61,3 +62,5 @@ DNS uses hierarchical design and not all nodes are equal. For example each of ro
 Also there are good system of caches and resolvers that is highly effective, cause helps to maximize performance and become more fail
 
 ####7. LDAP combines two types of naming. Which are they? And what is the advantage of such a combination?
+Structure naming and attributed-based naming.
+Such combination gives us ways to replicate and distribute ldap system to avoid overloads and helps to save simplicity of structured type of naming.
