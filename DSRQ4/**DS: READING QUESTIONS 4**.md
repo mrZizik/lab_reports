@@ -58,6 +58,6 @@ When the entity begins moving, it should leave forwarding pointer in A to interm
 ####6. 6. Which design decisions were made to provide performance and availability of DNS?
 
 DNS uses hierarchical design and not all nodes are equal. For example each of root nodes are replicated and highly distributed.
-Also there are good system of caches and resolvers that is highly effective, cause helps to maximize performance and become more fail proof.
+Also there are good system of caches and resolvers that is highly effective, cause helps to maximize performance and become more fail
 
 ####7. LDAP combines two types of naming. Which are they? And what is the advantage of such a combination?
