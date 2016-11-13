@@ -20,6 +20,16 @@ After all i got such encrypted message, that i'll send with my birthday date to 
 
 >  "DDWP EUURD HAZKT XCFLM IREZG PALBL CBXHY FHEJM TNVRV OWSXA OPPVQ YVKZZ KUGBGU"
 
+**The final data consist of ciphered text, and trigram at start, that is needed for checking of settings when this would be decrypted.**
+
+I don't need to send kengruppen and other values, cause we have key sheets, where are kenngruppens for every date. I only use first triram of kenngruppen as start position of rotors and second for checking purposes (encrypt it, and then recipient after decryption of first 3 symbols can compare them with other kenngruppens from keysheet. )
+
+  ![window_2016-11-13-19-20-S](/home/mrzizik/screenshots/window_2016-11-13-19-20-S.png)
+
+ ![window_2016-11-13-19-27-S](/home/mrzizik/screenshots/window_2016-11-13-19-27-S.png)
+
+ ![window_2016-11-13-19-41-S](/home/mrzizik/screenshots/window_2016-11-13-19-41-S.png)
+
 ### 1.2 Decryption
 
 I got message:
@@ -67,3 +77,13 @@ $3 * (26^{6})*60*150738274937250=8381777611525548310080000 $
 
 
 Viola, of course, is much more resistant for bruteforce attack, because it has more varitations. That is so mostly, because we have more rotors and also more rotors that take part in encryption. 
+
+
+
+
+
+Formula:
+
+**Number of reflectors * Size of alphabet ^ number of rotors * 2 (cause we have rotor and ring settings for each of them) * number of variations to take number of rotors that we need from all rotors * to all variations of connections on plugboard. **
+
+**Ringsetting is already added to calculation**

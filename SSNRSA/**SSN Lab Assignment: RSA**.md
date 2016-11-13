@@ -4,7 +4,7 @@
 
 ## **ALI ABDULMADZHIDOV**
 
-#### **1.**Create a 2048 bit RSA key-pair using openssl. Write your full name in a text file and encrypt it with your private key. Using OpenSSL extract the public modulus and the exponent from the public key. Publish your public key and the encrypted text in your report.
+#### **1.Create a 2048 bit RSA key-pair using openssl. Write your full name in a text file and encrypt it with your private key. Using OpenSSL extract the public modulus and the exponent from the public key. Publish your public key and the encrypted text in your report.**
 
 Firstly we need to create our text file:
 
@@ -107,10 +107,10 @@ Modulus:
     e0:03
 Exponent: 65537 (0x10001) 
 ```
-#### **2. **Assuming that you are generating a 1024 bit RSA key and the prime factors have a 512bit length, what is the probability of picking the same prime factor twice ? Explain your answer. Hint: How many primes with length 512bit or less exist?
+#### **2. Assuming that you are generating a 1024 bit RSA key and the prime factors have a 512bit length, what is the probability of picking the same prime factor twice ? Explain your answer. Hint: How many primes with length 512bit or less exist?**
 I used Wolfram to count prime numbers less or equeal 512 bit with prime counting function. It gave me $3.778×10^{151}$. Assuming that we have already took two prime factors for first key generation, probability of pickin same factor secondly is $2/(3.778x10^{151})$
 
-#### **3. **Explain why using a good RNG is crucial for the security of RSA. Provide one reference to a realworld case where a poor RNG lead to a security vulnerability.
+#### **3. Explain why using a good RNG is crucial for the security of RSA. Provide one reference to a realworld case where a poor RNG lead to a security vulnerability.**
 
 RNG uses some seed that is obtained from "true randomness" and then expanded into an enough long sequence of random bits. But if RNG is badly designed or entropy is too low, attacker can generate all set of "random" numbers and get all RSA keys for them. This happened in Debian on 13th May, 2008.
 
@@ -127,7 +127,7 @@ RNG uses some seed that is obtained from "true randomness" and then expanded int
 >
 >These lines were [removed](http://svn.debian.org/viewsvn/pkg-openssl/openssl/trunk/rand/md_rand.c?rev=141&view=diff&r1=141&r2=140&p1=openssl/trunk/rand/md_rand.c&p2=/openssl/trunk/rand/md_rand.c) because they caused the [Valgrind](http://valgrind.org/) and Purify tools to produce warnings about the use of uninitialized data in any code that was linked to OpenSSL. You can see one such report to the OpenSSL team [here](http://rt.openssl.org/Ticket/Display.html?id=521&user=guest&pass=guest). Removing this code has the side effect of crippling the seeding process for the OpenSSL PRNG. Instead of mixing in random data for the initial seed, the only "random" value that was used was the current process ID. On the Linux platform, the default maximum process ID is 32,768, resulting in a very small number of seed values being used for all PRNG operations.
 
-#### **4. **Here you can find the modulus (public information) of two related 1024bit RSA keys. Your keys are numbered using the list at http://188.130.155.61/ssn/Instructions.txt. Your task is to factor them i.e. retrieve p an q. You may use any tools for this. Explain your approach. Hints: study the RSA algorithm. What private information can two keys share? What practical attacks exist? You may have to write code or use existing code for simple arithmetic operations.
+#### **4. Here you can find the modulus (public information) of two related 1024bit RSA keys. Your keys are numbered using the list at http://188.130.155.61/ssn/Instructions.txt. Your task is to factor them i.e. retrieve p an q. You may use any tools for this. Explain your approach. Hints: study the RSA algorithm. What private information can two keys share? What practical attacks exist? You may have to write code or use existing code for simple arithmetic operations.**
 
 After some search i thought that those two modules can have one of the prime factors same. If we know that, we can compute gcd of them and find the second factor by dividing that modulus to that gcd. 
 
@@ -153,7 +153,7 @@ I used python gcd function from factorize package.
 11781926318507083481218847334007109530409514414858167505452121203204186409125960928535186740269539163113911343169540614819969269523937063201798084176338811L
 ```
 
-#### **5. **Now that you have the p and q for both keys, recreate the first public and private key using this script. Encrypt your name with the private key and post the public key and the base64 encrypted data in your report.
+#### **5. Now that you have the p and q for both keys, recreate the first public and private key using this script. Encrypt your name with the private key and post the public key and the base64 encrypted data in your report.**
 
 ```
 -----BEGIN PUBLIC KEY-----
