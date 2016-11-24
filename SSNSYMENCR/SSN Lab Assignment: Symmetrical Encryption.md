@@ -30,7 +30,73 @@
    returns ff950aac31f6753d
    ```
 
-   At round 8 we got
+   #### Addition
+
+   At start we have 64 bits of input (416c690000000000 hex = "Ali" ASCII) and 64 bit key (0101010101010101).
+
+   We convert our text to binary:
+
+   ```
+   0b100000101101100011010010000000000000000000000000000000000000000 = 0x416c690000000000
+   ```
+
+    
+
+   Then we convert our hex key to binary:
+
+   ```
+   0b100000001000000010000000100000001000000010000000100000001 = 0x0101010101010101
+   ```
+
+   Next step will be IP of our input text:
+
+   ​
+
+    ![sbox](/home/mrzizik/screenshots/sbox.png)
+
+   I wrote a small script for doing this in python:
+
+   ````python
+   ip = (58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46, 38, 30, 22, 14, 6, 64, 56, 48, 40, 32, 24, 16, 8, 57, 49, 41, 33, 25, 17, 9, 1, 59, 51, 43, 35, 27, 19, 11, 3, 61, 53, 45, 37, 29, 21, 13, 5, 63, 55, 47, 39, 31, 23, 15, 7)
+   input = [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+   output = []
+   for i in xrange(64):
+   	output.append(input[ip[i]-1])
+   print output
+
+   ````
+
+   After that we have got such permuted list
+
+   ```
+   0000011100000000000000100000010100000000000001100000011000000000
+   ```
+
+   After that we do IP and divide key to two parts 28 bits each:
+
+    ![keypermut](/home/mrzizik/screenshots/keypermut.png)
+
+   ```
+   left = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+   ```
+
+   ```
+   right = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+   ```
+
+   Then we shift our key, but in our situation (all are zeros) shifting wouldn't change anything.
+
+   For some rounds we make shift 2, not one.
+
+   Then we make second permutation of key, that's also useless for us.
+
+   We have round 1 key. In that manner we generate keys for all rounds.
+
+   Then we divide our input to 2 parts and go to first round of encryption
+
+    ![cipher](/home/mrzizik/screenshots/cipher.png)
+
+   ​
 
    ```
    Rnd8	f(R7=1162ccff, SK8=00 00 00 00 00 00 00 00 ) = ec5804d6
@@ -64,6 +130,8 @@
    ```
 
    that makes it 48 bit from 56 for each round of encryption.
+
+   Wrote with explantaions in 1 answer 
 
 3. It's because the first step of key generation, when we make 56bit key from 64bit one.
 
