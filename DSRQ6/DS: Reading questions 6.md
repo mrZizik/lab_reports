@@ -14,11 +14,11 @@
 
 There're 5 types of crashes, that can become in RPC systems:
 
-	1. Client can't find server
-	2. Request is lost
-	3. Server crashes
-	4. Response is lost
-	5. Client crashes
+1. Client can't find server
+2. Request is lost
+3. Server crashes
+4. Response is lost
+5. Client crashes
 
 In situation of client crashing, servers continues doing some work and holding resources, that may be needed for other processes.
 
@@ -56,5 +56,9 @@ Writing to global storage can grant spread access to that data from different ho
 Sorting saves time for the reducer and says where a new reduce task should start. It starts a new task, when the next key in the sorted input data is different then previous. Reduce tasks take array of key-value pairs, but they has to call reduce function which takes key-list(value). To make this easier, input data also is pre-sorted in the map phase and also sorted in the reduce phase (cause reducers get data from many mappers)
 
 #### **9. What happens if a Mapper or Reducer fails?**
+
+If one mapper or reducer fails and input data is still available, the work can be rescheduled. 
+
+> https://www.wikiwand.com/en/MapReduce
 
 
