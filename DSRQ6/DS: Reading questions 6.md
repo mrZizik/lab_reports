@@ -51,7 +51,10 @@ Writing to local storage can help to reduce number of queries going in network.
 Writing to global storage can grant spread access to that data from different hosts.
 
 
-#### **8**. Why does Hadoop sort records en route to a Reducer? How would it affect things if these records were processed by the Reducer in the order in which they were received from the various Mappers?****
+#### **8. Why does Hadoop sort records en route to a Reducer? How would it affect things if these records were processed by the Reducer in the order in which they were received from the various Mappers?**
 
-#### 9. What happens if a Mapper or Reducer fails?
+Sorting saves time for the reducer and says where a new reduce task should start. It starts a new task, when the next key in the sorted input data is different then previous. Reduce tasks take array of key-value pairs, but they has to call reduce function which takes key-list(value). To make this easier, input data also is pre-sorted in the map phase and also sorted in the reduce phase (cause reducers get data from many mappers)
+
+#### **9. What happens if a Mapper or Reducer fails?**
+
 
