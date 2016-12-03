@@ -40,7 +40,6 @@
    0b100000101101100011010010000000000000000000000000000000000000000 = 0x416c690000000000
    ```
 
-    
 
    Then we convert our hex key to binary:
 
@@ -56,7 +55,7 @@
 
    I wrote a small script for doing this in python:
 
-   ````python
+````python
    ip = (58, 50, 42, 34, 26, 18, 10, 2, 60, 52, 44, 36, 28, 20, 12, 4, 62, 54, 46, 38, 30, 22, 14, 6, 64, 56, 48, 40, 32, 24, 16, 8, 57, 49, 41, 33, 25, 17, 9, 1, 59, 51, 43, 35, 27, 19, 11, 3, 61, 53, 45, 37, 29, 21, 13, 5, 63, 55, 47, 39, 31, 23, 15, 7)
    input = [0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
    output = []
@@ -64,7 +63,7 @@
    	output.append(input[ip[i]-1])
    print output
 
-   ````
+````
 
    After that we have got such permuted list
 
@@ -150,13 +149,37 @@
 
 ###**2.AES**
 
-1. Diffusion elements are 3 steps that we make with each block of plaintext, espesially subbites using sbox and mixcolumns.
+1. Diffusion is reached by 16 rounds of SubBytes, ShiftRows and Mix Collumns with applying round key. Also the last permutation grant more diffusion
 
-2. Confusion elements are rcon and sbox of key scheduling, as all key schedulling process. It makes one bit modification in input key become huge change in key, that we are going to use and in output ciphertext 
+2. Confusion elements are rcon and sbox of key scheduling, as all key schedulling process. It makes one bit modification in input key become huge change in key, that we are going to use and in output ciphertext. 
+
+   Many rounds of crypting when output of round becomes input of next, and diffusion elements also grants more confusion.
 
 ###**3.Bonus: RC4**
 
 ​	After bruteforce attack found that keys are "adwtg" and "495706". There is book of Darwin encrypted in them.
+
+```The Project Gutenberg EBook of On the Origin of Species, by Charles Darwin
+The Project Gutenberg EBook of On the Origin of Species, by Charles Darwin
+
+This eBook is for the use of anyone anywhere at no cost and with
+almost no restrictions whatsoever.  You may copy it, give it away or
+re-use it under the terms of the Project Gutenberg License included
+with this eBook or online at www.gutenberg.org
+
+
+Title: On the Origin of Species
+       1st Edition
+
+Author: Charles Darwin
+
+Release Date: Release Date: March, 1998 [EBook #1228]
+Posting Date: November 23, 2009
+
+
+```
+
+
 
 1. (a) How did you identify the encrypted files ?
 
@@ -228,5 +251,7 @@
 5. (e)
 
    $(100^6)/2771=360880548$ seconds or something like 11 years in one thread
+
+   ​
 
    ​
