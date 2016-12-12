@@ -67,9 +67,9 @@ def main(separator='\t'):
                 total_count+=int(count)
             # total_count = sum(int(count) for item, count, date in group)
             if total_count<=100000:
-                print "%s%s%d" % (item, separator, total_count)
+                print "%s%s%d" % (total_count, separator, item)
             else:
-                resp = "%s%s%d" % (item, separator, total_count)
+                resp = "%s%s%d" % (total_count, separator, item)
                 for date, count in a.iteritems():
                     resp+="{0}{1}:{2}".format(separator, date, count)
                 print resp
@@ -98,35 +98,21 @@ hadoop jar /usr/lib/hadoop-mapreduce/hadoop-streaming-2.6.0-cdh5.9.0.jar \
 
 ### **Output**
 
-##### Not sorted 10 top lines
+##### 10 top lines
 
 ```
-Independence_Day:_Resurgence	214334	20160701:1210	20160702:1129 	20160703:1399	20160704:1634	20160705:1270	20160706:908	20160707:710
-The_Purge:_Election_Year	163809	20160701:1488	20160702:874	20160703:1185	20160704:1059	20160705:766	20160706:542	20160707:708
-Batman_v_Superman:_Dawn_of_Justice	159028	20160701:940	20160702:995	20160703:983	20160704:755	20160705:931	20160706:1059	20160707:918
-UFC_Fight_Night:_dos_Anjos_vs._Alvarez	103455	20160701:254	20160702:315	20160703:319	20160704:274	20160705:230	20160706:329	20160707:647
-Captain_America:_Civil_War	81787
-X-Men:_Apocalypse	76673
-The_Ultimate_Fighter:_Team_Joanna_vs._Team_Cl%C3%A1udia	75300
-List_of_Naruto:_Shippuden_episodes	71796
-The_Purge:_Anarchy	61939
-The_Divergent_Series:_Allegiant	54160
+214334  Independence_Day:_Resurgence	20160701:1210	20160702:1129 	20160703:1399	20160704:1634	20160705:1270	20160706:908	20160707:710
+163809  The_Purge:_Election_Year	20160701:1488	20160702:874	20160703:1185	20160704:1059	20160705:766	20160706:542	20160707:708
+159028  Batman_v_Superman:_Dawn_of_Justice	20160701:940	20160702:995	20160703:983	20160704:755	20160705:931	20160706:1059	20160707:918
+103455  UFC_Fight_Night:_dos_Anjos_vs._Alvarez	20160701:254	20160702:315	20160703:319	20160704:274	20160705:230	20160706:329	20160707:647
+81787    Captain_America:_Civil_War
+76673   X-Men:_Apocalypse
+75300   The_Ultimate_Fighter:_Team_Joanna_vs._Team_Cl%C3%A1udia
+71796   List_of_Naruto:_Shippuden_episodes
+61939   The_Purge:_Anarchy
+54160   The_Divergent_Series:_Allegiant
 ```
 
-##### Sorted by views 10 top lines
-
-```
-A$AP_Forever_Part_1:_Blood	4
-A%20Civil%20War:%20Army%20vs.%20Navy	1
-A%20Muppets%20Christmas:%20Letters%20to%20Santa	2
-A%20Night%20of%20Rapture:%20Live	2
-A%20Valediction:%20Forbidding%20Mourning	1
-A%20Way%20of%20Life:%20Over%20Thirty%20Years%20of%20Blood,%20Sweat%20and%20Tears	1
-A-Square_(Of_Course):_The_Story_of_Michigan%27s_Legendary_A-Square_Records	8
-A.I.M.:_Artificial_Intelligence_Machines	3
-A:FFTF	1
-ABC7_News_5:00AM	1
-```
 
 
 
