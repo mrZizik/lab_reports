@@ -10,19 +10,43 @@
 
 ### Abstract
 
-> Mobile devices, like smartphones or wearings, are very popular nowadays. So is malware development targeted on them. In last years we have many news about data leaks and from phones and   
-
-
+> Mobile devices, like smartphones or IoT, are very popular nowadays. So is malware development targeted on them. There're various methods of detecting those malicious software: signature based, dynamic, heurustic e.t.c. In addition we have quite new way to recognize malware by energy profile of process. It is based on the fact that we can measure energy consumption of "healthy" device and having it as ideal, detect any suspicious processes that can have malicious properties.
+>
+> In this paper we are going to check is it possible to detect defferent types of real or artificial-malware. As proof we'll try to implement research results into antivirus software based on energy profile analyse method.
 
 
 
 #### 1. Introduction
 
+​	Nowadays, mobile devices are very popular and their "expansion" is growing. In adition to usual smartphones, we have IoT that also uses same mobile OSs (iWatch, Samsung Gear). As a result, users trust very sensitive data to them, gave access to their bank accounts e.t.c. This fact makes mobile devices sweet target for developers of malware. According to McAfee mobile threat report [1], there're 1000 - 6000 virus detected per hour in various countries.
+
+​	Currently we have many methods for finding malisiouce software: signature based, dynamic, heurustic, and so forth. Several researhes proposed new way of detecting malware based on energy profile analyze. The main idea is, that every process has it's own energy consumption fingerprint and we can detect any unpredictable and suspiciouse activiy comparing with "ideal" energy profile.
+
 #### 2. Related Work
+
+​	For now few researchers has touched this theme.
+
+​	Kim et al. **[2]** presented the way of detecting malware based on energy consumption. They proposed framework for finding and analysing energy-greedy anomalies on Windows Mobile OS using power signatures. Need of energy signatures prevent them from detecting new, unknown malware. 
+
+​	Liu et al. **[3]** proposed heuristic solution for devices on Symbian OS. Firstly tool writes user's behaviour and energy consumption on clean system and then real power usage is compared with that profile and if threshold is reached, tool supposes that malware is detected. 
+
+​	Hoffmann et al. **[4]** discussed the way to get energy fingerprints of different proccesses and then use them to detect and analyze malware. 
 
 #### 3. Research Goals
 
+- Analyse the energy profile of application in mobile environment
+- Draw relation between different malware and the energy consumption
+- Implement research results into virus detection application
+
 #### 4. References
+
+[1] http://www.mcafee.com/us/resources/reports/rp-mobile-threat-report-2016.pdf
+[2] H. Kim, J. Smith, and K. G. Shin. Detecting Energy-Greedy Anomalies and Mobile Malware Variants. In International Conference on Mobile Systems, Applications and Services, MobiSys, 2008
+[3] L. Liu, G. Yan, X. Zhang, and S. Chen. VirusMeter: Preventing Your Cellphone from Spies.
+In International Symposium on Recent Advances in Intrusion Detection, RAID, 2009.
+[4] J. Hoffmann, S. Neumann, T. Holz. Mobile Malware Detection Based on Energy Fingerprints — A Dead End? Horst Gortz Institute (HGI), Ruhr-University Bochum, Germany 2013
+
+
 
 
 
