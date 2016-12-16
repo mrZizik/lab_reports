@@ -1,6 +1,6 @@
 # Analysis of Energy Profiles for Malware Detection in Mobile Environment
 
-## Ali Abdulmadzhidov Emil Sharifullin
+## Ali Abdulmadzhidov, Emil Sharifullin
 
 ## System and Network Engineering, Innopolis University
 
@@ -10,17 +10,17 @@
 
 ### Abstract
 
-> Mobile devices, like smartphones or IoT, are very popular nowadays. So is malware development targeted on them. There're various methods of detecting those malicious software: signature based, dynamic, heurustic e.t.c. In addition we have quite new way to recognize malware by energy profile of process. It is based on the fact that we can measure energy consumption of "healthy" device and having it as ideal, detect any suspicious processes that can have malicious properties.
+> Mobile devices, like smartphones or IoT, are very popular nowadays. So is malware development targeted at them. There're various methods of detecting those malicious software: signature based, dynamic, heuristic e.t.c. In addition, we have a quite new way to recognize malware by the energy profile of the process. It is based on the fact that we can measure energy consumption of "healthy" device and having it as ideal, detect any suspicious processes that can have malicious properties.
 >
-> In this paper we are going to check is it possible to detect defferent types of real or artificial-malware. As proof we'll try to implement research results into antivirus software based on energy profile analyse method.
+> In this paper, we are going to check is it possible to detect different types of real or artificial-malware. As proof we'll try to implement research results in antivirus software based on the energy profile analyse method.
 
 
 
 #### 1. Introduction
 
-​	Nowadays, mobile devices are very popular and their "expansion" is growing. In adition to usual smartphones, we have IoT that also uses same mobile OSs (iWatch, Samsung Gear). As a result, users trust very sensitive data to them, gave access to their bank accounts e.t.c. This fact makes mobile devices sweet target for developers of malware. According to McAfee mobile threat report [1], there're 1000 - 6000 virus detected per hour in various countries.
+​	Nowadays, mobile devices are very popular and their "expansion" is growing. In addition to usual smartphones, we have IoT that also uses same mobile OSs (iWatch, Samsung Gear). As a result, users trust very sensitive data to them, gave access to their bank accounts e.t.c. This fact makes mobile devices sweet target for developers of malware. According to McAfee mobile threat report [1], there're 1000 - 6000 virus detected per hour in various countries.
 
-​	Currently we have many methods for finding malisiouce software: signature based, dynamic, heurustic, and so forth. Several researhes proposed new way of detecting malware based on energy profile analyze. The main idea is, that every process has it's own energy consumption fingerprint and we can detect any unpredictable and suspiciouse activiy comparing with "ideal" energy profile.
+​	Currently we have many methods for finding malicious software: signature based, dynamic, heuristic, and so forth. Several researches proposed new way of detecting malware based on energy profile analyse. The main idea is, that every process has it's own energy consumption fingerprint and we can detect any unpredictable and suspicious activity comparing with "ideal" energy profile.
 
 #### 2. Related Work
 
@@ -34,8 +34,8 @@
 
 #### 3. Research Goals
 
-- Analyse the energy profile of application in mobile environment
-- Draw relation between different malware and the energy consumption
+- Prove or disprove ability of detection malicious behaviour based on energy consumption
+- Draw relation between different types of malware and the energy consumption
 - Implement research results into virus detection application
 
 #### 4. References
