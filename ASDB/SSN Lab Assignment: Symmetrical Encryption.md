@@ -153,9 +153,11 @@ Empty set (0,60 sec)
 
 * Would you use this in a production environment?
 
-  Depends on data that i need to store. If it is not sensitive information, that is needed often and fast - i wouldn't use it, but if i need save sensitive data with rare access i tried column ecnryption and cry
+  Depends on data that i need to store. If it is not sensitive information, that is needed often and fast - i wouldn't use it, but if i need save sensitive data with rare access i tried column encryption and cryptdb.
 
-* What are the concerns you would have if you do so?
+* What are the concerns you wouldencryption have if you do so?
+
+  Performance problems. It is 100 times more slow than regular unencrypted DB. 
 
   ​
 
