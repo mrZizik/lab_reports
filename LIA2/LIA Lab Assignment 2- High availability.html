@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        LIA Lab Assignment 2: High availability - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/github-gist.min.css" integrity="sha256-tAflq+ymku3Khs+I/WcAneIlafYgDiOQ9stIHH985Wo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/1.1.0/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,300italic,300|Source+Serif+Pro|Source+Code+Pro:400,300,500&subset=latin,latin-ext);.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\A0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.markdown-body kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram{text-align:center;background-color:inherit;border-radius:0;white-space:inherit}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;-webkit-transition:opacity .2s;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;-webkit-transition:opacity .2s;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.MJX_Assistive_MathML{display:none}.ui-infobar{position:relative;z-index:2;max-width:758px;margin-top:25px;margin-bottom:-25px;color:#777}.ui-toc{position:fixed;bottom:20px;z-index:10000}.ui-toc-label{opacity:.3;background-color:#ccc;border:none}.ui-toc-label,.ui-toc .open .ui-toc-label{-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;-webkit-transition:opacity .2s;transition:opacity .2s}.ui-toc-dropdown{margin-top:23px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child > ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,\\30D2\30E9\30AE\30CE\89D2\30B4 Pro W3,Osaka,Meiryo,\\30E1\30A4\30EA\30AA,MS Gothic,"\FF2D\FF33   \30B4\30B7\30C3\30AF",sans-serif}.ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,"\FF2D\FF33   \FF30\30B4\30B7\30C3\30AF",sans-serif}.markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang TC,Microsoft JhengHei,\\5FAE\8EDF\6B63\9ED1,sans-serif}.ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,\\5FAE\8EDF\6B63\9ED1UI,sans-serif}.markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Helvetica,Arial,PingFang SC,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,sans-serif}.ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,\\5FAE\8F6F\96C5\9ED1UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:3px;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:contain}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}small span{line-height:22px}small .dropdown{display:inline-block}small .dropdown a:focus,small .dropdown a:hover{text-decoration:none}.unselectable{-moz-user-select:none;-webkit-user-select:none;-o-user-select:none;user-select:none}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;font-family:Source Sans Pro,Helvetica,Arial,sans-serif;letter-spacing:.025em}.focus,:focus{outline:none!important}::-moz-focus-inner{border:0!important}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid"><h1 id="lia-lab-assignment-2-high-availability"><a class="anchor hidden-xs" href="#lia-lab-assignment-2-high-availability" title="lia-lab-assignment-2-high-availability"><span class="octicon octicon-link"></span></a>LIA Lab Assignment 2: High availability</h1><h5 id="authors-aidar-sabirov-emil-sharifullin-bogdan-vaneev-ali-abdulmadzhidov-oleg-ilin-konstantin-munichev"><a class="anchor hidden-xs" href="#authors-aidar-sabirov-emil-sharifullin-bogdan-vaneev-ali-abdulmadzhidov-oleg-ilin-konstantin-munichev" title="authors-aidar-sabirov-emil-sharifullin-bogdan-vaneev-ali-abdulmadzhidov-oleg-ilin-konstantin-munichev"><span class="octicon octicon-link"></span></a>Authors: Aidar Sabirov, Emil Sharifullin, Bogdan Vaneev, Ali Abdulmadzhidov, Oleg Ilin, Konstantin Munichev</h5><h1 id="task-1-prepare-your-environment"><a class="anchor hidden-xs" href="#task-1-prepare-your-environment" title="task-1-prepare-your-environment"><span class="octicon octicon-link"></span></a>Task 1 - Prepare your environment</h1><h3 id="install-cms"><a class="anchor hidden-xs" href="#install-cms" title="install-cms"><span class="octicon octicon-link"></span></a>Install CMS</h3><p>First of all we installed wordpress on our Ubuntu 16.04 server virtual machine. Wordpress requires Apache, MySQL and PHP stack which is simply called LAMP. Firstly we installed <code>Apache</code> and enbled it in <code>systemd</code>.</p><pre><code class="bash hljs">$ sudo apt install apache2 apache2-utils
+$ sudo systemctl <span class="hljs-built_in">enable</span> apache2
+$ sudo systemctl start apache2
+</code></pre><p>After running this commands we had <code>Apache</code> installed and running.</p><p><img src="https://i.imgur.com/EFRklrD.png" alt=""></p><p>Wordpress uses <code>MySQL</code> to store data and we have to install it.</p><pre><code class="bash hljs">$ sudo apt install mysql-client mysql-server
+</code></pre><p>During installation we need to set password for <code>MySQL</code> user.</p><p><img src="https://i.imgur.com/6XjhTde.png" alt=""></p><p>After installation of <code>MySQL</code> we ran security additions for it. This script setup the <code>MySQL</code> server and creates rules for secure usage of <code>MySQL</code> server.</p><pre><code class="bash hljs">$ sudo mysql_secure_installation 
+</code></pre><p>Wrdpress is a simple site writen in <code>php</code> and to run it we need to install <code>php</code>.</p><pre><code class="bash hljs">$ sudo apt install php7.0 php7.0-mysql \
+libapache2-mod-php7.0 php7.0-cli php7.0-cgi php7.0-gd
+</code></pre><p>To check that <code>php</code> installed succesfully we created script and stored it in <code>Apache</code> root folder.</p><pre><code class="bash hljs">$ cat /var/www/html/info.php
+&lt;?php 
+phpinfo();
+?&gt;
+</code></pre><p><img src="https://i.imgur.com/ZpSJnFv.png" alt=""></p><p>Now we able to install <code>Wordpress</code>. Firstly we downloaded source files from Wordpress site and unpacked them.</p><pre><code class="bash hljs">$ wget -c http://wordpress.org/latest.tar.gz
+$ tar -xzvf latest.tar.gz
+</code></pre><p>Now we need to move files from upacked folder to <code>Apache</code> home folder. Then we need to change mode for all files in <code>Apache</code> home directory.</p><pre><code>$ sudo mv wordpress/* /var/www/html/
+$ sudo chown -R www-data:www-data /var/www/html/
+$ sudo chmod -R 755 /var/www/html/
+</code></pre><p>Final step is to create <code>Wordpress</code> database and change settings in <code>Wordpress</code> settings file.</p><pre><code class="bash hljs">$ mysql -u root -p 
+</code></pre><pre><code class="MySQL hljs">mysql&gt; CREATE DATABASE wp_myblog;
+mysql&gt; GRANT ALL PRIVILEGES ON wp_myblog.* TO <span class="hljs-string">'a'</span>@<span class="hljs-string">'localhost'</span> IDENTIFIED BY <span class="hljs-string">'asdQWE123!@#'</span>;
+mysql&gt; FLUSH PRIVILEGES;
+mysql&gt; <span class="hljs-keyword">EXIT</span>;
+</code></pre><pre><code class="bash hljs">$ sudo mv wp-config-sample.php wp-config.php
+$ sudo nano wp-config.php
+</code></pre><pre><code class="php hljs"><span class="hljs-comment">// ** MySQL settings - You can get this info from your web host ** //</span>
+<span class="hljs-comment">/** The name of the database for WordPress */</span>
+define(<span class="hljs-string">'DB_NAME'</span>, <span class="hljs-string">'wp_myblog'</span>);
+<span class="hljs-comment">/** MySQL database username */</span>
+define(<span class="hljs-string">'DB_USER'</span>, <span class="hljs-string">'a'</span>);
+<span class="hljs-comment">/** MySQL database password */</span>
+define(<span class="hljs-string">'DB_PASSWORD'</span>, <span class="hljs-string">'asdQWE123!@#'</span>);
+<span class="hljs-comment">/** MySQL hostname */</span>
+define(<span class="hljs-string">'DB_HOST'</span>, <span class="hljs-string">'localhost'</span>);
+<span class="hljs-comment">/** Database Charset to use in creating database tables. */</span>
+define(<span class="hljs-string">'DB_CHARSET'</span>, <span class="hljs-string">'utf8'</span>);
+<span class="hljs-comment">/** The Database Collate type. Don't change this if in doubt. */</span>
+define(<span class="hljs-string">'DB_COLLATE'</span>, <span class="hljs-string">''</span>);
+</code></pre><p>And finally we have setted up <code>Wordpress</code> blog.</p><p><img src="https://i.imgur.com/L5GF3eL.png" alt=""><br>
+<img src="https://i.imgur.com/9f7MhLO.png" alt=""></p><h3 id="web-application-performance-management"><a class="anchor hidden-xs" href="#web-application-performance-management" title="web-application-performance-management"><span class="octicon octicon-link"></span></a>Web application performance management</h3><p>We used 2 approaches to test web application performance. We used service <a href="" target="_blank">loadtest.com</a> for this. Free plan allows to emulate 100 virtual users that generate low amount of traffic. On the first picture you can clearly see that the page load time (green line) is almost constant and does not depend on the increase in number of users (blue line).<br>
+<img src="https://i.imgur.com/YkoESz1.png" alt=""></p><p>The next screenshot shows that the maximum bandwidth is almost 10 Mbit/sec and maximum request rate is 40 requests/second. It means that our server is able to process 40 requests/second easily.<br>
+<img src="https://i.imgur.com/hR3rAKq.png" alt=""></p><p>This is not enough for testing, therefore we used load testing capabilities of <code>Visual Studio 2012</code>. First, in order to create a load test we have to create a testing scenario. Let the first scenario be <code>browsing</code>. We record each link that the user has visited and the corresponding timing (e.g. 5 seconds between visiting another page). In this scenario the user spends several seconds on each Wordpress post and goes to another. In the second <code>commenting</code> scenario the user tries to comment every post (we try to post a constant string and Wordpress blocks it since it was already posted but we need this scenario because it creates a very good load on the server that is being tested).</p><p>After creating scenarios we are able to create load test. In our test we emulate 200 users, test duration is 10 minutes. We decided that 90% of all users will perform <code>browsing</code> scenario and 10% - <code>commenting</code>. We also emulated the browser popularity distribution. Unfortunately, Visual Studio has outdated User-Agent strings. The configuration is shown below:<br>
+<img src="https://i.imgur.com/2BzR8WJ.png" alt=""></p><p>Now we can start our test and see the results.<br>
+<img src="https://i.imgur.com/n3FYK2M.png" alt=""></p><p>Here we emulate relatively active users and as a result the page load time increases significantly after 100+ users. The amount of requests per second our server is able to process drops at 2:15 according to graph. At that time page load time is rapidly increasing (upper-right graph).</p><p>According to test results, on average there were 14.5 pages/sec, 10 seconds to download a page, 148 requests/sec. The worst result is 30 seconds average load time (results were calculated separately for each page).<br>
+<img src="https://i.imgur.com/htj6CCx.png" alt=""></p><h2 id="task-2-test-hypervisor-features"><a class="anchor hidden-xs" href="#task-2-test-hypervisor-features" title="task-2-test-hypervisor-features"><span class="octicon octicon-link"></span></a>Task 2 - Test Hypervisor features</h2><h3 id="cold-migration"><a class="anchor hidden-xs" href="#cold-migration" title="cold-migration"><span class="octicon octicon-link"></span></a>Cold migration</h3><p>Cold migration tooks less than 40 seconds. Application performance did not change because we only moved a VM, there is no load balancing.</p><ol>
+<li>
+<p>Shutdown VM<br>
+<img src="http://i.imgur.com/j67haF2.png" alt=""></p>
+</li>
+<li>
+<p>Perform cold migration<br>
+<img src="http://i.imgur.com/ejEMFe8.png" alt=""></p>
+</li>
+<li>
+<p>Start it again<br>
+<img src="http://i.imgur.com/tjkhvCC.png" alt=""></p>
+</li>
+</ol><h3 id="live-migration"><a class="anchor hidden-xs" href="#live-migration" title="live-migration"><span class="octicon octicon-link"></span></a>Live migration</h3><p>Live migration tool approximately 2 min 30 sec. Application performance did not change because we only moved a VM, there is no load balancing. Downtime is 0 seconds, we were constantly pinging during migration to test this.</p><p><img src="http://i.imgur.com/1Xox51d.png" alt=""><br>
+<img src="http://i.imgur.com/VFdKgbR.png" alt=""></p><h1 id="ha-cluster"><a class="anchor hidden-xs" href="#ha-cluster" title="ha-cluster"><span class="octicon octicon-link"></span></a>HA cluster</h1><p>The first thing we need is to configure shared storage.</p><p>We followed step-by-step instruction of SMB file resource: <a href="https://blogs.technet.microsoft.com/keithmayer/2013/03/12/step-by-step-speaking-iscsi-with-windows-server-2012-and-hyper-v-become-a-virtualization-expert-in-20-days-part-7-of-20/" target="_blank">https://blogs.technet.microsoft.com/keithmayer/2013/03/12/step-by-step-speaking-iscsi-with-windows-server-2012-and-hyper-v-become-a-virtualization-expert-in-20-days-part-7-of-20/</a><br>
+<img src="https://i.imgur.com/fmoCiED.png" alt=""><br>
+<img src="https://i.imgur.com/OA4MxvA.png" alt=""><br>
+<img src="https://i.imgur.com/QXWvGUd.png" alt=""><br>
+<img src="https://i.imgur.com/Z6riY9u.png" alt=""><br>
+<img src="https://i.imgur.com/hXa5lh4.png" alt=""></p><p>Also, to be able to use iSCSI in our cluster we had done all the instruction from this article:<br>
+<a href="https://blogs.technet.microsoft.com/keithmayer/2013/03/12/step-by-step-speaking-iscsi-with-windows-server-2012-and-hyper-v-become-a-virtualization-expert-in-20-days-part-7-of-20/" target="_blank">https://blogs.technet.microsoft.com/keithmayer/2013/03/12/step-by-step-speaking-iscsi-with-windows-server-2012-and-hyper-v-become-a-virtualization-expert-in-20-days-part-7-of-20/</a><br>
+<img src="https://i.imgur.com/xwPtAdI.png" alt=""><br>
+<img src="https://i.imgur.com/A1so3qQ.png" alt=""><br>
+<img src="https://i.imgur.com/dCWZ5ed.png" alt=""><br>
+<img src="https://i.imgur.com/jSiXm44.png" alt=""></p><p><img src="http://i.imgur.com/qO7t43k.png" alt=""><br>
+To configure VM for high availability we have to do  some more steps. First we open Roles in Failover Cluster Manager and delete(!) VM we want to make<br>
+<img src="https://i.imgur.com/LlnDj0L.png" alt=""></p><p>Than we create a new Virtual Machine role.<br>
+<img src="http://i.imgur.com/BTTePvQ.png" alt=""></p><p>After that we select VM we just deleted.<br>
+<img src="http://i.imgur.com/XJMoAF6.png" alt=""></p><p>That’s all. Now we can test how it works. We put the network cable off from the hv-emil node. Site becomes unavailable, VM status becomes next:<br>
+<img src="http://i.imgur.com/l7u5d5K.png" alt=""></p><p>After approximately 5 minutes (our measurements showed 4 minutes 50 seconds) VM m1 migrates to node KOST and site becomes available again:<br>
+<img src="http://i.imgur.com/KwTlchc.png" alt=""><br>
+<img src="http://i.imgur.com/tqJ7OzN.png" alt=""></p><h2 id="questions"><a class="anchor hidden-xs" href="#questions" title="questions"><span class="octicon octicon-link"></span></a>Questions</h2><h4 id="1-describe-the-differences-between-cold-or-off-line-migration-and-live-migration"><a class="anchor hidden-xs" href="#1-describe-the-differences-between-cold-or-off-line-migration-and-live-migration" title="1-describe-the-differences-between-cold-or-off-line-migration-and-live-migration"><span class="octicon octicon-link"></span></a>1. Describe the differences between cold (or off-line) migration and live migration.</h4><p>To perform cold migration, we have to shutdown VM, then we can migrate it. Basically it means migration of the VM datastore.</p><p>To perform live migration we do not have to shutdown VM. Client applications are not disconnected during this process.</p><h4 id="2-what-mechanism-makes-live-migration-almost-instantaneous-under-light-load"><a class="anchor hidden-xs" href="#2-what-mechanism-makes-live-migration-almost-instantaneous-under-light-load" title="2-what-mechanism-makes-live-migration-almost-instantaneous-under-light-load"><span class="octicon octicon-link"></span></a>2. What mechanism makes live migration almost instantaneous under light load?</h4><p>Under heavy load memory pages of original VM can be changed. If some memory pages change (become dirty), they have to be re-copied until the rate of re-copied pages is not less than page dirtying rate.</p><p>Under light load this process is not needed and migration becomes “almost instantaneous”.</p><h4 id="3-what-are-the-technical-requirements-to-be-able-to-live-migrate-vms-and-why"><a class="anchor hidden-xs" href="#3-what-are-the-technical-requirements-to-be-able-to-live-migrate-vms-and-why" title="3-what-are-the-technical-requirements-to-be-able-to-live-migrate-vms-and-why"><span class="octicon octicon-link"></span></a>3. What are the technical requirements to be able to live migrate VMs, and why?</h4><p>For Hyper-V these requirements are have to be met:</p><ul>
+<li>all instances should be added to the same domain or across trusting domains, with the lone exception being a Storage Live Migration from one location on a system to another location on the same system.</li>
+<li>the source and destination hosts have to be members of the same failover cluster.</li>
+<li>all instances should be reachable from each other: no connection, no honey.</li>
+</ul><h4 id="4-together-think-of-a-definition-of-the-downtime-of-a-vm-and-your-application-and-how-to-best-measure-that-downtime-write-down-your-definition-and-measurement-methods-for-both"><a class="anchor hidden-xs" href="#4-together-think-of-a-definition-of-the-downtime-of-a-vm-and-your-application-and-how-to-best-measure-that-downtime-write-down-your-definition-and-measurement-methods-for-both" title="4-together-think-of-a-definition-of-the-downtime-of-a-vm-and-your-application-and-how-to-best-measure-that-downtime-write-down-your-definition-and-measurement-methods-for-both"><span class="octicon octicon-link"></span></a>4. Together think of a definition of the downtime of a VM and your application, and how to best measure that downtime. Write down your definition and measurement method(s) for both.</h4><p>Downtime for a VM is a time between its shutdown and consecutive start. VM is considered to be “started” when its operating system is successfully booted. One can easily measure downtime of a VM just by pinging its network interface.</p><p>Downtime for an application is a time, when application inside a VM does not respond for queries. Measurements are application-specific. For a web server, one can try to connect to web server to 80 port and send queries, until the first correct answer.</p><h4 id="5-show-in-you-report-the-summarized-results-from-your-measurements-what-is-the-conclusion-you-can-make-from-the-results"><a class="anchor hidden-xs" href="#5-show-in-you-report-the-summarized-results-from-your-measurements-what-is-the-conclusion-you-can-make-from-the-results" title="5-show-in-you-report-the-summarized-results-from-your-measurements-what-is-the-conclusion-you-can-make-from-the-results"><span class="octicon octicon-link"></span></a>5. Show in you report the summarized results from your measurements, what is the conclusion you can make from the results.</h4><p>For ubuntu VM and apache web server inside it took arond 40 seconds, to perform Cold Migration.</p><p>For Live Migration it took 2 min 30 sec.</p><p>The amount of users per second our server is able to process drops at maximum is 200. Normal load for our server is 100 users.</p><h4 id="6-what-feature-you-have-selected-to-configure-shared-storage-and-why--describe-the-difference-between-storage-technologies-what-of-them-has-better-performance-which-should-be-selected-as-most-reliable-and-should-be-used-for-resiliancy"><a class="anchor hidden-xs" href="#6-what-feature-you-have-selected-to-configure-shared-storage-and-why--describe-the-difference-between-storage-technologies-what-of-them-has-better-performance-which-should-be-selected-as-most-reliable-and-should-be-used-for-resiliancy" title="6-what-feature-you-have-selected-to-configure-shared-storage-and-why--describe-the-difference-between-storage-technologies-what-of-them-has-better-performance-which-should-be-selected-as-most-reliable-and-should-be-used-for-resiliancy"><span class="octicon octicon-link"></span></a>6. What feature you have selected to configure shared storage, and why ? Describe the difference between storage technologies, what of them has better performance, which should be selected as most reliable and should be used for resiliancy.</h4><p>We have to configure iSCSI storage, which was connected to all Hyper-V hypervisors. It was required for HA Cluster. Why: this was the only option we were able to do, to configure iSCSI target and create shared SMB storage over it. We also tried to use an entire hard drive for that purpose but with no success.</p><h4 id="7-share-your-web-application-performance-results-with-your-classmates-which-hypervisor-has-better-results--make-a-guess-why-"><a class="anchor hidden-xs" href="#7-share-your-web-application-performance-results-with-your-classmates-which-hypervisor-has-better-results--make-a-guess-why-" title="7-share-your-web-application-performance-results-with-your-classmates-which-hypervisor-has-better-results--make-a-guess-why-"><span class="octicon octicon-link"></span></a>7. Share your web application performance results with your classmates. Which Hypervisor has better results ? Make a guess Why ?</h4><p>For live migration Xen shows the best result - 20sec. In VMware and Hyper v live migration takes 40sec and 150sec accordingly.<br>
+Cold migration in Xen depends on human’s reaction and takes actually only few seconds. For Hyper-v it takes ~40 seconds and VMware with ~2 minutes is the slowest.</p><h4 id="8-is-it-acceptable-to-use-ha-hypervisor-feature-for-all-applications-types-to-achieve-application-high-availability-"><a class="anchor hidden-xs" href="#8-is-it-acceptable-to-use-ha-hypervisor-feature-for-all-applications-types-to-achieve-application-high-availability-" title="8-is-it-acceptable-to-use-ha-hypervisor-feature-for-all-applications-types-to-achieve-application-high-availability-"><span class="octicon octicon-link"></span></a>8. Is it acceptable to use HA Hypervisor feature for all applications types to achieve application high availability ?</h4><p>Definitely not. The main problem is a quite long downtime - almost 5 minutes for a really minimalistic VM with only Apache, Mysql and Php running.<br>
+In general HA from a side of hypervisor is useless if an application implements this feature by itself. It’s typical for distributed applications.</p></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav"><li class=""><a href="#lia-lab-assignment-2-high-availability">LIA Lab Assignment 2: High availability</a></li><li><a href="#task-1-prepare-your-environment">Task 1 - Prepare your environment</a><ul class="nav"><li><a href="#install-cms">Install CMS</a></li><li><a href="#web-application-performance-management">Web application performance management</a><ul class="nav"><li><a href="#task-2-test-hypervisor-features">Task 2 - Test Hypervisor features</a></li></ul></li><li><a href="#cold-migration">Cold migration</a></li><li><a href="#live-migration">Live migration</a></li></ul></li><li><a href="#ha-cluster">HA cluster</a><ul class="nav"><li><a href="#questions">Questions</a></li></ul></li></ul></div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;"  >
+        <div class="toc"><ul class="nav"><li class=""><a href="#lia-lab-assignment-2-high-availability">LIA Lab Assignment 2: High availability</a></li><li class=""><a href="#task-1-prepare-your-environment">Task 1 - Prepare your environment</a><ul class="nav"><li class=""><a href="#install-cms">Install CMS</a></li><li class=""><a href="#web-application-performance-management">Web application performance management</a><ul class="nav"><li class=""><a href="#task-2-test-hypervisor-features">Task 2 - Test Hypervisor features</a></li></ul></li><li class=""><a href="#cold-migration">Cold migration</a></li><li class=""><a href="#live-migration">Live migration</a></li></ul></li><li class=""><a href="#ha-cluster">HA cluster</a><ul class="nav"><li class=""><a href="#questions">Questions</a></li></ul></li></ul></div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
