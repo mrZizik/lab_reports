@@ -12,7 +12,7 @@ https://docs.docker.com/engine/swarm/raft/
 
 ### 2. What could be possible advantages of having separate service discovery and orchestration application (like consul or etcd)?
 
-For example, consul provides nice web interface, whereas docker built-in orchestrator does not (it shows health of services in terminal with `docker service ls`).
+Separate application give more functionality. For example consul gives better web interface then docker cli.
 
 ### 3. Which algorithm is used in load balancing of docker swarm?
 
